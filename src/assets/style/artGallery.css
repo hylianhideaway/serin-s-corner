@@ -8,3 +8,7 @@
     width: 500px;
 }
 
+.filterButtonGroup {
+    display: flex;
+    flex-wrap: wrap;
+}

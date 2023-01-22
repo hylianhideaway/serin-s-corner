@@ -186,6 +186,8 @@ const AboutPage: React.FC<PageProps> = () => {
         aria-label="Artists"
         value = {selectedArtists}
         onChange = {handleArtistToggle}
+        className="filterButtonGroup"
+        
       >
           <ToggleButton value={Artist.Bastien}>{Artist.Bastien}</ToggleButton>
           <ToggleButton value={Artist.RavenLuckArts}>{Artist.RavenLuckArts}</ToggleButton>
@@ -202,6 +204,8 @@ const AboutPage: React.FC<PageProps> = () => {
         aria-label="Characters"
         value = {selectedCharacters}
         onChange = {handleCharacterToggle}
+        className="filterButtonGroup"
+
       >
           <ToggleButton value={Character.Serin}>{Character.Serin}</ToggleButton>
           <ToggleButton value={Character.Lightsong}>{Character.Lightsong}</ToggleButton>
