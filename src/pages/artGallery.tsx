@@ -3,9 +3,14 @@ import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../components/layout'
 import { StaticImage } from 'gatsby-plugin-image'
 import  '../assets/style/artGallery.css'
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+
 
 
 const pageTitle = "Art Gallery"
+
+
+
 
 
 interface ArtInfo {
@@ -61,7 +66,6 @@ const AboutPage: React.FC<PageProps> = () => {
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2021_01_RavenLuckArts_Serin_Redesign.png" layout="constrained"  />
     }
-  
     ,
     {
       title: "Brunch",
@@ -94,7 +98,7 @@ const AboutPage: React.FC<PageProps> = () => {
       title: "Serin Chilling",
       artist: Artist.Aldermoth,
       address: "../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png",
-      characters: ["Serin"],
+      characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png" layout="constrained"  />
 
     }
@@ -142,12 +146,19 @@ const AboutPage: React.FC<PageProps> = () => {
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2023_01_Daxl_Serin_GrumpyDoodle.png" layout="constrained"  />
 
-    }
-    
+    } 
   ];
 
-  
-  const filteredArtArray=comprehensiveArtArray;  // TODO - actually add filtering. 
+
+  // Develop State for filters. 
+  const [selectedArtists,setSelectedArtists] = React.useState<Artist[]>([]);
+
+  //Toogle functions
+  const  handleArtistToggle = (event: React.MouseEvent<HTMLElement>,__selectedArtists: Artist[]) =>
+    {
+      setSelectedArtists(__selectedArtists) ;
+    };
+
   
   return (
     <Layout pageTitle={pageTitle}>
@@ -159,22 +170,68 @@ const AboutPage: React.FC<PageProps> = () => {
           <li>Info for each item in gallery</li>
         </ul>
       </p>
-      <ArtGallery comprehensiveArtArray={comprehensiveArtArray} />
+
+
+
+      <p>Filter by: Artist</p>
+      <ToggleButtonGroup
+        color="primary"
+        aria-label="Artists"
+        value = {selectedArtists}
+        onChange = {handleArtistToggle}
+      >
+        <ToggleButton value={Artist.Bastien}>{Artist.Bastien}</ToggleButton>
+        <ToggleButton value={Artist.RavenLuckArts}>{Artist.RavenLuckArts}</ToggleButton>
+        <ToggleButton value={Artist.ShrimpLoverCat}>{Artist.ShrimpLoverCat}</ToggleButton>
+        <ToggleButton value={Artist.FungiMan}>{Artist.FungiMan}</ToggleButton>
+        <ToggleButton value={Artist.Aldermoth}>{Artist.Aldermoth}</ToggleButton>
+        <ToggleButton value={Artist.Tink}>{Artist.Tink}</ToggleButton>
+        <ToggleButton value={Artist.Karne}>{Artist.Karne}</ToggleButton>
+        <ToggleButton value={Artist.Daxl}>{Artist.Daxl}</ToggleButton>
+
+
+  </ToggleButtonGroup>
+
+      <p>Filter by: Character</p> 
+ 
+      <ArtGallery comprehensiveArtArray={comprehensiveArtArray} selectedArtists = {selectedArtists} />
     </Layout>
   )
 }
 
+let selectedCharacters : Character[]|null;
+
+
 
 interface ArtGalleryProps 
 {
-  comprehensiveArtArray : ArtInfo[]
+  comprehensiveArtArray : ArtInfo[];
+  selectedArtists: Artist[]
+
 }
 
 
 const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   const comprehensiveArtArray=props.comprehensiveArtArray;
+  const selectedArtists = props.selectedArtists;
 
-  const images =   comprehensiveArtArray.map( function(artPiece,index) 
+  let filteredArtArray = comprehensiveArtArray;
+
+
+
+
+  // Filter by selected Artist(s) if any are selected. Otherwise, don't apply filter.
+  if (selectedArtists.length !== 0) {
+    filteredArtArray=filteredArtArray.filter( (element) => selectedArtists.includes(element.artist))
+  }
+
+
+  //next ,we filter out (if applicable, based on selections from the end user.)
+
+
+
+
+  const images =   filteredArtArray.map( function(artPiece,index) 
     {
       return (
       <div className="galleryItem" key = {index}>
