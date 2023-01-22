@@ -152,12 +152,19 @@ const AboutPage: React.FC<PageProps> = () => {
 
   // Develop State for filters. 
   const [selectedArtists,setSelectedArtists] = React.useState<Artist[]>([]);
+  const [selectedCharacters,setSelectedCharacters] = React.useState<Character[]>([]);
+
 
   //Toogle functions
   const  handleArtistToggle = (event: React.MouseEvent<HTMLElement>,__selectedArtists: Artist[]) =>
     {
       setSelectedArtists(__selectedArtists) ;
     };
+
+  const  handleCharacterToggle = (event: React.MouseEvent<HTMLElement>,__selectedCharacters: Character[]) =>
+  {
+    setSelectedCharacters(__selectedCharacters) ;
+  };
 
   
   return (
@@ -180,33 +187,41 @@ const AboutPage: React.FC<PageProps> = () => {
         value = {selectedArtists}
         onChange = {handleArtistToggle}
       >
-        <ToggleButton value={Artist.Bastien}>{Artist.Bastien}</ToggleButton>
-        <ToggleButton value={Artist.RavenLuckArts}>{Artist.RavenLuckArts}</ToggleButton>
-        <ToggleButton value={Artist.ShrimpLoverCat}>{Artist.ShrimpLoverCat}</ToggleButton>
-        <ToggleButton value={Artist.FungiMan}>{Artist.FungiMan}</ToggleButton>
-        <ToggleButton value={Artist.Aldermoth}>{Artist.Aldermoth}</ToggleButton>
-        <ToggleButton value={Artist.Tink}>{Artist.Tink}</ToggleButton>
-        <ToggleButton value={Artist.Karne}>{Artist.Karne}</ToggleButton>
-        <ToggleButton value={Artist.Daxl}>{Artist.Daxl}</ToggleButton>
-
-
-  </ToggleButtonGroup>
-
+          <ToggleButton value={Artist.Bastien}>{Artist.Bastien}</ToggleButton>
+          <ToggleButton value={Artist.RavenLuckArts}>{Artist.RavenLuckArts}</ToggleButton>
+          <ToggleButton value={Artist.ShrimpLoverCat}>{Artist.ShrimpLoverCat}</ToggleButton>
+          <ToggleButton value={Artist.FungiMan}>{Artist.FungiMan}</ToggleButton>
+          <ToggleButton value={Artist.Aldermoth}>{Artist.Aldermoth}</ToggleButton>
+          <ToggleButton value={Artist.Tink}>{Artist.Tink}</ToggleButton>
+          <ToggleButton value={Artist.Karne}>{Artist.Karne}</ToggleButton>
+          <ToggleButton value={Artist.Daxl}>{Artist.Daxl}</ToggleButton>
+      </ToggleButtonGroup>
       <p>Filter by: Character</p> 
- 
-      <ArtGallery comprehensiveArtArray={comprehensiveArtArray} selectedArtists = {selectedArtists} />
+      <ToggleButtonGroup
+        color="primary"
+        aria-label="Characters"
+        value = {selectedCharacters}
+        onChange = {handleCharacterToggle}
+      >
+          <ToggleButton value={Character.Serin}>{Character.Serin}</ToggleButton>
+          <ToggleButton value={Character.Lightsong}>{Character.Lightsong}</ToggleButton>
+          <ToggleButton value={Character.Ghodukk}>{Character.Ghodukk}</ToggleButton>
+          <ToggleButton value={Character.Eryn}>{Character.Eryn}</ToggleButton>
+          <ToggleButton value={Character.Vera}>{Character.Vera}</ToggleButton>
+          <ToggleButton value={Character.Luric}>{Character.Luric}</ToggleButton>
+          <ToggleButton value={Character.Percy}>{Character.Percy}</ToggleButton>
+          <ToggleButton value={Character.Tiberius}>{Character.Tiberius}</ToggleButton>
+      </ToggleButtonGroup>
+      <ArtGallery comprehensiveArtArray={comprehensiveArtArray} selectedArtists = {selectedArtists} selectedCharacters={selectedCharacters}/>
     </Layout>
   )
 }
 
-let selectedCharacters : Character[]|null;
-
-
-
 interface ArtGalleryProps 
 {
   comprehensiveArtArray : ArtInfo[];
-  selectedArtists: Artist[]
+  selectedArtists: Artist[];
+  selectedCharacters : Character[];
 
 }
 
@@ -214,20 +229,28 @@ interface ArtGalleryProps
 const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   const comprehensiveArtArray=props.comprehensiveArtArray;
   const selectedArtists = props.selectedArtists;
+  const selectedCharacters = props.selectedCharacters;
 
   let filteredArtArray = comprehensiveArtArray;
-
-
 
 
   // Filter by selected Artist(s) if any are selected. Otherwise, don't apply filter.
   if (selectedArtists.length !== 0) {
     filteredArtArray=filteredArtArray.filter( (element) => selectedArtists.includes(element.artist))
   }
+  // Filter by selected character if any are selected. Otherwise, don't apply filter.
+  if (selectedCharacters.length !== 0) {
+    filteredArtArray=filteredArtArray.filter( (element) => {
+        for(let character of element.characters)
+        {
+          if (selectedCharacters.includes(character)) return true;
+        }
+        return false;
+    })
+  }
 
 
-  //next ,we filter out (if applicable, based on selections from the end user.)
-
+  // TODO - Sorting logic
 
 
 
