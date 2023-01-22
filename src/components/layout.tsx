@@ -1,6 +1,6 @@
 import * as React from "react"
 import {Link} from 'gatsby'
-import  './layout.css' 
+import  '../assets/style/layout.css'
 
 
 
@@ -26,6 +26,8 @@ const Layout : React.FC<LayoutProps> = (props) => {
                 <ul className={"nav-links"}>
                     <li className={"nav-link-item"}> <Link className={"nav-link-item"} to={"/"}>Home</Link></li>
                     <li className={"nav-link-item"}> <Link className={"nav-link-item"} to={"/about"}>About</Link></li>
+                    <li className={"nav-link-item"}> <Link className={"nav-link-item"} to={"/artGallery"}>Gallery</Link></li>
+                    <li className={"nav-link-item"}> <Link className={"nav-link-item"} to={"/externalLinks"}>Links</Link></li>
                 </ul>
             </nav>
             {/* Where the content for the child page goes */}

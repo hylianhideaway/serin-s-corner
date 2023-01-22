@@ -7,12 +7,14 @@ import { StaticImage } from 'gatsby-plugin-image'
 const IndexPage: React.FC<PageProps> = () => {
   return ( 
     <Layout pageTitle = "Welcome to my corner!">
-      <p>I'm making this by following the Gatsby Tutorial.</p>
+      <p>Mia...</p>
         
       <StaticImage
         alt="Mia, a black and white lab mix, curled up on a couch cushion."
-        src="../images/MiaCurled.jpg"
+        src="../assets/images/photos/MiaCurled.jpg"
         layout="constrained"
+        width={600}
+
       />
     
     </Layout>

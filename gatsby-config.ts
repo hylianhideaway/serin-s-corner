@@ -14,7 +14,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: 'src/images/SerinUp.png',
+        icon: 'src/assets/icons/SerinUp.png',
       },
     }
   ],
