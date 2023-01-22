@@ -10,13 +10,34 @@ const pageTitle = "Art Gallery"
 
 interface ArtInfo {
   title: string;
-  artist:string;
+  artist:Artist;
   address: string;
-  characters: string[];
+  characters: Character[];
   staticImage: JSX.Element
 }
 
+enum Character {
+  Serin = "Serin",
+  Lightsong = "Lightsong",
+  Ghodukk = "Ghodukk",
+  Eryn = "Eryn",
+  Vera = "Vera",
+  Luric = "Luric",
+  Percy = "Percy",
+  Tiberius = "Tiberius"
+}
 
+enum Artist {
+  Bastien = "Bastien",
+  RavenLuckArts = "RavenLuckArts",
+  ShrimpLoverCat = "ShrimpLoverCat",
+  FungiMan = "FungiMan",
+  Aldermoth = "Aldermoth",
+  Tink = "Tink",
+  Karne = "Karne",
+  Daxl = "Daxl",
+
+}
 
 
 // Step 2: Define your component
@@ -27,51 +48,51 @@ const AboutPage: React.FC<PageProps> = () => {
     
     {
       title: "Original Risen",
-      artist: "Bastien",
+      artist: Artist.Bastien,
       address: "../assets/images/art/2019_04_Bastien_Multiple_DndGroup.jpg",
-      characters: ["Serin","Lightsong","Ghodukk","Eryn"],
+      characters: [Character.Serin,Character.Lightsong,Character.Ghodukk,Character.Eryn],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2019_04_Bastien_Multiple_DndGroup.jpg" layout="constrained" />
     }
     ,
     {
       title: "Serin Redesign",
-      artist: "RavenLuckArts",
+      artist: Artist.RavenLuckArts,
       address: "../assets/images/art/2021_01_RavenLuckArts_Serin_Redesign.png",
-      characters: ["Serin"],
+      characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2021_01_RavenLuckArts_Serin_Redesign.png" layout="constrained"  />
     }
   
     ,
     {
       title: "Brunch",
-      artist: "ShrimpLoverCat",
+      artist: Artist.ShrimpLoverCat,
       address: "../assets/images/art/2022_03_ShrimpLoverCat_Muliple_Brunch.png",
-      characters: ["Lightsong","Vera","Serin","Luric","Percy"],
+      characters: [Character.Lightsong,Character.Vera,Character.Serin,Character.Luric,Character.Percy],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Muliple_Brunch.png" layout="constrained"   />
 
     }
     ,
     {
       title: "Dab",
-      artist: "ShrimpLoverCat",
+      artist: Artist.ShrimpLoverCat,
       address: "../assets/images/art/2022_03_ShrimpLoverCat_Serin_Dab.png",
-      characters: ["Serin"],
+      characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Serin_Dab.png" layout="constrained"  />
 
     }
     ,
     {
       title: "Modern Serin",
-      artist: "FungiMan",
+      artist: Artist.FungiMan,
       address: "../assets/images/art/2022_05_FungiMan_Serin_Modern.png",
-      characters: ["Serin"],
+      characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_05_FungiMan_Serin_Modern.png" layout="constrained"  />
 
     }
     ,
     {
       title: "Serin Chilling",
-      artist: "Aldermoth",
+      artist: Artist.Aldermoth,
       address: "../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png",
       characters: ["Serin"],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png" layout="constrained"  />
@@ -80,45 +101,45 @@ const AboutPage: React.FC<PageProps> = () => {
     ,
     {
       title: "Smug Serin",
-      artist: "Tink",
+      artist: Artist.Tink,
       address: "../assets/images/art/2022_08_Tink_Serin_Smirk.png",
-      characters: ["Serin"],
+      characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Tink_Serin_Smirk.png" layout="constrained"  />
 
     }
     ,
     {
       title: "Chibi Serin",
-      artist: "Daxl",
+      artist: Artist.Daxl,
       address: "../assets/images/art/2022_10_Daxl_Serin_Chibi1.png",
-      characters: ["Serin"],
+      characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_10_Daxl_Serin_Chibi1.png" layout="constrained"  />
 
     }
     ,
     {
       title: "Tiberius",
-      artist: "Karne",
+      artist: Artist.Karne,
       address: "../assets/images/art/2022_11_Karne_Tiberius_01.png",
-      characters: ["Serin"],
+      characters: [Character.Tiberius],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_11_Karne_Tiberius_01.png" layout="constrained"  />
 
     }
     ,
     {
       title: "Christmas Serin",
-      artist: "Daxl",
+      artist: Artist.Daxl,
       address: "../assets/images/art/2022_12_Daxl_Serin_Christmas.png",
-      characters: ["Serin"],
+      characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_12_Daxl_Serin_Christmas.png" layout="constrained"  />
 
     }
     ,
     {
       title: "Grumpy Doodle",
-      artist: "Daxl",
+      artist: Artist.Daxl,
       address: "../assets/images/art/2023_01_Daxl_Serin_GrumpyDoodle.png",
-      characters: ["Serin"],
+      characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2023_01_Daxl_Serin_GrumpyDoodle.png" layout="constrained"  />
 
     }
