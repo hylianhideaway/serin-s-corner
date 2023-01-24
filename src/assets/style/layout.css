@@ -8,7 +8,7 @@
   background-color: #FEFAE0;
   
   
-  min-height: 100ch;
+  min-height: 100vh;
 }
 
 
@@ -24,6 +24,8 @@
     max-width: 1600px;
 
     background-color: #FEFAE0;
+
+    min-height: 100vh;
   }
 
 /*General formatting for header, including banner and links */ 
@@ -51,6 +53,7 @@
   .nav-link-item {
     color: white;
     text-decoration:none;
+    font-weight: bold;
     
     /*
     background-color:green;

@@ -1,0 +1,12 @@
+
+/* Only use for adding styling to the full document - currently, not convinced we actually need this, but at least we have it in case we do.  */
+
+
+
+html{
+    min-height: 100%; 
+}
+
+body {
+    min-height: 100%; 
+}
