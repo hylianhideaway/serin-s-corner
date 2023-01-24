@@ -200,7 +200,7 @@ const AboutPage: React.FC<PageProps> = () => {
       </ToggleButtonGroup>
       <p>Filter by: Character</p> 
       <ToggleButtonGroup
-        color="primary"
+        color="secondary"
         aria-label="Characters"
         value = {selectedCharacters}
         onChange = {handleCharacterToggle}
@@ -216,6 +216,7 @@ const AboutPage: React.FC<PageProps> = () => {
           <ToggleButton value={Character.Percy}>{Character.Percy}</ToggleButton>
           <ToggleButton value={Character.Tiberius}>{Character.Tiberius}</ToggleButton>
       </ToggleButtonGroup>
+      <br/>
       <ArtGallery comprehensiveArtArray={comprehensiveArtArray} selectedArtists = {selectedArtists} selectedCharacters={selectedCharacters}/>
     </Layout>
   )
