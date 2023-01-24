@@ -1,29 +1,94 @@
 
 
 
-.container {
-    margin: auto;
-    max-width: 1200px;
+/* Remove top part and define main font. Also used for side color themes if desired */
+
+.outerContainer {
+  margin-top: -8px; /*gets rid of little space at top of website*/
+  font-family: sans-serif;
+  background-color: #FEFAE0;
+  
+  
+  height: 100%;
+
+
+
+
+
+
+
+}
+
+
+.innerContainer {
+
+  /* Keep main content in the center of the screen */
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: -8px; /*gets rid of little space at top of website*/
     font-family: sans-serif;
+
+    max-width: 1600px;
+
+    background-color: #FEFAE0;
   }
 
-  .heading {
-    color: rebeccapurple;
+/*General formatting for header, including banner and links */ 
+
+.mainContainer {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+  .headerBar {
+    background-color: #606C38;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .nav-links {
     display: flex;
-    list-style: none;
-    padding-left: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start 
+
   }
 
   .nav-link-item {
-    padding-right: 2rem;
+    color: white;
+    text-decoration:none;
+    
+    /*
+    background-color:green;
+    */
+
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+
   }
+
+  .nav-links-active{
+    background-color:#FEFAE0;
+    color : #283618;
+  }
+
+
+  .heading {
+    color: #283618;
+  }
+
+
   
-  .nav-link-text {
-    color: black;
-  }
+
 
 
 

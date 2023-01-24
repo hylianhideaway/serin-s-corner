@@ -20,21 +20,31 @@ const Layout : React.FC<LayoutProps> = (props) => {
     
     
     return (
-        <div className={"container"}>
-            {/* Navigation Bar*/}
-            <nav>
-                <ul className={"nav-links"}>
-                    <li className={"nav-link-item"}> <Link className={"nav-link-item"} to={"/"}>Home</Link></li>
-                    <li className={"nav-link-item"}> <Link className={"nav-link-item"} to={"/about"}>About</Link></li>
-                    <li className={"nav-link-item"}> <Link className={"nav-link-item"} to={"/artGallery"}>Gallery</Link></li>
-                    <li className={"nav-link-item"}> <Link className={"nav-link-item"} to={"/externalLinks"}>Links</Link></li>
-                </ul>
-            </nav>
-            {/* Where the content for the child page goes */}
-            <main>
-                <h1 className={"heading"}>{pageTitle}</h1>
-                {children}
-            </main>
+        
+        
+        
+        <div className={"outerContainer"}>
+            <div className={"innerContainer"}> 
+
+                
+                
+                    <div className='headerBar'>
+                        <nav className='nav-links'>
+                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/"}>Home</Link>
+                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/about"}>About</Link>
+                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/artGallery"}>Gallery</Link>
+                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"}to={"/externalLinks"}>Links</Link>
+                        </nav>
+                    </div>
+
+
+
+                    <main className={"mainContainer"}>
+                        <h1 className={"heading"}>{pageTitle}</h1>
+                        {children}
+                    </main>
+
+            </div>
         </div>
     )
 }
