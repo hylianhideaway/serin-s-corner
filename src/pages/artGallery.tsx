@@ -18,7 +18,8 @@ interface ArtInfo {
   artist:Artist;
   address: string;
   characters: Character[];
-  staticImage: JSX.Element
+  staticImage: JSX.Element;
+  dateRecieved: Date
 }
 
 enum Character {
@@ -40,8 +41,13 @@ enum Artist {
   Aldermoth = "Aldermoth",
   Tink = "Tink",
   Karne = "Karne",
-  Daxl = "Daxl",
+  Daxl = "Daxl"
 
+}
+
+enum SortOrder {
+  Chronological = 1,
+  ReverseChronological = 2
 }
 
 
@@ -56,7 +62,8 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.Bastien,
       address: "../assets/images/art/2019_04_Bastien_Multiple_DndGroup.jpg",
       characters: [Character.Serin,Character.Lightsong,Character.Ghodukk,Character.Eryn],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2019_04_Bastien_Multiple_DndGroup.jpg" layout="constrained" />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2019_04_Bastien_Multiple_DndGroup.jpg" layout="constrained" />,
+      dateRecieved : new Date(2019,3,24) // 4/24/2019
     }
     ,
     {
@@ -64,7 +71,9 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.RavenLuckArts,
       address: "../assets/images/art/2021_01_RavenLuckArts_Serin_Redesign.png",
       characters: [Character.Serin],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2021_01_RavenLuckArts_Serin_Redesign.png" layout="constrained"  />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2021_01_RavenLuckArts_Serin_Redesign.png" layout="constrained"  />,
+      dateRecieved : new Date(2021,1,8) // 2/8/2021
+
     }
     ,
     {
@@ -72,7 +81,9 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.ShrimpLoverCat,
       address: "../assets/images/art/2022_03_ShrimpLoverCat_Muliple_Brunch.png",
       characters: [Character.Lightsong,Character.Vera,Character.Serin,Character.Luric,Character.Percy],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Muliple_Brunch.png" layout="constrained"   />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Muliple_Brunch.png" layout="constrained"   />,
+      dateRecieved : new Date(2022,2,12) // 3/12/2022
+
 
     }
     ,
@@ -81,7 +92,9 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.ShrimpLoverCat,
       address: "../assets/images/art/2022_03_ShrimpLoverCat_Serin_Dab.png",
       characters: [Character.Serin],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Serin_Dab.png" layout="constrained"  />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Serin_Dab.png" layout="constrained"  />,
+      dateRecieved : new Date(2022,2,27) // 3/27/2022
+
 
     }
     ,
@@ -90,7 +103,9 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.FungiMan,
       address: "../assets/images/art/2022_05_FungiMan_Serin_Modern.png",
       characters: [Character.Serin],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_05_FungiMan_Serin_Modern.png" layout="constrained"  />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_05_FungiMan_Serin_Modern.png" layout="constrained"  />,
+      dateRecieved : new Date(2022,4,27) // 5/27/2022
+
 
     }
     ,
@@ -99,7 +114,9 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.Aldermoth,
       address: "../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png",
       characters: [Character.Serin],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png" layout="constrained"  />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png" layout="constrained"  />,
+      dateRecieved : new Date(2022,8,5) // 9/5/2022
+
 
     }
     ,
@@ -108,7 +125,9 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.Tink,
       address: "../assets/images/art/2022_08_Tink_Serin_Smirk.png",
       characters: [Character.Serin],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Tink_Serin_Smirk.png" layout="constrained"  />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Tink_Serin_Smirk.png" layout="constrained"  />,
+      dateRecieved : new Date(2022,7,29) // 8/29/2022
+
 
     }
     ,
@@ -117,7 +136,9 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.Daxl,
       address: "../assets/images/art/2022_10_Daxl_Serin_Chibi1.png",
       characters: [Character.Serin],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_10_Daxl_Serin_Chibi1.png" layout="constrained"  />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_10_Daxl_Serin_Chibi1.png" layout="constrained"  />,
+      dateRecieved : new Date(2022,9,28) // 10/28/2022
+
 
     }
     ,
@@ -126,7 +147,9 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.Karne,
       address: "../assets/images/art/2022_11_Karne_Tiberius_01.png",
       characters: [Character.Tiberius],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_11_Karne_Tiberius_01.png" layout="constrained"  />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_11_Karne_Tiberius_01.png" layout="constrained"  />,
+      dateRecieved : new Date(2022,10,28) // 11/28/2022
+
 
     }
     ,
@@ -135,7 +158,9 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.Daxl,
       address: "../assets/images/art/2022_12_Daxl_Serin_Christmas.png",
       characters: [Character.Serin],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_12_Daxl_Serin_Christmas.png" layout="constrained"  />
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2022_12_Daxl_Serin_Christmas.png" layout="constrained"  />,
+      dateRecieved : new Date(2022,11,8)  // 12/08/2022
+
 
     }
     ,
@@ -144,8 +169,8 @@ const AboutPage: React.FC<PageProps> = () => {
       artist: Artist.Daxl,
       address: "../assets/images/art/2023_01_Daxl_Serin_GrumpyDoodle.png",
       characters: [Character.Serin],
-      staticImage: <StaticImage alt="..." src="../assets/images/art/2023_01_Daxl_Serin_GrumpyDoodle.png" layout="constrained"  />
-
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2023_01_Daxl_Serin_GrumpyDoodle.png" layout="constrained"  />,
+      dateRecieved : new Date(2022,11,23) // 12/23/2022
     } 
   ];
 
@@ -153,6 +178,8 @@ const AboutPage: React.FC<PageProps> = () => {
   // Develop State for filters. 
   const [selectedArtists,setSelectedArtists] = React.useState<Artist[]>([]);
   const [selectedCharacters,setSelectedCharacters] = React.useState<Character[]>([]);
+  const [sortOrder,setSortOrder] = React.useState<SortOrder>(SortOrder.Chronological);
+
 
 
   //Toogle functions
@@ -165,6 +192,11 @@ const AboutPage: React.FC<PageProps> = () => {
   {
     setSelectedCharacters(__selectedCharacters) ;
   };
+
+  const handleSortOrderToggle = (event: React.MouseEvent<HTMLElement>,__selectedSortOrder: SortOrder) =>
+  {
+    setSortOrder(__selectedSortOrder);
+  }
 
   
   return (
@@ -190,7 +222,7 @@ const AboutPage: React.FC<PageProps> = () => {
 
 
 
-      <h2>Filtering Options</h2>
+      <h2>Display Options</h2>
       <h3>Artist</h3>
       <ToggleButtonGroup
         color="primary"
@@ -226,9 +258,31 @@ const AboutPage: React.FC<PageProps> = () => {
           <ToggleButton value={Character.Percy}>{Character.Percy}</ToggleButton>
           <ToggleButton value={Character.Tiberius}>{Character.Tiberius}</ToggleButton>
       </ToggleButtonGroup>
+
+
+      <h3>Sort Order</h3>
+      <ToggleButtonGroup
+        color="success"
+        aria-label="Sort Order"
+        value = {sortOrder}
+        onChange = {handleSortOrderToggle}
+        className="filterButtonGroup"
+        exclusive
+      >
+          <ToggleButton value={SortOrder.Chronological}>Chronological</ToggleButton>
+          <ToggleButton value={SortOrder.ReverseChronological}>Reverse Chronological</ToggleButton>
+      </ToggleButtonGroup> 
+
       <br/>
-      <ArtGallery comprehensiveArtArray={comprehensiveArtArray} selectedArtists = {selectedArtists} selectedCharacters={selectedCharacters}/>
+      <ArtGallery 
+        comprehensiveArtArray={comprehensiveArtArray} 
+        selectedArtists = {selectedArtists} 
+        selectedCharacters={selectedCharacters}
+        sortOrder = {sortOrder}
+      />
     </Layout>
+
+    
   )
 }
 
@@ -237,6 +291,7 @@ interface ArtGalleryProps
   comprehensiveArtArray : ArtInfo[];
   selectedArtists: Artist[];
   selectedCharacters : Character[];
+  sortOrder: SortOrder;
 
 }
 
@@ -245,6 +300,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   const comprehensiveArtArray=props.comprehensiveArtArray;
   const selectedArtists = props.selectedArtists;
   const selectedCharacters = props.selectedCharacters;
+  const sortOrder = props.sortOrder;
 
   let filteredArtArray = comprehensiveArtArray;
 
@@ -263,6 +319,17 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
         return false;
     })
   }
+
+  // sort by date
+  if(sortOrder === SortOrder.Chronological) {
+    filteredArtArray.sort( (a,b) => (a.dateRecieved.getTime() - b.dateRecieved.getTime()))
+
+  } 
+  else {
+    filteredArtArray.sort( (a,b) => (b.dateRecieved.getTime() - a.dateRecieved.getTime()))
+  }
+
+
 
 
   // TODO - Sorting logic
@@ -284,9 +351,6 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
           {images}
     </div>
   )
-
-
-
 }
 
 
