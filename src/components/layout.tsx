@@ -31,7 +31,7 @@ const Layout : React.FC<LayoutProps> = (props) => {
                     <div className='headerBar'>
                         <nav className='nav-links'>
                             <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/"}>Home</Link>
-                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/about"}>About</Link>
+                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/characters"}>Characters</Link>
                             <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/artGallery"}>Gallery</Link>
                             <Link className={"nav-link-item"} activeClassName={"nav-links-active"}to={"/externalLinks"}>Links</Link>
                         </nav>

@@ -10,3 +10,24 @@ html{
 body {
     min-height: 100%; 
 }
+
+
+/*Define some defaualt colors for standard elements commonly used on this site. */
+
+h1 {
+    color: #283618;
+  }
+
+
+h2 {
+    color: #283618;
+}
+
+h3 {
+    color: #283618;
+}
+
+p {
+    color: black;
+    font-family:sans-serif
+}

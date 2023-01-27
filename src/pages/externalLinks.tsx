@@ -10,10 +10,21 @@ const pageTitle = "External Links"
 const AboutPage: React.FC<PageProps> = () => {
   return (
     <Layout pageTitle={pageTitle}>
-      <ul>
-        <li><a href="https://groundedwren.com/">Vera's site </a>
-        </li>
-      </ul>
+      
+
+      <h2>Friend's sites</h2>
+        <ul>
+          <li><a href="https://groundedwren.com/">Vera's site </a>
+            <ul>
+              <li>made by my friend Vera. She is building her site from the ground up. No React. No prebuilt components. Just raw html, css, and javascript. </li>
+            </ul>
+          </li>
+        </ul>
+      <h2>Where to find me</h2>
+        <ul>
+          <li><a href="https://twitter.com/Serin2021">Twitter</a></li>
+          <li>Discord Handle: Serin#8136</li>
+        </ul>
     </Layout>
 
 

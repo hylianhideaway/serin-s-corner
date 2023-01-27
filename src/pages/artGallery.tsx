@@ -170,24 +170,34 @@ const AboutPage: React.FC<PageProps> = () => {
   return (
     <Layout pageTitle={pageTitle}>
       <p>TODO -
+        
+        
         <ul>
-          <li>Full art gallery (done)</li>
+          <li><del>Full art gallery</del> </li>
+          <li><del>Filtering</del></li>
           <li>Sorting</li>
           <li>Expand for full resolution</li>
           <li>Info for each item in gallery</li>
+            <ul>
+              <li>Title</li>
+              <li>Character(s)</li>
+              <li>Creation Date</li>
+              <li>Artist</li>
+              <li>Description</li>
+            </ul>
         </ul>
       </p>
 
 
 
-      <p>Filter by: Artist</p>
+      <h2>Filtering Options</h2>
+      <h3>Artist</h3>
       <ToggleButtonGroup
         color="primary"
         aria-label="Artists"
         value = {selectedArtists}
         onChange = {handleArtistToggle}
         className="filterButtonGroup"
-        
       >
           <ToggleButton value={Artist.Bastien}>{Artist.Bastien}</ToggleButton>
           <ToggleButton value={Artist.RavenLuckArts}>{Artist.RavenLuckArts}</ToggleButton>
@@ -198,7 +208,7 @@ const AboutPage: React.FC<PageProps> = () => {
           <ToggleButton value={Artist.Karne}>{Artist.Karne}</ToggleButton>
           <ToggleButton value={Artist.Daxl}>{Artist.Daxl}</ToggleButton>
       </ToggleButtonGroup>
-      <p>Filter by: Character</p> 
+      <h3>Character</h3> 
       <ToggleButtonGroup
         color="secondary"
         aria-label="Characters"
