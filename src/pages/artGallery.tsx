@@ -3,7 +3,16 @@ import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../components/layout'
 import { StaticImage } from 'gatsby-plugin-image'
 import  '../assets/style/artGallery.css'
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { BackdropProps, ToggleButton, ToggleButtonGroup } from '@mui/material';
+
+
+// Bunch of imports. Probably don't need all of them. 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+
 
 
 
@@ -331,17 +340,82 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
 
 
 
+  const [expanedViewIsOpen, setExpanedViewIsOpen] = React.useState<boolean[]>(new Array(filteredArtArray.length).fill(false));
+  const handleOpenExpandedView = (index: number) => 
+  {
+      let tempArray = new Array<boolean>(...expanedViewIsOpen);
+      tempArray[index] = true;
+      setExpanedViewIsOpen(tempArray);
+  }
+  const handleClose = (index: number) => 
+  {
+    let tempArray = new Array<boolean>(...expanedViewIsOpen);
+    tempArray[index] = false;
+    setExpanedViewIsOpen(tempArray);
+  }
 
-  // TODO - Sorting logic
+
+  // Temp style until we get this working. 
+  const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 600,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
+  //https://www.reddit.com/r/learnjavascript/comments/ueeomi/are_there_any_mui_experts_here_my_modal_component/
 
 
-
+  /*
+    The images array is a pregenerated list of JSX object. Each outer div corresponds to both a 
+    gallery image, as well as a modal popup that is triggered when said image is clicked. 
+  */
   const images =   filteredArtArray.map( function(artPiece,index) 
     {
       return (
-      <div className="galleryItem" key = {index}>
-        {artPiece.staticImage}
+      <div key = {index}> 
+        {/* GALLERY ITEM */}
+        <div className="galleryItem" >
+          <Button 
+              onClick = {() => handleOpenExpandedView(index)}
+          >
+            {artPiece.staticImage}
+          </Button>
         </div>
+        
+        
+        
+        {/* MODAL POPUP */}        
+        <Modal
+          open={expanedViewIsOpen[index]}
+          onClose={ () => handleClose(index)}
+        >
+          <Box sx={style}>
+
+            <div className="modalImageOuterContainer">
+            {/* DIV containing the actual expanded image - TODO - actually format this */}
+            <div> 
+              {artPiece.staticImage}
+            </div> 
+            {/* DIV containing image description - TODO - actually format this */}
+            <br/>
+            <div className="modalImageDescriptionContainer">
+                <div className="modalImageDescriptionItem">{artPiece.title}</div>
+                <div className="modalImageDescriptionItem">{artPiece.artist} </div>
+                <div className="modalImageDescriptionItem">{artPiece.dateRecieved.toDateString()}</div>              
+            </div>
+            </div>
+
+
+          </Box>
+        </Modal>
+      </div>
+
       );
     }
   )

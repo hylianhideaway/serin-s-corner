@@ -1,3 +1,16 @@
+
+
+/* Formatting for the filter buttons */
+
+.filterButtonGroup {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* Formatting for the pictures that appear in the gallery */
+
+
 .galleryContainer {
     display: flex;
     flex-wrap: wrap;
@@ -9,7 +22,26 @@
     margin: 4px;
 }
 
-.filterButtonGroup {
+
+
+/* Formatting for the Modal popup */
+
+
+.modalImageOuterContainer {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap:nowrap;
+    flex-direction: column ;
+    align-items: center;
+}
+
+
+.modalImageDescriptionContainer {
+    display: flex;
+    flex-wrap:nowrap;
+    align-items: center;
+
+}
+.modalImageDescriptionItem {
+    margin-left: 8px;
+    margin-right: 8px;
 }
