@@ -339,14 +339,20 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   }
 
 
-
+/*
   const [expanedViewIsOpen, setExpanedViewIsOpen] = React.useState<boolean[]>(new Array(filteredArtArray.length).fill(false));
+
+*/
+
   const handleOpenExpandedView = (index: number) => 
   {
-      let tempArray = new Array<boolean>(...expanedViewIsOpen);
-      tempArray[index] = true;
-      setExpanedViewIsOpen(tempArray);
+
+    //  let tempArray = new Array<boolean>(...expanedViewIsOpen);
+    //  tempArray[index] = true;
+    //  setExpanedViewIsOpen(tempArray);
   }
+
+/*
   const handleClose = (index: number) => 
   {
     let tempArray = new Array<boolean>(...expanedViewIsOpen);
@@ -369,6 +375,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   };
 
   //https://www.reddit.com/r/learnjavascript/comments/ueeomi/are_there_any_mui_experts_here_my_modal_component/
+  */
 
 
   /*
@@ -379,6 +386,8 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
     {
       return (
       <div key = {index}> 
+
+      
         {/* GALLERY ITEM */}
         <div className="galleryItem" >
           <Button 
@@ -387,22 +396,23 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
             {artPiece.staticImage}
           </Button>
         </div>
+      
         
         
         
-        {/* MODAL POPUP */}        
+        {/* MODAL POPUP */}
+        {/*
         <Modal
           open={expanedViewIsOpen[index]}
           onClose={ () => handleClose(index)}
+          disableScrollLock={true}
         >
           <Box sx={style}>
 
             <div className="modalImageOuterContainer">
-            {/* DIV containing the actual expanded image - TODO - actually format this */}
             <div> 
               {artPiece.staticImage}
             </div> 
-            {/* DIV containing image description - TODO - actually format this */}
             <br/>
             <div className="modalImageDescriptionContainer">
                 <div className="modalImageDescriptionItem">{artPiece.title}</div>
@@ -414,6 +424,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
 
           </Box>
         </Modal>
+      */}
       </div>
 
       );
