@@ -367,7 +367,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 600,
+    width: '600px',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -385,7 +385,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   const images =   filteredArtArray.map( function(artPiece,index) 
     {
       return (
-      <div key = {index}> 
+      <> 
 
       
         {/* GALLERY ITEM */}
@@ -400,8 +400,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
         
         
         
-        {/* MODAL POPUP */}
-      
+        {/* MODAL POPUP - should really be abstracted to its own component*/}   
         <Modal
           open={expanedViewIsOpen[index]}
           onClose={ () => handleClose(index)}
@@ -420,13 +419,16 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
                 <div className="modalImageDescriptionItem"><span><b>Artist: </b></span><span>{artPiece.artist} </span></div>
                 <div className="modalImageDescriptionItem"><span><b>Date: </b></span><span>{artPiece.dateRecieved.toDateString()}</span></div>              
             </div>
+            <div> 
+              <span><b>Characters: </b></span><span>{artPiece.characters.join(", ")}</span>
+            </div>
             </div>
 
 
           </Box>
         </Modal>
     
-      </div>
+      </>
 
       );
     }
