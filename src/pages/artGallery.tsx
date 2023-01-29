@@ -339,20 +339,20 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   }
 
 
-/*
+
   const [expanedViewIsOpen, setExpanedViewIsOpen] = React.useState<boolean[]>(new Array(filteredArtArray.length).fill(false));
 
-*/
+
 
   const handleOpenExpandedView = (index: number) => 
   {
 
-    //  let tempArray = new Array<boolean>(...expanedViewIsOpen);
-    //  tempArray[index] = true;
-    //  setExpanedViewIsOpen(tempArray);
+    let tempArray = new Array<boolean>(...expanedViewIsOpen);
+    tempArray[index] = true;
+    setExpanedViewIsOpen(tempArray);
   }
 
-/*
+
   const handleClose = (index: number) => 
   {
     let tempArray = new Array<boolean>(...expanedViewIsOpen);
@@ -375,7 +375,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   };
 
   //https://www.reddit.com/r/learnjavascript/comments/ueeomi/are_there_any_mui_experts_here_my_modal_component/
-  */
+  
 
 
   /*
@@ -401,30 +401,31 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
         
         
         {/* MODAL POPUP */}
-        {/*
+      
         <Modal
           open={expanedViewIsOpen[index]}
           onClose={ () => handleClose(index)}
-          disableScrollLock={true}
         >
           <Box sx={style}>
 
             <div className="modalImageOuterContainer">
+              <div><h1>{artPiece.title}</h1></div>
+            {/*
             <div> 
               {artPiece.staticImage}
             </div> 
             <br/>
+            */}
             <div className="modalImageDescriptionContainer">
-                <div className="modalImageDescriptionItem">{artPiece.title}</div>
-                <div className="modalImageDescriptionItem">{artPiece.artist} </div>
-                <div className="modalImageDescriptionItem">{artPiece.dateRecieved.toDateString()}</div>              
+                <div className="modalImageDescriptionItem"><span><b>Artist: </b></span><span>{artPiece.artist} </span></div>
+                <div className="modalImageDescriptionItem"><span><b>Date: </b></span><span>{artPiece.dateRecieved.toDateString()}</span></div>              
             </div>
             </div>
 
 
           </Box>
         </Modal>
-      */}
+    
       </div>
 
       );
