@@ -419,12 +419,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
             
             <div className="modalImageOuterContainer">
               <div><h1>{artPiece.title}</h1></div>
-            {/*
-            <div> 
-              {artPiece.staticImage}
-            </div> 
-            <br/>
-            */}
+            
             <div className="modalImageDescriptionContainer">
                 <div className="modalImageDescriptionItem"><span><b>Artist: </b></span><span>{artPiece.artist} </span></div>
                 <div className="modalImageDescriptionItem"><span><b>Date: </b></span><span>{artPiece.dateRecieved.toDateString()}</span></div>              
@@ -432,6 +427,10 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
             <div> 
               <span><b>Characters: </b></span><span>{artPiece.characters.join(", ")}</span>
             </div>
+            <br/>
+            <div> 
+              {artPiece.staticImage}
+            </div> 
             </div>
 
           </div>
