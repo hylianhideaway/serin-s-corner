@@ -22,7 +22,6 @@ const AboutPage: React.FC<PageProps> = () => {
         </ul>
       <h2>Where to find me</h2>
         <ul>
-          <li><a href="https://twitter.com/Serin2021">Twitter</a></li>
           <li>Discord Handle: Serin#8136</li>
         </ul>
     </Layout>

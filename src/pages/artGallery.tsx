@@ -112,7 +112,7 @@ const AboutPage: React.FC<PageProps> = () => {
     }
     ,
     {
-      title: "Out for a Stroll",
+      title: "Out for a stroll",
       artist: Artist.FungiMan,
       address: "../assets/images/art/2022_05_FungiMan_Serin_Modern.png",
       characters: [Character.Serin],
@@ -123,7 +123,7 @@ const AboutPage: React.FC<PageProps> = () => {
     }
     ,
     {
-      title: "Didn't see you There",
+      title: "Relaxing",
       artist: Artist.Aldermoth,
       address: "../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png",
       characters: [Character.Serin],
@@ -134,7 +134,7 @@ const AboutPage: React.FC<PageProps> = () => {
     }
     ,
     {
-      title: "Did I do That?",
+      title: "Smirk",
       artist: Artist.Tink,
       address: "../assets/images/art/2022_08_Tink_Serin_Smirk.png",
       characters: [Character.Serin],
@@ -167,7 +167,7 @@ const AboutPage: React.FC<PageProps> = () => {
     }
     ,
     {
-      title: "Christmas Serin",
+      title: "Christmas Lights",
       artist: Artist.Daxl,
       address: "../assets/images/art/2022_12_Daxl_Serin_Christmas.png",
       characters: [Character.Serin],
