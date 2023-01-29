@@ -1,6 +1,8 @@
 import * as React from 'react'
 import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../components/layout'
+import SpacerDiv from '../components/spacer'
+
 import  '../assets/style/characters.css'
 import { StaticImage } from 'gatsby-plugin-image'
 
@@ -50,48 +52,52 @@ const Serin: React.FC = () => {
         </div>
       </div>
 
-
+      <SpacerDiv/>
             
       {/*TODO - additional details section. Ideally, will be expandable*/}
 
       {/*Color Pallete section*/}
       {/*Pulled from Aldermoth */}
-      <div className="colorPaletteContainer">
-        <div className="colorPaletteElement" style={{backgroundColor: "#D6995FFF"}} /> {/*Scales*/}
-        <div className="colorPaletteElement" style={{backgroundColor: "#E8B176FF"}} /> {/*Neck, Chest, Abdomin */} 
-        <div className="colorPaletteElement" style={{backgroundColor: "#B37844FF"}} /> {/*Horns*/} 
-        <div className="colorPaletteElement" style={{backgroundColor: "#211812FF"}} /> {/*Nails */}
-        <div className="colorPaletteElement" style={{backgroundColor: "#F4ECD6FF"}} /> {/*Sclera */}
-        <div className="colorPaletteElement" style={{backgroundColor: "#915640FF"}} /> {/*Iris*/}
-        <div className="colorPaletteElement" style={{backgroundColor: "#6E4038FF"}} /> {/*Pants*/}
-      </div>
-
-      {/*Pulled from Recent Sketch commission - for comparison only */}
-      
-      {/*<div className="colorPaletteContainer">*/}
-        {/*<div className="colorPaletteElement" style={{backgroundColor: "#D4985CFF"}} /> */} {/*Scales*/}
-        {/*<div className="colorPaletteElement" style={{backgroundColor: "#EAB478FF"}} />*/} {/*Neck, Chest, Abdomin */} 
-        {/*<div className="colorPaletteElement" style={{backgroundColor: "#B47844FF"}} />*/} {/*Horns*/} 
-        {/*<div className="colorPaletteElement"  /> */}
-        {/*<div className="colorPaletteElement"  /> */}
-        {/*<div className="colorPaletteElement"  />*/}
-        {/*<div className="colorPaletteElement"  />  */}
-     {/*</div>*/}
-      
-      <div className="generalTraitsContainer">
-        <div className="generalTraitsItem">
-          <table style={{width:"500px"}}>
-            <ColorDetailsRow description="Scales" cssHex="#D6995FFF" colorAltName="Tan-Crayola" />
-            <ColorDetailsRow description="Neck, chest, and abdomen" cssHex="#E8B176FF" colorAltName="Middle-Yellow-Red" />
-            <ColorDetailsRow description="Horns" cssHex="#B37844FF" colorAltName="Copper" />
-            <ColorDetailsRow description="Nails" cssHex="#211812FF" colorAltName="Black-Chocolate" />
-            <ColorDetailsRow description="Sclera" cssHex="#F4ECD6FF" colorAltName="Eggshell" />
-            <ColorDetailsRow description="Iris" cssHex="#915640FF" colorAltName="Chestnut" />
-            <ColorDetailsRow description="Pants" cssHex="#6E4038FF" colorAltName="Bole" />
-
-          </table>
+      <div>
+        <div className="colorPaletteContainer">
+          <div className="colorPaletteElement" style={{backgroundColor: "#D6995FFF"}} /> {/*Scales*/}
+          <div className="colorPaletteElement" style={{backgroundColor: "#E8B176FF"}} /> {/*Neck, Chest, Abdomin */} 
+          <div className="colorPaletteElement" style={{backgroundColor: "#B37844FF"}} /> {/*Horns*/} 
+          <div className="colorPaletteElement" style={{backgroundColor: "#211812FF"}} /> {/*Nails */}
+          <div className="colorPaletteElement" style={{backgroundColor: "#F4ECD6FF"}} /> {/*Sclera */}
+          <div className="colorPaletteElement" style={{backgroundColor: "#915640FF"}} /> {/*Iris*/}
+          <div className="colorPaletteElement" style={{backgroundColor: "#6E4038FF"}} /> {/*Pants*/}
         </div>
+
+        {/*Pulled from Recent Sketch commission - for comparison only */}
+        
+        {/*<div className="colorPaletteContainer">*/}
+          {/*<div className="colorPaletteElement" style={{backgroundColor: "#D4985CFF"}} /> */} {/*Scales*/}
+          {/*<div className="colorPaletteElement" style={{backgroundColor: "#EAB478FF"}} />*/} {/*Neck, Chest, Abdomin */} 
+          {/*<div className="colorPaletteElement" style={{backgroundColor: "#B47844FF"}} />*/} {/*Horns*/} 
+          {/*<div className="colorPaletteElement"  /> */}
+          {/*<div className="colorPaletteElement"  /> */}
+          {/*<div className="colorPaletteElement"  />*/}
+          {/*<div className="colorPaletteElement"  />  */}
+        {/*</div>*/}
+        <div className="generalTraitsContainer">
+          <div className="generalTraitsItem">
+            <table style={{width:"450px"}}>
+              <ColorDetailsRow description="Scales" cssHex="#D6995FFF" colorAltName="Tan-Crayola" />
+              <ColorDetailsRow description="Neck, chest, and abdomen" cssHex="#E8B176FF" colorAltName="Middle-Yellow-Red" />
+              <ColorDetailsRow description="Horns" cssHex="#B37844FF" colorAltName="Copper" />
+              <ColorDetailsRow description="Nails" cssHex="#211812FF" colorAltName="Black-Chocolate" />
+              <ColorDetailsRow description="Sclera" cssHex="#F4ECD6FF" colorAltName="Eggshell" />
+              <ColorDetailsRow description="Iris" cssHex="#915640FF" colorAltName="Chestnut" />
+              <ColorDetailsRow description="Pants" cssHex="#6E4038FF" colorAltName="Bole" />
+            </table>
+          </div>
+        </div>
+
       </div>
+      {/*End of Color Pallete section*/}
+
+      <SpacerDiv/>
 
        {/*Refernce section*/}
       <div style={{backgroundColor: "white", padding:"10px" ,margin:"10px" }}>
@@ -135,8 +141,6 @@ const ColorDetailsRow: React.FC<ColorDetailsRowProps> = (props) => {
     </tr>   
   )
 }
-
-
 
 
 

@@ -35,3 +35,9 @@ th, td {
     height:50px;
     margin: 0px;
 }
+
+
+/* Used to apply box shadow to a div surrounding a seciton */
+
+.boxShadowStandard{
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);}

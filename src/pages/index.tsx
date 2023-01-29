@@ -1,6 +1,8 @@
 import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../components/layout'
+import SpacerDiv from '../components/spacer'
+
 import { StaticImage } from 'gatsby-plugin-image'
 
 
@@ -22,6 +24,7 @@ const IndexPage: React.FC<PageProps> = () => {
         So, expect to see many updates in the future 😊.
       </p>
       <p> Oh! And while you’re here, don’t forget to say hi to Mia. </p>
+      <SpacerDiv/>
       <StaticImage
         alt="Mia, a black and white lab mix, curled up on a couch cushion."
         src="../assets/images/photos/MiaCurled.jpg"

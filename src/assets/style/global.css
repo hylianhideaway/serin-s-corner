@@ -32,6 +32,6 @@ h3 {
 /*Set some default boundaries for tables to keep from overflowing in smaller screens (i.e: Phones) */
 
 table {
-    max-width: 98vw;
+    max-width: 95vw;
 }
 
