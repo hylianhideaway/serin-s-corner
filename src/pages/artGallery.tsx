@@ -9,8 +9,12 @@ import { BackdropProps, ToggleButton, ToggleButtonGroup } from '@mui/material';
 // Bunch of imports. Probably don't need all of them. 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+
+
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
@@ -406,7 +410,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
           onClose={ () => handleClose(index)}
         >
           <Box sx={style}>
-
+            <IconButton onClick = {() => handleClose(index)}> <CloseIcon/></IconButton>
             <div className="modalImageOuterContainer">
               <div><h1>{artPiece.title}</h1></div>
             {/*
