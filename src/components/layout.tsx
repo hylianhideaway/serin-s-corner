@@ -26,8 +26,6 @@ const Layout : React.FC<LayoutProps> = (props) => {
         <div className={"outerContainer"}>
             <div className={"innerContainer"}> 
 
-                
-                
                     <div className='headerBar'>
                         <nav className='nav-links'>
                             <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/"}>Home</Link>
