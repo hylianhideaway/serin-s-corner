@@ -220,14 +220,13 @@ const AboutPage: React.FC<PageProps> = () => {
         <ul>
           <li><del>Full art gallery</del> </li>
           <li><del>Filtering</del></li>
-          <li>Sorting</li>
-          <li>Expand for full resolution</li>
-          <li>Info for each item in gallery</li>
+          <li><del>Sorting</del></li>
+          <li><del>Expand for additional details</del></li>
             <ul>
-              <li>Title</li>
-              <li>Character(s)</li>
-              <li>Creation Date</li>
-              <li>Artist</li>
+              <li><del>Title</del></li>
+              <li><del>Character(s)</del></li>
+              <li><del>Creation Date</del></li>
+              <li><del>Artist</del></li>
               <li>Description</li>
             </ul>
         </ul>
@@ -425,7 +424,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
                 <div className="modalImageDescriptionItem"><span><b>Date: </b></span><span>{artPiece.dateRecieved.toDateString()}</span></div>              
             </div>
             <div> 
-              <span><b>Characters: </b></span><span>{artPiece.characters.join(", ")}</span>
+              <span><b>Character(s): </b></span><span>{artPiece.characters.join(", ")}</span>
             </div>
             <br/>
             <div> 
