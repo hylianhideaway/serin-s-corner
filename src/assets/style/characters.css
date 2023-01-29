@@ -1,0 +1,26 @@
+
+
+
+
+.generalTraitsContainer {
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content:center;
+
+}
+.generalTraitsItem {
+    padding-left: 4px;
+    padding-right:4px;
+    padding-top:4px;
+    padding-bottom:4px;
+
+    margin-left: 10px;
+    margin-right:10px;
+    margin-top:4px;
+    margin-bottom:4px;
+}
+
+th, td {
+    border-bottom: 1px solid #606C38;
+  }
