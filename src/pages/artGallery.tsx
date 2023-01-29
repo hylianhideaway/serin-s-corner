@@ -71,7 +71,7 @@ const AboutPage: React.FC<PageProps> = () => {
   const comprehensiveArtArray : ArtInfo[] = [
     
     {
-      title: "Original Risen",
+      title: "The Original Risen",
       artist: Artist.Bastien,
       address: "../assets/images/art/2019_04_Bastien_Multiple_DndGroup.jpg",
       characters: [Character.Serin,Character.Lightsong,Character.Ghodukk,Character.Eryn],
@@ -112,7 +112,7 @@ const AboutPage: React.FC<PageProps> = () => {
     }
     ,
     {
-      title: "Modern Serin",
+      title: "Out for a Stroll",
       artist: Artist.FungiMan,
       address: "../assets/images/art/2022_05_FungiMan_Serin_Modern.png",
       characters: [Character.Serin],
@@ -123,7 +123,7 @@ const AboutPage: React.FC<PageProps> = () => {
     }
     ,
     {
-      title: "Serin Chilling",
+      title: "Didn't see you There",
       artist: Artist.Aldermoth,
       address: "../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png",
       characters: [Character.Serin],
@@ -134,7 +134,7 @@ const AboutPage: React.FC<PageProps> = () => {
     }
     ,
     {
-      title: "Smug Serin",
+      title: "Did I do That?",
       artist: Artist.Tink,
       address: "../assets/images/art/2022_08_Tink_Serin_Smirk.png",
       characters: [Character.Serin],
@@ -214,26 +214,6 @@ const AboutPage: React.FC<PageProps> = () => {
   
   return (
     <Layout pageTitle={pageTitle}>
-      <p>TODO -
-        
-        
-        <ul>
-          <li><del>Full art gallery</del> </li>
-          <li><del>Filtering</del></li>
-          <li><del>Sorting</del></li>
-          <li><del>Expand for additional details</del></li>
-            <ul>
-              <li><del>Title</del></li>
-              <li><del>Character(s)</del></li>
-              <li><del>Creation Date</del></li>
-              <li><del>Artist</del></li>
-              <li>Description</li>
-            </ul>
-        </ul>
-      </p>
-
-
-
       <h2>Display Options</h2>
       <h3>Artist</h3>
       <ToggleButtonGroup
@@ -292,6 +272,25 @@ const AboutPage: React.FC<PageProps> = () => {
         selectedCharacters={selectedCharacters}
         sortOrder = {sortOrder}
       />
+
+      <p>TODO -
+        
+        
+        <ul>
+          <li><del>Full art gallery</del> </li>
+          <li><del>Filtering</del></li>
+          <li><del>Sorting</del></li>
+          <li><del>Expand for additional details</del></li>
+            <ul>
+              <li><del>Title</del></li>
+              <li><del>Character(s)</del></li>
+              <li><del>Creation Date</del></li>
+              <li><del>Artist</del></li>
+              <li>Description</li>
+            </ul>
+        </ul>
+      </p>
+
     </Layout>
 
     
