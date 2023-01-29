@@ -365,7 +365,8 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   }
 
 
-  // Temp style until we get this working. 
+  // Temp style until we get this working.
+  /* 
   const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -377,6 +378,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
     boxShadow: 24,
     p: 4,
   };
+  */
 
   //https://www.reddit.com/r/learnjavascript/comments/ueeomi/are_there_any_mui_experts_here_my_modal_component/
   
@@ -409,8 +411,12 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
           open={expanedViewIsOpen[index]}
           onClose={ () => handleClose(index)}
         >
-          <Box sx={style}>
-            <IconButton onClick = {() => handleClose(index)}> <CloseIcon/></IconButton>
+          {/*<Box sx={style}>*/}
+          <div className = "modalImageShell">
+            <div className="modalImageheaderBar">
+              <IconButton onClick = {() => handleClose(index)}> <CloseIcon/></IconButton>
+            </div>
+            
             <div className="modalImageOuterContainer">
               <div><h1>{artPiece.title}</h1></div>
             {/*
@@ -428,8 +434,8 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
             </div>
             </div>
 
-
-          </Box>
+          </div>
+          {/*</Box> */}
         </Modal>
     
       </>
