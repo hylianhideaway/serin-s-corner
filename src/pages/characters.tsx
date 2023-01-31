@@ -46,8 +46,8 @@ const Serin: React.FC = () => {
           <table>
             <tr><td><b>Age</b></td><td>27</td></tr>
             <tr><td><b>Build</b></td><td>Slim, Lightly Muscled</td></tr>  
-            <tr><td><b>Height</b></td><td>5'11''</td></tr>
-            <tr><td><b>Weight</b></td><td>165 lbs</td></tr>
+            <tr><td><b>Height</b></td><td>5'11'' (180cm)</td></tr>
+            <tr><td><b>Weight</b></td><td>165lbs (75kg)</td></tr>
           </table>
         </div>
       </div>
