@@ -15,6 +15,7 @@ import Modal from '@mui/material/Modal';
 
 
 import CloseIcon from '@mui/icons-material/Close';
+import SpacerDiv from '../components/spacer'
 
 
 
@@ -27,12 +28,13 @@ const pageTitle = "Art Gallery"
 
 
 interface ArtInfo {
-  title: string;
-  artist:Artist;
-  address: string;
-  characters: Character[];
-  staticImage: JSX.Element;
-  dateRecieved: Date
+  title: string; // The title of the piece
+  artist:Artist; // The artist of the piece
+  address: string; //Address of where the image is stored
+  characters: Character[]; // List of characters who are in the piece
+  staticImage: JSX.Element; // StaticImage JSX element holding the image
+  dateRecieved: Date; // Date the piece was recieved 
+  description: string; // A description of what is going on in the piece
 }
 
 enum Character {
@@ -76,7 +78,9 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2019_04_Bastien_Multiple_DndGroup.jpg",
       characters: [Character.Serin,Character.Lightsong,Character.Ghodukk,Character.Eryn],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2019_04_Bastien_Multiple_DndGroup.jpg" layout="constrained" />,
-      dateRecieved : new Date(2019,3,24) // 4/24/2019
+      dateRecieved : new Date(2019,3,24), // 4/24/2019
+      description: "A portrait of the original Risen.  Eryn, a wood-elf ranger, knocks an arrow on his bow. Ghodukk, a human barbarian, guards from the front. Lightsong, a Cleric of  Dol Arrah, displays his holy symbol while raising his mace. Serin, a Brass Dragonborn, grins while playing his mandolin."
+
     }
     ,
     {
@@ -85,7 +89,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2021_01_RavenLuckArts_Serin_Redesign.png",
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2021_01_RavenLuckArts_Serin_Redesign.png" layout="constrained"  />,
-      dateRecieved : new Date(2021,1,8) // 2/8/2021
+      dateRecieved : new Date(2021,1,8), // 2/8/2021
+      description: "A reimagining of Serin as compared to his original commission. This is the first depiction of his now canon appearance." 
 
     }
     ,
@@ -95,7 +100,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2022_03_ShrimpLoverCat_Muliple_Brunch.png",
       characters: [Character.Lightsong,Character.Vera,Character.Serin,Character.Luric,Character.Percy],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Muliple_Brunch.png" layout="constrained"   />,
-      dateRecieved : new Date(2022,2,12) // 3/12/2022
+      dateRecieved : new Date(2022,2,12), // 3/12/2022
+      description: "The Risen out to brunch. It seems they (somehow) convinced their patron Percy to come along. Serin should probably pay more attention to his coffee."
 
 
     }
@@ -106,7 +112,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2022_03_ShrimpLoverCat_Serin_Dab.png",
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Serin_Dab.png" layout="constrained"  />,
-      dateRecieved : new Date(2022,2,27) // 3/27/2022
+      dateRecieved : new Date(2022,2,27), // 3/27/2022
+      description: "A dapper dragonborn dabbing."
 
 
     }
@@ -117,7 +124,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2022_05_FungiMan_Serin_Modern.png",
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_05_FungiMan_Serin_Modern.png" layout="constrained"  />,
-      dateRecieved : new Date(2022,4,27) // 5/27/2022
+      dateRecieved : new Date(2022,4,27) ,// 5/27/2022
+      description: "A piece featuring Serin in a more modern AU. I wonder what he's singing?"
 
 
     }
@@ -128,7 +136,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png",
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png" layout="constrained"  />,
-      dateRecieved : new Date(2022,8,5) // 9/5/2022
+      dateRecieved : new Date(2022,8,5) ,// 9/5/2022
+      description: "Serin relaxing with this shirt off. I really love the shading in this piece." 
 
 
     }
@@ -139,7 +148,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2022_08_Tink_Serin_Smirk.png",
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Tink_Serin_Smirk.png" layout="constrained"  />,
-      dateRecieved : new Date(2022,7,29) // 8/29/2022
+      dateRecieved : new Date(2022,7,29) ,// 8/29/2022
+      description: "Serin with a rather mischievous grin. What is he up to? Do you dare ask?"
 
 
     }
@@ -150,7 +160,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2022_10_Daxl_Serin_Chibi1.png",
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_10_Daxl_Serin_Chibi1.png" layout="constrained"  />,
-      dateRecieved : new Date(2022,9,28) // 10/28/2022
+      dateRecieved : new Date(2022,9,28) ,// 10/28/2022
+      description: "A chibi Serin. I wonder what he's playing?"
 
 
     }
@@ -161,7 +172,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2022_11_Karne_Tiberius_01.png",
       characters: [Character.Tiberius],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_11_Karne_Tiberius_01.png" layout="constrained"  />,
-      dateRecieved : new Date(2022,10,28) // 11/28/2022
+      dateRecieved : new Date(2022,10,28) ,// 11/28/2022
+      description: "A painted commission featuring Tiberius, a boisterous dragonborn NPC in our DND campaign who brews potions. He is currently dating Serin."
 
 
     }
@@ -172,7 +184,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2022_12_Daxl_Serin_Christmas.png",
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_12_Daxl_Serin_Christmas.png" layout="constrained"  />,
-      dateRecieved : new Date(2022,11,8)  // 12/08/2022
+      dateRecieved : new Date(2022,11,8)  ,// 12/08/2022
+      description: "A Christmas themed sketch of Serin. He seems ready to cover Mariah Carey."
 
 
     }
@@ -183,7 +196,8 @@ const AboutPage: React.FC<PageProps> = () => {
       address: "../assets/images/art/2023_01_Daxl_Serin_GrumpyDoodle.png",
       characters: [Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2023_01_Daxl_Serin_GrumpyDoodle.png" layout="constrained"  />,
-      dateRecieved : new Date(2022,11,23) // 12/23/2022
+      dateRecieved : new Date(2022,11,23) ,// 12/23/2022
+      description: "A doodle depicting a grumpy Serin. Vera often sees this look."
     } 
   ];
 
@@ -363,20 +377,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   }
 
 
-  // Temp style until we get this working.
-  /* 
-  const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '600px',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
-  */
+
 
   //https://www.reddit.com/r/learnjavascript/comments/ueeomi/are_there_any_mui_experts_here_my_modal_component/
   
@@ -409,7 +410,6 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
           open={expanedViewIsOpen[index]}
           onClose={ () => handleClose(index)}
         >
-          {/*<Box sx={style}>*/}
           <div className = "modalImageShell">
             <div className="modalImageheaderBar">
               <IconButton onClick = {() => handleClose(index)}> <CloseIcon/></IconButton>
@@ -418,21 +418,20 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
             <div className="modalImageOuterContainer">
               <div><h1>{artPiece.title}</h1></div>
             
-            <div className="modalImageDescriptionContainer">
-                <div className="modalImageDescriptionItem"><span><b>Artist: </b></span><span>{artPiece.artist} </span></div>
-                <div className="modalImageDescriptionItem"><span><b>Date: </b></span><span>{artPiece.dateRecieved.toDateString()}</span></div>              
-            </div>
-            <div> 
-              <span><b>Character(s): </b></span><span>{artPiece.characters.join(", ")}</span>
-            </div>
-            <br/>
-            <div> 
-              {artPiece.staticImage}
-            </div> 
+              <div className="modalImageDescriptorContainer">
+                  <div className="modalImageDescriptorItem"><span><b>Artist: </b></span><span>{artPiece.artist} </span></div>
+                  <div className="modalImageDescriptorItem"><span><b>Date: </b></span><span>{artPiece.dateRecieved.toDateString()}</span></div>              
+              </div>
+              <div> 
+                <span><b>Character(s): </b></span><span>{artPiece.characters.join(", ")}</span>
+              </div>
+              <div className="modalImageDescription"><span>{artPiece.description}</span></div>
+              <div className="modalImageImage"> {artPiece.staticImage} </div>
+                
+              
             </div>
 
           </div>
-          {/*</Box> */}
         </Modal>
     
       </>

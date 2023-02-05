@@ -46,10 +46,7 @@
     background-color: #606C38;
     display: flex;
     flex-direction: row-reverse;
-
   }
-
-
 
 .modalImageOuterContainer {
     display: flex;
@@ -59,13 +56,32 @@
 }
 
 
-.modalImageDescriptionContainer {
+.modalImageDescriptorContainer {
     display: flex;
     flex-wrap:nowrap;
     align-items: center;
 
 }
-.modalImageDescriptionItem {
+.modalImageDescriptorItem {
     margin-left: 8px;
     margin-right: 8px;
+}
+
+
+
+.modalImageDescription {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    text-align: center;
+
+
+}
+
+.modalImageImage {
+    margin-top: 10px;
+    margin-left:4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+
 }
