@@ -20,9 +20,6 @@ const Layout : React.FC<LayoutProps> = (props) => {
     
     
     return (
-        
-        
-        
         <div className={"outerContainer"}>
             <div className={"innerContainer"}> 
 
@@ -34,8 +31,6 @@ const Layout : React.FC<LayoutProps> = (props) => {
                             <Link className={"nav-link-item"} activeClassName={"nav-links-active"}to={"/externalLinks"}>Links</Link>
                         </nav>
                     </div>
-
-
 
                     <main className={"mainContainer"}>
                         <h1 className={"heading"}>{pageTitle}</h1>

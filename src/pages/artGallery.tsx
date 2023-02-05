@@ -67,7 +67,7 @@ enum SortOrder {
 
 
 // Step 2: Define your component
-const AboutPage: React.FC<PageProps> = () => {
+const GalleryPage: React.FC<PageProps> = () => {
   
   
   const comprehensiveArtArray : ArtInfo[] = [
@@ -80,7 +80,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2019_04_Bastien_Multiple_DndGroup.jpg" layout="constrained" />,
       dateRecieved : new Date(2019,3,24), // 4/24/2019
       description: "A portrait of the original Risen.  Eryn, a wood-elf ranger, knocks an arrow on his bow. Ghodukk, a human barbarian, guards from the front. Lightsong, a Cleric of  Dol Arrah, displays his holy symbol while raising his mace. Serin, a Brass Dragonborn, grins while playing his mandolin."
-
     }
     ,
     {
@@ -91,7 +90,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2021_01_RavenLuckArts_Serin_Redesign.png" layout="constrained"  />,
       dateRecieved : new Date(2021,1,8), // 2/8/2021
       description: "A reimagining of Serin as compared to his original commission. This is the first depiction of his now canon appearance." 
-
     }
     ,
     {
@@ -102,8 +100,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Muliple_Brunch.png" layout="constrained"   />,
       dateRecieved : new Date(2022,2,12), // 3/12/2022
       description: "The Risen out to brunch. It seems they (somehow) convinced their patron Percy to come along. Serin should probably pay more attention to his coffee."
-
-
     }
     ,
     {
@@ -114,8 +110,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_03_ShrimpLoverCat_Serin_Dab.png" layout="constrained"  />,
       dateRecieved : new Date(2022,2,27), // 3/27/2022
       description: "A dapper dragonborn dabbing."
-
-
     }
     ,
     {
@@ -126,8 +120,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_05_FungiMan_Serin_Modern.png" layout="constrained"  />,
       dateRecieved : new Date(2022,4,27) ,// 5/27/2022
       description: "A piece featuring Serin in a more modern AU. I wonder what he's singing?"
-
-
     }
     ,
     {
@@ -138,8 +130,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Aldermoth_Serin_Chilling.png" layout="constrained"  />,
       dateRecieved : new Date(2022,8,5) ,// 9/5/2022
       description: "Serin relaxing with this shirt off. I really love the shading in this piece." 
-
-
     }
     ,
     {
@@ -150,8 +140,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_08_Tink_Serin_Smirk.png" layout="constrained"  />,
       dateRecieved : new Date(2022,7,29) ,// 8/29/2022
       description: "Serin with a rather mischievous grin. What is he up to? Do you dare ask?"
-
-
     }
     ,
     {
@@ -162,8 +150,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_10_Daxl_Serin_Chibi1.png" layout="constrained"  />,
       dateRecieved : new Date(2022,9,28) ,// 10/28/2022
       description: "A chibi Serin. I wonder what he's playing?"
-
-
     }
     ,
     {
@@ -174,8 +160,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_11_Karne_Tiberius_01.png" layout="constrained"  />,
       dateRecieved : new Date(2022,10,28) ,// 11/28/2022
       description: "A painted commission featuring Tiberius, a boisterous dragonborn NPC in our DND campaign who brews potions. He is currently dating Serin."
-
-
     }
     ,
     {
@@ -186,8 +170,6 @@ const AboutPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2022_12_Daxl_Serin_Christmas.png" layout="constrained"  />,
       dateRecieved : new Date(2022,11,8)  ,// 12/08/2022
       description: "A Christmas themed sketch of Serin. He seems ready to cover Mariah Carey."
-
-
     }
     ,
     {
@@ -265,7 +247,6 @@ const AboutPage: React.FC<PageProps> = () => {
           <ToggleButton value={Character.Tiberius}>{Character.Tiberius}</ToggleButton>
       </ToggleButtonGroup>
 
-
       <h3>Sort Order</h3>
       <ToggleButtonGroup
         color="success"
@@ -286,7 +267,6 @@ const AboutPage: React.FC<PageProps> = () => {
         selectedCharacters={selectedCharacters}
         sortOrder = {sortOrder}
       />
-
     </Layout>
 
     
@@ -299,7 +279,6 @@ interface ArtGalleryProps
   selectedArtists: Artist[];
   selectedCharacters : Character[];
   sortOrder: SortOrder;
-
 }
 
 
@@ -359,12 +338,6 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
   }
 
 
-
-
-  //https://www.reddit.com/r/learnjavascript/comments/ueeomi/are_there_any_mui_experts_here_my_modal_component/
-  
-
-
   /*
     The images array is a pregenerated list of JSX object. Each outer div corresponds to both a 
     gallery image, as well as a modal popup that is triggered when said image is clicked. 
@@ -374,7 +347,6 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
       return (
       <> 
 
-      
         {/* GALLERY ITEM */}
         <div className="galleryItem" >
           <Button 
@@ -384,9 +356,6 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
           </Button>
         </div>
       
-        
-        
-        
         {/* MODAL POPUP - should really be abstracted to its own component*/}   
         <Modal
           open={expanedViewIsOpen[index]}
@@ -436,4 +405,4 @@ export const Head: HeadFC = () => {
 }
 
 // Step 3: Export your component
-export default AboutPage
+export default GalleryPage
