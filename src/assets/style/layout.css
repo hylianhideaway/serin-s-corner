@@ -6,8 +6,6 @@
   margin-top: -8px; /*gets rid of little space at top of website*/
   font-family: sans-serif;
   background-color: #FEFAE0;
-  
-  
   min-height: 100vh;
 }
 
@@ -28,58 +26,55 @@
     min-height: 100vh;
   }
 
-/*General formatting for header, including banner and links */ 
 
 .mainContainer {
   padding-left: 10px;
   padding-right: 10px;
 }
 
+.heading {
+  color: #283618;
+}
 
-  .headerBar {
-    background-color: #606C38;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
+/*General formatting for header, including banner and links */ 
 
-  .nav-links {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start 
+.headerBar {
+  background-color: #606C38;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 
-  }
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start 
 
-  .nav-link-item {
-    color: white;
-    text-decoration:none;
-    font-weight: bold;
-    
-    /*
-    background-color:green;
-    */
+}
 
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 12px;
-    padding-right: 12px;
+.nav-link-item {
+  color: white;
+  text-decoration:none;
+  font-weight: bold;
+  
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
 
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 10px;
-    margin-right: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
 
-  }
+}
 
-  .nav-links-active{
-    background-color:#FEFAE0;
-    color : #283618;
-  }
+.nav-links-active{
+  background-color:#FEFAE0;
+  color : #283618;
+}
 
 
-  .heading {
-    color: #283618;
-  }
 
 
   
