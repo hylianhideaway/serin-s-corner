@@ -287,24 +287,6 @@ const AboutPage: React.FC<PageProps> = () => {
         sortOrder = {sortOrder}
       />
 
-      <p>TODO -
-        
-        
-        <ul>
-          <li><del>Full art gallery</del> </li>
-          <li><del>Filtering</del></li>
-          <li><del>Sorting</del></li>
-          <li><del>Expand for additional details</del></li>
-            <ul>
-              <li><del>Title</del></li>
-              <li><del>Character(s)</del></li>
-              <li><del>Creation Date</del></li>
-              <li><del>Artist</del></li>
-              <li>Description</li>
-            </ul>
-        </ul>
-      </p>
-
     </Layout>
 
     
