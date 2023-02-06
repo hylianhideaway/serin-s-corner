@@ -37,3 +37,13 @@ table {
     max-width: 95vw;
 }
 
+/*Some scrollbar customizations*/
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #606C38 ;
+  }
+ 
+::-webkit-scrollbar-thumb {
+background-color: #283618;
+}
