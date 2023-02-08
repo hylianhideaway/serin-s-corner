@@ -25,10 +25,16 @@ const Layout : React.FC<LayoutProps> = (props) => {
 
                     <div className='headerBar'>
                         <nav className='nav-links'>
-                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/"}>Home</Link>
-                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/characters"}>Characters</Link>
-                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"} to={"/artGallery"}>Gallery</Link>
-                            <Link className={"nav-link-item"} activeClassName={"nav-links-active"}to={"/externalLinks"}>Links</Link>
+                            <div className="nav-link-item"><Link className={"nav-link-button"} activeClassName={"nav-links-active"} to={"/"}>Home</Link></div>
+                            <div className={"nav-link-item characterDropdown"}>
+                                <Link className={"nav-link-button characterDropdownButton"} activeClassName={"nav-links-active"} to={"/characters"}>Characters</Link>
+                                <div className="characterDropdown-content">
+                                    <Link className={"nav-link-button characterLinks"} activeClassName={"nav-links-active"}  to={"/characters"}>Serin</Link>
+                                    <Link className={"nav-link-button characterLinks"} activeClassName={"nav-links-active"} to={"/Tiberius"}>Tiberius</Link>
+                                </div>
+                            </div>
+                            <div className="nav-link-item" ><Link className={"nav-link-button"} activeClassName={"nav-links-active"} to={"/artGallery"}>Gallery</Link></div>
+                            <div className="nav-link-item"><Link className={"nav-link-button"} activeClassName={"nav-links-active"}to={"/externalLinks"}>Links</Link></div>
                         </nav>
                     </div>
 
