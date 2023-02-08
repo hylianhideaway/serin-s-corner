@@ -40,8 +40,8 @@
 
 .headerBar {
   background-color: #606C38;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 
 .nav-links {
@@ -76,7 +76,15 @@
 
 }
 
+/*
 .nav-links-active{
+  background-color:#FEFAE0;
+  color : #283618;
+}
+*/
+
+/* Change color of standard links on hover */
+.nav-link-button:hover {
   background-color:#FEFAE0;
   color : #283618;
 }
@@ -101,6 +109,8 @@
 .characterDropdown-content {
   display: none;
   position: absolute;
+  transform: translate(0, 8px);
+
   background-color: #606C38;
   min-width: 120px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -114,11 +124,12 @@
 }
 
 /* Change color of dropdown links on hover */
+/*
 .characterDropdown-content .characterLinks:hover {
   background-color:#FEFAE0;
   color : #283618;
-
 }
+*/
 
 /* Show the dropdown menu on hover */
 .characterDropdown:hover .characterDropdown-content {
