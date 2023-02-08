@@ -29,8 +29,8 @@ const Layout : React.FC<LayoutProps> = (props) => {
                             <div className={"nav-link-item characterDropdown"}>
                                 <Link className={"nav-link-button characterDropdownButton"} activeClassName={"nav-links-active"} to={"/characters"}>Characters</Link>
                                 <div className="characterDropdown-content">
-                                    <Link className={"nav-link-button characterLinks"} activeClassName={"nav-links-active"}  to={"/characters"}>Serin</Link>
-                                    <Link className={"nav-link-button characterLinks"} activeClassName={"nav-links-active"} to={"/Tiberius"}>Tiberius</Link>
+                                    <Link className={"nav-link-button characterLinks"}  to={"/characters/serin"}>Serin</Link>
+                                    <Link className={"nav-link-button characterLinks"}  to={"/characters/tiberius"}>Tiberius</Link>
                                 </div>
                             </div>
                             <div className="nav-link-item" ><Link className={"nav-link-button"} activeClassName={"nav-links-active"} to={"/artGallery"}>Gallery</Link></div>
