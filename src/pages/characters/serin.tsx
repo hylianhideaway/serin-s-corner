@@ -99,7 +99,20 @@ const SerinInternal: React.FC = () => {
         <SpacerDiv/>
   
          {/*Refernce section*/}
-         <h3>Reference Sheet</h3> 
+         
+         <h3>References</h3> 
+
+         {/* TODO - replace with final clothed version when you get it */}
+         <StaticImage 
+            alt="First true reference sheet of Serin" 
+            src="../../assets/images/references/SerinReference_Clothing_02182023.jpg" 
+            layout="constrained" 
+            formats = {["png"]} 
+            quality={100} 
+          />
+        
+        <SpacerDiv/>
+
          <StaticImage 
             alt="First true reference sheet of Serin" 
             src="../../assets/images/references/SerinReference_Anatomy_02172023.png" 
@@ -107,7 +120,10 @@ const SerinInternal: React.FC = () => {
             formats = {["png"]} 
             quality={100} 
           />
-        <div style={{backgroundColor: "white", padding:"10px" ,margin:"10px" }}>
+        
+        
+        
+        {/*<div style={{backgroundColor: "white", padding:"10px" ,margin:"10px" }}>
           <StaticImage 
             alt="images of Serin that best capture his true design" 
             src="../../assets/images/references/SerinReferences01292023.png" 
@@ -116,6 +132,7 @@ const SerinInternal: React.FC = () => {
             quality={100} 
           />
         </div>
+        */}
 
         <h3>Early Life</h3>
         <p>
