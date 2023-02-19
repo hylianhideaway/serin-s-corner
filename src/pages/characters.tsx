@@ -19,6 +19,7 @@ const Characters: React.FC<PageProps> = () => {
 
         </ul>
         
+        <p> Can probably delete this page in favor of the dropdown. Now that it does not have a direct link to it. </p>
 
       <p>Idea: have icons that really just link to the pages we care about</p>
 

@@ -25,16 +25,18 @@ const Layout : React.FC<LayoutProps> = (props) => {
 
                     <div className='headerBar'>
                         <nav className='nav-links'>
-                            <div className="nav-link-item"><Link className={"nav-link-button"} activeClassName={"nav-links-active"} to={"/"}>Home</Link></div>
+                            <div className="nav-link-item"><Link className={"nav-link-button"} to={"/"}>Home</Link></div>
                             <div className={"nav-link-item characterDropdown"}>
-                                <Link className={"nav-link-button characterDropdownButton"} activeClassName={"nav-links-active"} to={"/characters"}>Characters</Link>
-                                <div className="characterDropdown-content">
-                                    <Link className={"nav-link-button characterLinks"}  to={"/characters/serin"}>Serin</Link>
-                                    <Link className={"nav-link-button characterLinks"}  to={"/characters/tiberius"}>Tiberius</Link>
-                                </div>
+                                <span className={"nav-link-button characterDropdownButton"}>Characters</span>
+
+                                {/*<Link className={"nav-link-button characterDropdownButton"} activeClassName={"nav-links-active"} to={"/characters"}>Characters</Link>*/}
+                                    <div className="characterDropdown-content">
+                                        <Link className={"nav-link-button characterLinks"}  to={"/characters/serin"}>Serin</Link>
+                                        <Link className={"nav-link-button characterLinks"}  to={"/characters/tiberius"}>Tiberius</Link>
+                                    </div>
                             </div>
-                            <div className="nav-link-item" ><Link className={"nav-link-button"} activeClassName={"nav-links-active"} to={"/artGallery"}>Gallery</Link></div>
-                            <div className="nav-link-item"><Link className={"nav-link-button"} activeClassName={"nav-links-active"}to={"/externalLinks"}>Links</Link></div>
+                            <div className="nav-link-item" ><Link className={"nav-link-button"}  to={"/artGallery"}>Gallery</Link></div>
+                            <div className="nav-link-item"><Link className={"nav-link-button"} to={"/externalLinks"}>Links</Link></div>
                         </nav>
                     </div>
 
