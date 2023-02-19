@@ -104,8 +104,8 @@ const SerinInternal: React.FC = () => {
 
          {/* TODO - replace with final clothed version when you get it */}
          <StaticImage 
-            alt="First true reference sheet of Serin" 
-            src="../../assets/images/references/SerinReference_Clothing_02182023.jpg" 
+            alt="First true reference sheet of Serin, but clothed." 
+            src="../../assets/images/references/SerinReference_Clothed_02192023_Full.png" 
             layout="constrained" 
             formats = {["png"]} 
             quality={100} 
@@ -115,7 +115,7 @@ const SerinInternal: React.FC = () => {
 
          <StaticImage 
             alt="First true reference sheet of Serin" 
-            src="../../assets/images/references/SerinReference_Anatomy_02172023.png" 
+            src="../../assets/images/references/SerinReference_Anatomy_02172023_Full.png" 
             layout="constrained" 
             formats = {["png"]} 
             quality={100} 

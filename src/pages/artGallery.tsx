@@ -56,7 +56,9 @@ enum Artist {
   Aldermoth = "Aldermoth",
   Tink = "Tink",
   Karne = "Karne",
-  Daxl = "Daxl"
+  Daxl = "Daxl",
+  Enfys = "Enfys",
+
 
 }
 
@@ -181,6 +183,36 @@ const GalleryPage: React.FC<PageProps> = () => {
       dateRecieved : new Date(2022,11,23) ,// 12/23/2022
       description: "A doodle depicting a grumpy Serin. Vera often sees this look."
     } 
+    ,
+    {
+      title: "Serin Anatomy Reference",
+      artist: Artist.Enfys,
+      address: "../assets/images/references/SerinReference_Anatomy_02172023_Full.png",
+      characters: [Character.Serin],
+      staticImage: <StaticImage alt="..." src="../assets/images/references/SerinReference_Anatomy_02172023_Full.png" layout="constrained"  />,
+      dateRecieved : new Date(2023,1,17) ,// 02/17/2023
+      description: "Serin's first official reference sheet. In this version, he is unclothed to highlight his anatomy."
+    }
+    ,
+    {
+      title: "Serin Clothed Reference",
+      artist: Artist.Enfys,
+      address: "../assets/images/references/SerinReference_Clothed_02192023_Full.png",
+      characters: [Character.Serin],
+      staticImage: <StaticImage alt="..." src="../assets/images/references/SerinReference_Clothed_02192023_Full.png" layout="constrained"  />,
+      dateRecieved : new Date(2023,1,19) ,// 02/19/2023
+      description: "Serin's first official reference sheet, this time with clothes! I really like how the back view shows his vest."
+    }
+    ,
+    {
+      title: "Inspiration, Inspiration Everywhere",
+      artist: Artist.ShrimpLoverCat,
+      address: "../assets/images/art/2023_02_18_ShrimpLoverCat_SerinVera_ToyStory.png",
+      characters: [Character.Vera, Character.Serin],
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2023_02_18_ShrimpLoverCat_SerinVera_ToyStory.png" layout="constrained"  />,
+      dateRecieved : new Date(2023,1,18) ,// 02/18/2023
+      description: "It seems Serin is pitching another wild plan. Or maybe he's decided to redecorate his magnificent mansion. Vera looks concerned."
+    }   
   ];
 
 
@@ -227,6 +259,8 @@ const GalleryPage: React.FC<PageProps> = () => {
           <ToggleButton value={Artist.Tink}>{Artist.Tink}</ToggleButton>
           <ToggleButton value={Artist.Karne}>{Artist.Karne}</ToggleButton>
           <ToggleButton value={Artist.Daxl}>{Artist.Daxl}</ToggleButton>
+          <ToggleButton value={Artist.Enfys}>{Artist.Enfys}</ToggleButton>
+
       </ToggleButtonGroup>
       <h3>Character</h3> 
       <ToggleButtonGroup
