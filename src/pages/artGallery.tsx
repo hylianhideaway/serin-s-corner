@@ -220,7 +220,7 @@ const GalleryPage: React.FC<PageProps> = () => {
       characters: [Character.Vera, Character.Serin],
       staticImage: <StaticImage alt="..." src="../assets/images/art/2023_04_08_KayztorDevil_Serin_TavernPerformance.png" layout="constrained"  />,
       dateRecieved : new Date(2023,3,8) ,// 04/08/2023
-      description: "Serin performing at the Prestidigitatinn."
+      description: "Serin performs energetically at the Prestidigitation, hopping onto the bar during his set and enthralling the crowd with his performance."
     }  
   ];
 
