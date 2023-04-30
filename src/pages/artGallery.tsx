@@ -58,8 +58,7 @@ enum Artist {
   Karne = "Karne",
   Daxl = "Daxl",
   Enfys = "Enfys",
-
-
+  KayztorDevil = "KayztorDevil"
 }
 
 enum SortOrder {
@@ -213,6 +212,16 @@ const GalleryPage: React.FC<PageProps> = () => {
       dateRecieved : new Date(2023,1,18) ,// 02/18/2023
       description: "It seems Serin is pitching another wild plan. Or maybe he's decided to redecorate his magnificent mansion. Vera looks concerned."
     }   
+    ,
+    {
+      title: "Tavern Performance",
+      artist: Artist.KayztorDevil,
+      address: "../assets/images/art/2023_04_08_KayztorDevil_Serin_TavernPerformance.png",
+      characters: [Character.Vera, Character.Serin],
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2023_04_08_KayztorDevil_Serin_TavernPerformance.png" layout="constrained"  />,
+      dateRecieved : new Date(2023,3,8) ,// 04/08/2023
+      description: "Serin performing at the Prestidigitatinn."
+    }  
   ];
 
 
