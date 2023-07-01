@@ -2,6 +2,7 @@ import * as React from 'react'
 import type { HeadFC, PageProps } from "gatsby"
 import CharacterLayout from '../../components/characterLayout'
 import SpacerDiv from '../../components/spacer'
+import TraitsTable from '../../components/traitsTable'
 import { StaticImage } from 'gatsby-plugin-image'
 
 
@@ -53,7 +54,6 @@ const SerinInternal: React.FC = () => {
         individuals tasked with preventing a god-devil from consuming all souls on their plane.  
         </p> 
 
-
         {/*General Traits Section*/}
         <h3>Traits</h3> 
         <div className="generalTraitsContainer">
@@ -101,7 +101,6 @@ const SerinInternal: React.FC = () => {
          
          <h3>References</h3> 
 
-         {/* TODO - replace with final clothed version when you get it */}
          <StaticImage 
             alt="First true reference sheet of Serin, but clothed." 
             src="../../assets/images/references/SerinReference_Clothed_02192023_Full.png" 
@@ -202,38 +201,6 @@ const SerinInternal: React.FC = () => {
     )
   }
 
-
-
-  /**
-   * Props fro TraitsTable. 
-   * contains one property, containing an array of [string,string] tuples
-   */
-  interface TraitsTableProps
-  {
-    traitPairs: [string,string][]
-  }
-
-
-
-  /**
-   * 
-   * @param props see TraitsTableProps
-   * @returns a table with the specified character trait keys and values
-   */
-  const TraitsTable: React.FC<TraitsTableProps> = (props) => {
-    let traitPairs = props.traitPairs
-    const traitsTable= [];
-
-    for (const traitPair of  traitPairs) {
-      traitsTable.push(<tr><td><b>{traitPair[0]}</b></td><td>{traitPair[1]}</td></tr>)
-    }
-
-    return (
-      <table>
-      {traitsTable}
-      </table>
-    )
-  }
 
 
 export const Head: HeadFC = () => {
