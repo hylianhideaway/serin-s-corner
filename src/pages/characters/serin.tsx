@@ -17,10 +17,27 @@ const Serin: React.FC<PageProps> = () => {
   )
 }
 
+
 // Calling it Serin for now. Once we have mroe characters, should make this component generic and pass in all the values. 
 // For now, we will hardcode them. 
 
 const SerinInternal: React.FC = () => {
+
+    const traitsTable1 : [string,string][] = 
+          [
+            ["Full Name","Serendipitus Nemmonis"],
+            ["Species","Brass Dragonborn"],
+            ["Gender","Male"],
+            ["Orientation","Gay"]
+          ];
+
+    const traitsTable2: [string,string][] =
+          [
+            ["Age","27"],
+            ["Build","Slim, Lightly Muscled"],
+            ["Height","5'11'' (180cm)"],
+            ["Weight","165lbs (75kg)"]
+          ];
 
     return (
       <div> {/*Outer DIV*/}
@@ -37,29 +54,11 @@ const SerinInternal: React.FC = () => {
         </p> 
 
 
-
-
-
         {/*General Traits Section*/}
         <h3>Traits</h3> 
         <div className="generalTraitsContainer">
-          <div className="generalTraitsItem">
-            <table>
-              <tr><td><b>Full Name</b></td><td>Serendipitus Nemmonis</td></tr>     
-              <tr><td><b>Species</b></td><td>Brass Dragonborn</td></tr>
-              <tr><td><b>Gender</b></td><td>Male</td></tr>
-              <tr><td><b>Orientation</b></td><td>Gay</td></tr>
-  
-            </table>
-          </div>
-          <div className="generalTraitsItem">
-            <table>
-              <tr><td><b>Age</b></td><td>27</td></tr>
-              <tr><td><b>Build</b></td><td>Slim, Lightly Muscled</td></tr>  
-              <tr><td><b>Height</b></td><td>5'11'' (180cm)</td></tr>
-              <tr><td><b>Weight</b></td><td>165lbs (75kg)</td></tr>
-            </table>
-          </div>
+          <TraitsTable traitPairs={traitsTable1}/>
+          <TraitsTable traitPairs={traitsTable2}/>  
         </div>
   
         <SpacerDiv/>
@@ -200,6 +199,39 @@ const SerinInternal: React.FC = () => {
         <td>{props.colorAltName}</td>
         <td>{props.description}</td>
       </tr>   
+    )
+  }
+
+
+
+  /**
+   * Props fro TraitsTable. 
+   * contains one property, containing an array of [string,string] tuples
+   */
+  interface TraitsTableProps
+  {
+    traitPairs: [string,string][]
+  }
+
+
+
+  /**
+   * 
+   * @param props see TraitsTableProps
+   * @returns a table with the specified character trait keys and values
+   */
+  const TraitsTable: React.FC<TraitsTableProps> = (props) => {
+    let traitPairs = props.traitPairs
+    const traitsTable= [];
+
+    for (const traitPair of  traitPairs) {
+      traitsTable.push(<tr><td><b>{traitPair[0]}</b></td><td>{traitPair[1]}</td></tr>)
+    }
+
+    return (
+      <table>
+      {traitsTable}
+      </table>
     )
   }
 
