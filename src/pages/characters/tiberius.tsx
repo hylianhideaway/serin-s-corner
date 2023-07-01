@@ -2,6 +2,7 @@ import * as React from 'react'
 import type { HeadFC, PageProps } from "gatsby"
 import CharacterLayout from '../../components/characterLayout'
 import TraitsTable from '../../components/traitsTable'
+import { StaticImage } from 'gatsby-plugin-image'
 
 
 const pageTitle = "Tiberius"
@@ -52,8 +53,21 @@ const TiberiusInternal: React.FC = () => {
           <div className="generalTraitsContainer">
             <TraitsTable traitPairs={traitsTable1}/>
             <TraitsTable traitPairs={traitsTable2}/>
-
           </div>
+
+          <h3>References</h3> 
+            <div style={{ padding:"10px" ,margin:"10px", display:"flex", flexDirection:"row",justifyContent:"center" }}>
+              <div style={{ maxWidth:"600px"}}>
+                <StaticImage 
+                  alt="images of Serin that best capture his true design" 
+                  src="../../assets/images/art/2022_11_Karne_Tiberius_01.png" 
+                  layout="constrained" 
+                  formats = {["png"]} 
+                  quality={100}
+                />
+              </div>
+            </div>
+        
 
 
           <h3>Campaign</h3>

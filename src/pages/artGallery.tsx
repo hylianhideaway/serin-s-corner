@@ -26,7 +26,10 @@ const pageTitle = "Art Gallery"
 
 
 
-
+/**
+ * All part pieces in the comprehensive art array must implement this 
+ * object interface
+ */
 interface ArtInfo {
   title: string; // The title of the piece
   artist:Artist; // The artist of the piece
@@ -37,6 +40,9 @@ interface ArtInfo {
   description: string; // A description of what is going on in the piece
 }
 
+/**
+ * Enum used to identify characters displayed in an art piece. 
+ */
 enum Character {
   Serin = "Serin",
   Lightsong = "Lightsong",
@@ -48,6 +54,9 @@ enum Character {
   Tiberius = "Tiberius"
 }
 
+/**
+ * Enum indicating potential artists for a particular piece. 
+ */
 enum Artist {
   Bastien = "Bastien",
   RavenLuckArts = "RavenLuckArts",
@@ -58,9 +67,14 @@ enum Artist {
   Karne = "Karne",
   Daxl = "Daxl",
   Enfys = "Enfys",
-  KayztorDevil = "KayztorDevil"
+  KayztorDevil = "KayztorDevil",
+  Vexwyn = "Vexwyn"
 }
 
+/**
+ * Enum indicating the sort order for (by instant of creation) 
+ * for pieces on this page
+ */
 enum SortOrder {
   Chronological = 1,
   ReverseChronological = 2
@@ -70,7 +84,7 @@ enum SortOrder {
 // Step 2: Define your component
 const GalleryPage: React.FC<PageProps> = () => {
   
-  
+  // This array holds all information about all art pieces displayed on this page. 
   const comprehensiveArtArray : ArtInfo[] = [
     
     {
@@ -221,7 +235,27 @@ const GalleryPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2023_04_08_KayztorDevil_Serin_TavernPerformance.png" layout="constrained"  />,
       dateRecieved : new Date(2023,3,8) ,// 04/08/2023
       description: "Serin performs energetically at the Prestidigitation, hopping onto the bar during his set and enthralling the crowd with his music."
-    }  
+    }
+    ,
+    {
+      title: "9/10 Dragons Recommend Pride",
+      artist: Artist.Vexwyn,
+      address: "../assets/images/art/2023_06_10_Vexwyn_Serin_MLMFlagIcon.png",
+      characters: [Character.Serin],
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2023_06_10_Vexwyn_Serin_MLMFlagIcon.png" layout="constrained"  />,
+      dateRecieved : new Date(2023,5,10) ,// 06/10/2023
+      description: "When I see the MLM flag, I think of three things. Pride, Toothpaste, and multilevel marketing."
+    }
+    ,
+    {
+      title: "Pride Chibi",
+      artist: Artist.Daxl,
+      address: "../assets/images/art/2023_06_27_Daxl_Serin_PrideFlagChibi.png",
+      characters: [Character.Serin],
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2023_06_27_Daxl_Serin_PrideFlagChibi.png" layout="constrained"  />,
+      dateRecieved : new Date(2023,5,27) ,// 06/27/2023
+      description: "A chibi Serin waving the pride flag."
+    }    
   ];
 
 

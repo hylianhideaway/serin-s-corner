@@ -11,7 +11,8 @@ import * as React from "react"
   }
 
   /**
-   * 
+   * A react component used to format an unspecified number of key value paris into
+   * a table. Used for listing character traits in a consistent format. 
    * @param props see TraitsTableProps
    * @returns a table with the specified character trait keys and values
    */
