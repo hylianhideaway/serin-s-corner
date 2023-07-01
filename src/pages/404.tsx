@@ -3,22 +3,6 @@ import { Link, HeadFC, PageProps } from "gatsby"
 import {  StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-
-const paragraphStyles = {
-  marginBottom: 48,
-}
-
-
 const NotFoundPage: React.FC<PageProps> = () => {
   return (
     <Layout pageTitle = "Page Not Found">
@@ -33,10 +17,6 @@ const NotFoundPage: React.FC<PageProps> = () => {
       <Link to="/">Go home</Link>.
   
   </Layout>
-
-
-
-
   )
 }
 
