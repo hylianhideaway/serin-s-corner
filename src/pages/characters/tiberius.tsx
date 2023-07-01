@@ -28,16 +28,42 @@ const TiberiusInternal: React.FC = () => {
         ["Orientation","Gay"]
       ];
 
-
+  const traitsTable2: [string,string][] =
+      [
+        ["Age","28"],
+        ["Build","Moderately muscled"],
+        ["Height","6'1'' (185cm)"],
+        ["Weight","190lbs (86kg)"]
+      ];
 
     return (
       <div> {/*Outer DIV*/}
 
-            {/*General Traits Section*/}
+          {/*Short Biography Section*/}
+          <p>
+          Tiberius is a boisterous and excitable blue dragonborn who makes his home in the town of Wavesreach,
+          a port city of West Volestra. Extremely extroverted and excitable, he makes his living selling potions 
+          in his hometown. His unique brewing techniques, though a bit more expensive, result in surprisingly 
+          tasty potion. He is currently Serin's mate in game.  
+          </p>
+
+          {/*General Traits Section*/}
           <h3>Traits</h3> 
           <div className="generalTraitsContainer">
             <TraitsTable traitPairs={traitsTable1}/>
+            <TraitsTable traitPairs={traitsTable2}/>
+
           </div>
+
+
+          <h3>Campaign</h3>
+          <p>
+            TODO
+          </p>
+
+
+
+
       </div> 
     )
 
