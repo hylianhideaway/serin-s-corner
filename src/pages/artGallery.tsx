@@ -258,13 +258,10 @@ const GalleryPage: React.FC<PageProps> = () => {
     }    
   ];
 
-
   // Develop State for filters. 
   const [selectedArtists,setSelectedArtists] = React.useState<Artist[]>([]);
   const [selectedCharacters,setSelectedCharacters] = React.useState<Character[]>([]);
   const [sortOrder,setSortOrder] = React.useState<SortOrder>(SortOrder.Chronological);
-
-
 
   //Toogle functions
   const  handleArtistToggle = (event: React.MouseEvent<HTMLElement>,__selectedArtists: Artist[]) =>
@@ -303,6 +300,8 @@ const GalleryPage: React.FC<PageProps> = () => {
           <ToggleButton value={Artist.Karne}>{Artist.Karne}</ToggleButton>
           <ToggleButton value={Artist.Daxl}>{Artist.Daxl}</ToggleButton>
           <ToggleButton value={Artist.Enfys}>{Artist.Enfys}</ToggleButton>
+          <ToggleButton value={Artist.KayztorDevil}>{Artist.KayztorDevil}</ToggleButton>
+          <ToggleButton value={Artist.Vexwyn}>{Artist.Vexwyn}</ToggleButton>
 
       </ToggleButtonGroup>
       <h3>Character</h3> 
@@ -455,8 +454,6 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
               </div>
               <div className="modalImageDescription"><span>{artPiece.description}</span></div>
               <div className="modalImageImage"> {artPiece.staticImage} </div>
-                
-              
             </div>
 
           </div>
