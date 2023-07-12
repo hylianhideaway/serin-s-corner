@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type { HeadFC, PageProps } from "gatsby"
+import { HeadFC, Link, PageProps } from "gatsby"
 import Layout from '../components/layout'
 
 
@@ -24,6 +24,9 @@ const AboutPage: React.FC<PageProps> = () => {
         <ul>
           <li>Discord Handle: Serin#8136</li>
         </ul>
+      <h2>Works in Progress</h2>
+       <Link to={"/miniProjects/diceRoller"}>Dice Roller</Link>
+
     </Layout>
 
 
