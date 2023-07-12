@@ -2,11 +2,24 @@ import * as React from 'react'
 import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../../components/layout'
 import { useState } from 'react'
+import Switch from '@mui/material/Switch';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+
 
 /**
  * Page Title for the diceRoller page
  */
 const pageTitle = "Dice Roller"
+
+
+
+/**
+ * The current rolling mode state we are in
+ */
+enum RollingMode {
+    RollManyDice = "Roll Many Dice",
+    AdvantageOrDisadvantage = "Advantage Or Disadvantage"
+}
 
 
 /**
@@ -23,40 +36,62 @@ const DiceRoller: React.FC<PageProps> = () => {
     const [rollResult, setRollResult] = useState(0);
     const [historySize, setHistorySize] = useState(10);
     const [rollHistory, setRollHistory] = useState<number[]>([]);
+    const[advantageOrDisadvantege,setAdvantageOrDisadvantege] = useState(true);
+    const[rollingMode,setRollingMode] = useState<RollingMode>(RollingMode.RollManyDice);
 
 
     // Helper functions that depend on state that exists inside the componenet
 
-    /**
+
+    
+    const handleRoll = () => {
+        let total=0
+        
+        switch (rollingMode)
+        {
+            case RollingMode.RollManyDice:
+                total=rollXDiceOfSameSize(sides,numberOfDice);
+                break;
+            case RollingMode.AdvantageOrDisadvantage:
+                total=rollXDiceWithAdvantageOrDisadvantage(sides,numberOfDice,advantageOrDisadvantege)
+                break;
+        } 
+
+        total+=modifier;
+        updateRollResultAndHistory(total);
+    }
+
+        /**
      * A general function that can be used for updating both the 
      * last result and running history of all rolls for any dice roll.
      * Should be called by the handler after we generate the dice roll. 
      * @param result the dice roll result
      */
-    const updateRollResultAndHistory = (result:number) => 
-    {
-        // Update the last result
-        setRollResult(result);
-        // Update the rolling history
-        setRollHistory((prevHistory) => {
-            const newHistory = [...prevHistory, result];
-            if (newHistory.length > historySize) 
-            {
-                newHistory.shift() ; // removes the oldest value in the array
-            }
-            return newHistory;
-        });
-    }
-    
-    
-    const handleRollDice = () => {
-        const total = rollXDiceOfSameSize(sides,numberOfDice) + modifier;
-        updateRollResultAndHistory(total);
-    }
+        const updateRollResultAndHistory = (result:number) => 
+        {
+            // Update the last result
+            setRollResult(result);
+            // Update the rolling history
+            setRollHistory((prevHistory) => {
+                const newHistory = [...prevHistory, result];
+                if (newHistory.length > historySize) 
+                {
+                    newHistory.shift() ; // removes the oldest value in the array
+                }
+                return newHistory;
+            });
+        }
+
 
     const handleClearHistory = () => {
         setRollHistory([]);
       };
+
+    const handleRollWithAdvantageOrDisadvantage = () => {
+        const result = rollXDiceWithAdvantageOrDisadvantage(sides,numberOfDice,advantageOrDisadvantege) +  modifier;
+        updateRollResultAndHistory(result);
+
+    }
 
 
     const handleApplyNewHistorySize = () => 
@@ -82,6 +117,7 @@ const DiceRoller: React.FC<PageProps> = () => {
 
     // Dependent values: Should be recalcualted every time the component is re-rendered
     const runningTotal = rollHistory.reduce((runningTotal, value) => runningTotal + value, 0);
+    const runningAverage = rollHistory.length==0 ? 0 : runningTotal/rollHistory.length;
 
       
 
@@ -89,6 +125,21 @@ const DiceRoller: React.FC<PageProps> = () => {
     return (
     <Layout pageTitle={pageTitle}>
         <div>
+            <div>
+                {/* Rolling Mode  */}
+                <ToggleButtonGroup
+                    color="primary"
+                    aria-label="Rolling Mode"
+                    value = {rollingMode}
+                    exclusive
+                    onChange = { (event: React.MouseEvent<HTMLElement>,__rollingMode: RollingMode) => setRollingMode(__rollingMode)}
+                    >
+                        <ToggleButton value={RollingMode.RollManyDice}>{RollingMode.RollManyDice}</ToggleButton>
+                        <ToggleButton value={RollingMode.AdvantageOrDisadvantage}>{RollingMode.AdvantageOrDisadvantage}</ToggleButton>
+                </ToggleButtonGroup>
+
+
+            </div>
             <div>
                 <label>Number of dice:</label>
                 <input
@@ -121,7 +172,20 @@ const DiceRoller: React.FC<PageProps> = () => {
                     onChange={(e) => setHistorySize(Number(e.target.value))}
                 />
             </div>
-            <button onClick={handleRollDice}>Roll Dice</button>
+            {rollingMode === RollingMode.AdvantageOrDisadvantage ? 
+                <div>
+                    Disadvantage
+                    <Switch
+                        onChange={(e) => setAdvantageOrDisadvantege(e.target.checked)}
+                        checked={advantageOrDisadvantege}
+                    />
+                    Advantage
+                    
+                </div>
+
+                : null
+            }
+            <button onClick={handleRoll}>Roll Dice</button>
             <button onClick={handleClearHistory}>Clear History</button>
             <button onClick={handleApplyNewHistorySize}>Update History Size</button>
 
@@ -130,6 +194,9 @@ const DiceRoller: React.FC<PageProps> = () => {
             </div>
             <div>
                 <strong>Running Total:</strong> {runningTotal}
+            </div>
+            <div>
+                <strong>Running Average:</strong> {runningAverage}
             </div>
             <div>
                 <strong>Roll History:</strong>
@@ -187,6 +254,7 @@ function rollXDiceWithAdvantageOrDisadvantage(diceSides: number,numberOfRolls: n
 
     // Roll the dice and update the result
     for (let i = 0; i < numberOfRolls; i++) {
+        console.log("Oh hai");
       const roll = Math.floor(Math.random() * diceSides) + 1;
       result = advantageOrDisadvantege ? Math.max(result, roll) : Math.min(result, roll);
     }
