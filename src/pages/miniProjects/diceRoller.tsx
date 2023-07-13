@@ -3,7 +3,7 @@ import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../../components/layout'
 import { useState } from 'react'
 import Switch from '@mui/material/Switch';
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { FormControlLabel, MenuItem, Radio, RadioGroup, Select, ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 
 /**
@@ -132,7 +132,13 @@ const DiceRoller: React.FC<PageProps> = () => {
                     aria-label="Rolling Mode"
                     value = {rollingMode}
                     exclusive
-                    onChange = { (event: React.MouseEvent<HTMLElement>,__rollingMode: RollingMode) => setRollingMode(__rollingMode)}
+                    onChange = { (event: React.MouseEvent<HTMLElement>,__rollingMode: RollingMode) => {
+                        setRollingMode(__rollingMode);
+                        if (__rollingMode===RollingMode.AdvantageOrDisadvantage) {
+                            setNumberOfDice(2);
+                            setSides(20);
+                        }
+                    }}
                     >
                         <ToggleButton value={RollingMode.RollManyDice}>{RollingMode.RollManyDice}</ToggleButton>
                         <ToggleButton value={RollingMode.AdvantageOrDisadvantage}>{RollingMode.AdvantageOrDisadvantage}</ToggleButton>
@@ -140,6 +146,19 @@ const DiceRoller: React.FC<PageProps> = () => {
 
 
             </div>
+            {rollingMode === RollingMode.AdvantageOrDisadvantage ? 
+                <div>
+                    Disadvantage
+                    <Switch
+                        onChange={(e) => setAdvantageOrDisadvantege(e.target.checked)}
+                        checked={advantageOrDisadvantege}
+                    />
+                    Advantage
+                    
+                </div>
+
+                : null
+            }
             <div>
                 <label>Number of dice:</label>
                 <input
@@ -148,13 +167,37 @@ const DiceRoller: React.FC<PageProps> = () => {
                     onChange={(e) => setNumberOfDice(Number(e.target.value))}
                 />
             </div>
+
+
             <div>
                 <label>Number of sides:</label>
+                {/*}
                 <input
                     type="number"
                     value={sides}
                     onChange={(e) => setSides(Number(e.target.value))}
                 />
+                */}
+                {/* This can absolutely be simplified with an allowed array of numebrs and an iterator */}
+                <RadioGroup
+                    row
+                    defaultValue={20}
+                    onChange={(e) => setSides(Number(e.target.value))}
+                >
+                    <FormControlLabel value={4} label={4} checked={sides===4} control={<Radio />} />
+                    <FormControlLabel value={6} label={6} checked={sides===6} control={<Radio />} />
+                    <FormControlLabel value={8} label={8} checked={sides===8} control={<Radio />} />
+                    <FormControlLabel value={10} label={10} checked={sides===10} control={<Radio />} />
+                    <FormControlLabel value={12} label={12} checked={sides===12 }control={<Radio />} />
+                    <FormControlLabel value={20} label={20} checked={sides===20} control={<Radio />} />
+                </RadioGroup>
+            </div>
+            <div>
+
+
+
+
+
             </div>
             <div>
                 <label>Modifier:</label>
@@ -172,19 +215,6 @@ const DiceRoller: React.FC<PageProps> = () => {
                     onChange={(e) => setHistorySize(Number(e.target.value))}
                 />
             </div>
-            {rollingMode === RollingMode.AdvantageOrDisadvantage ? 
-                <div>
-                    Disadvantage
-                    <Switch
-                        onChange={(e) => setAdvantageOrDisadvantege(e.target.checked)}
-                        checked={advantageOrDisadvantege}
-                    />
-                    Advantage
-                    
-                </div>
-
-                : null
-            }
             <button onClick={handleRoll}>Roll Dice</button>
             <button onClick={handleClearHistory}>Clear History</button>
             <button onClick={handleApplyNewHistorySize}>Update History Size</button>
