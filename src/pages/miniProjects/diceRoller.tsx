@@ -14,21 +14,25 @@ const DiceRoller: React.FC<PageProps> = () => {
     const [sides, setSides] = useState(6);
     const [modifier, setModifier] = useState(0);
     const [rollResult, setRollResult] = useState(0);
+    const [diceArray,setDiceArray] = useState<number[]>([]);
     const [historySize, setHistorySize] = useState(10);
     const [rollHistory, setRollHistory] = useState<number[]>([]);
 
       
     const handleRollDice = () => {
         let total = 0;
+        let rolls = new Array<number>(numberOfDice)
     
         for (let i = 0; i < numberOfDice; i++) {
         const roll = Math.floor(Math.random() * sides) + 1;
+        rolls.push(roll);
         total += roll;
         }
 
         total=total+modifier;
     
         setRollResult(total);
+        setDiceArray(() =>  [...rolls]);
         setRollHistory((prevHistory) => {
             const newHistory = [...prevHistory, total];
             if (newHistory.length > historySize) 
@@ -115,6 +119,9 @@ const DiceRoller: React.FC<PageProps> = () => {
 
             <div>
                 <strong>Roll Result:</strong> {rollResult}
+            </div>
+            <div>
+                <strong>Roll Breakdown:</strong> {diceArray.toString()}
             </div>
             <div>
                 <strong>Running Total:</strong> {runningTotal}
