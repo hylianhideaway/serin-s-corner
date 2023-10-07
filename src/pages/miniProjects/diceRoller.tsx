@@ -4,14 +4,13 @@ import Layout from '../../components/layout'
 import { useState } from 'react'
 import Switch from '@mui/material/Switch';
 import { FormControlLabel, MenuItem, Radio, RadioGroup, Select, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import  '../../assets/style/diceRoller.css'
 
 
 /**
  * Page Title for the diceRoller page
  */
 const pageTitle = "Dice Roller"
-
-
 
 /**
  * The current rolling mode state we are in
@@ -40,11 +39,9 @@ const DiceRoller: React.FC<PageProps> = () => {
     const[advantageOrDisadvantege,setAdvantageOrDisadvantege] = useState(true);
     const[rollingMode,setRollingMode] = useState<RollingMode>(RollingMode.RollManyDice);
 
-
-    // Helper functions that depend on state that exists inside the componenet
-
-
-    
+    /**
+     * Helper functions that depend on state that exists inside the componenet
+     */
     const handleRoll = () => {
         let total=0
         
@@ -62,7 +59,7 @@ const DiceRoller: React.FC<PageProps> = () => {
         updateRollResultAndHistory(total);
     }
 
-        /**
+    /**
      * A general function that can be used for updating both the 
      * last result and running history of all rolls for any dice roll.
      * Should be called by the handler after we generate the dice roll. 
@@ -88,12 +85,6 @@ const DiceRoller: React.FC<PageProps> = () => {
         setRollHistory([]);
       };
 
-    const handleRollWithAdvantageOrDisadvantage = () => {
-        const result = rollXDiceWithAdvantageOrDisadvantage(sides,numberOfDice,advantageOrDisadvantege) +  modifier;
-        updateRollResultAndHistory(result);
-
-    }
-
 
     const handleApplyNewHistorySize = () => 
     {
@@ -116,18 +107,20 @@ const DiceRoller: React.FC<PageProps> = () => {
         })
     }
 
-    // Dependent values: Should be recalcualted every time the component is re-rendered
+    // Dependent values: Should be recalculateed every time the component is re-rendered
     const runningTotal = rollHistory.reduce((runningTotal, value) => runningTotal + value, 0);
     const runningAverage = rollHistory.length==0 ? 0 : runningTotal/rollHistory.length;
 
-      
-
-
+    // The actual component
     return (
     <Layout pageTitle={pageTitle}>
-        <div>
-            <div>
+        <div className="diceRollerTopDivContainer">
+            
+            {/*This component should allow you to select the mode, as well as all the settings for the mode */}
+            <div id="DiceRollerSettingsContainer1">
+                
                 {/* Rolling Mode  */}
+                {/*TODO - swap this out for something better */}
                 <ToggleButtonGroup
                     color="primary"
                     aria-label="Rolling Mode"
@@ -146,79 +139,91 @@ const DiceRoller: React.FC<PageProps> = () => {
                 </ToggleButtonGroup>
 
 
-            </div>
-            {rollingMode === RollingMode.AdvantageOrDisadvantage ? 
+                {/*WHen Rolling with Advantage vs Disadvantage, this component controls which mode is selected  */}
+                {rollingMode === RollingMode.AdvantageOrDisadvantage ? 
                 <div>
                     Disadvantage
                     <Switch
                         onChange={(e) => setAdvantageOrDisadvantege(e.target.checked)}
                         checked={advantageOrDisadvantege}
                     />
-                    Advantage
-                    
+                    Advantage                  
+                </div>
+                : null
+                }
+
+                <div className="diceRollerInputDivContainer">
+                    <div className="diceRollerInputLabelDiv"><label htmlFor="NumberOfDiceInputField1">Number of dice:</label></div>
+                    <input
+                        id = "NumberOfDiceInputField1"
+                        className="diceRollerInputField"
+                        type="number"
+                        min="1"
+                        step="1"
+                        value={numberOfDice}
+                        onChange={(e) => setNumberOfDice(Number(e.target.value))}
+                    />
                 </div>
 
-                : null
-            }
-            <div>
-                <label>Number of dice:</label>
-                <input
-                    type="number"
-                    value={numberOfDice}
-                    onChange={(e) => setNumberOfDice(Number(e.target.value))}
-                />
+                <div className="diceRollerInputDivContainer">
+                    <div className="diceRollerInputLabelDiv"><label htmlFor="NumberOfSidesInputField1">Number of sides:</label></div>
+                    {/*}
+                    <input
+                        type="number"
+                        value={sides}
+                        onChange={(e) => setSides(Number(e.target.value))}
+                    />
+                    */}
+                    {/* This can absolutely be simplified with an allowed array of numbers and an iterator */}
+                    <RadioGroup
+                        id = "NumberOfSidesInputField1"
+                        row
+                        defaultValue={20}
+                        onChange={(e) => setSides(Number(e.target.value))}
+                    >
+                        <FormControlLabel value={4} label={4} checked={sides===4} control={<Radio />} />
+                        <FormControlLabel value={6} label={6} checked={sides===6} control={<Radio />} />
+                        <FormControlLabel value={8} label={8} checked={sides===8} control={<Radio />} />
+                        <FormControlLabel value={10} label={10} checked={sides===10} control={<Radio />} />
+                        <FormControlLabel value={12} label={12} checked={sides===12 }control={<Radio />} />
+                        <FormControlLabel value={20} label={20} checked={sides===20} control={<Radio />} />
+                    </RadioGroup>
+                </div>
+
+                <div className="diceRollerInputDivContainer">
+                    <div className="diceRollerInputLabelDiv"><label htmlFor="ModifierInputField01">Modifier:</label></div>
+                    <input
+                        id = "ModifierInputField01"
+                        className="diceRollerInputField"
+                        type="number"
+                        min="0"
+                        step="1"
+                        value={modifier}
+                        onChange={(e) => setModifier(Number(e.target.value))}
+                    />
+                </div>
+
+                <div className="diceRollerInputDivContainer">
+                    <div className="diceRollerInputLabelDiv"><label htmlFor="HistorySizeInputField01">History size:</label></div>
+                    <input
+                        id = "HistorySizeInputField01"
+                        className="diceRollerInputField"
+                        type="number"
+                        min="1"
+                        step="1"
+                        value={historySize}
+                        onChange={(e) => setHistorySize(Number(e.target.value))}
+                    />
+                </div>
+
+                <div>
+                    <button onClick={handleRoll}>Roll Dice</button>
+                    <button onClick={handleClearHistory}>Clear History</button>
+                    <button onClick={handleApplyNewHistorySize}>Update History Size</button>
+                </div>
+            
             </div>
 
-
-            <div>
-                <label>Number of sides:</label>
-                {/*}
-                <input
-                    type="number"
-                    value={sides}
-                    onChange={(e) => setSides(Number(e.target.value))}
-                />
-                */}
-                {/* This can absolutely be simplified with an allowed array of numebrs and an iterator */}
-                <RadioGroup
-                    row
-                    defaultValue={20}
-                    onChange={(e) => setSides(Number(e.target.value))}
-                >
-                    <FormControlLabel value={4} label={4} checked={sides===4} control={<Radio />} />
-                    <FormControlLabel value={6} label={6} checked={sides===6} control={<Radio />} />
-                    <FormControlLabel value={8} label={8} checked={sides===8} control={<Radio />} />
-                    <FormControlLabel value={10} label={10} checked={sides===10} control={<Radio />} />
-                    <FormControlLabel value={12} label={12} checked={sides===12 }control={<Radio />} />
-                    <FormControlLabel value={20} label={20} checked={sides===20} control={<Radio />} />
-                </RadioGroup>
-            </div>
-            <div>
-
-
-
-
-
-            </div>
-            <div>
-                <label>Modifier:</label>
-                <input
-                    type="number"
-                    value={modifier}
-                    onChange={(e) => setModifier(Number(e.target.value))}
-                />
-            </div>
-            <div>
-                <label>History size:</label>
-                <input
-                    type="number"
-                    value={historySize}
-                    onChange={(e) => setHistorySize(Number(e.target.value))}
-                />
-            </div>
-            <button onClick={handleRoll}>Roll Dice</button>
-            <button onClick={handleClearHistory}>Clear History</button>
-            <button onClick={handleApplyNewHistorySize}>Update History Size</button>
 
             <div>
                 <strong>Roll Result:</strong> {rollResult}

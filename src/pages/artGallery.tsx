@@ -415,7 +415,7 @@ const ArtGallery: React.FC<ArtGalleryProps> = (props) => {
 
 
   /*
-    The images array is a pregenerated list of JSX object. Each outer div corresponds to both a 
+    The images array is a pre-generated list of JSX object. Each outer div corresponds to both a 
     gallery image, as well as a modal popup that is triggered when said image is clicked. 
   */
   const images =   filteredArtArray.map( function(artPiece,index) 
