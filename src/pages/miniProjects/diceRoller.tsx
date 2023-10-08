@@ -1,7 +1,7 @@
 import * as React from 'react'
 import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../../components/layout'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Switch from '@mui/material/Switch';
 import { FormControlLabel, MenuItem, Radio, RadioGroup, Select, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import  '../../assets/style/diceRoller.css'
@@ -39,6 +39,15 @@ const DiceRoller: React.FC<PageProps> = () => {
     const[advantageOrDisadvantege,setAdvantageOrDisadvantege] = useState(true);
     const[rollingMode,setRollingMode] = useState<RollingMode>(RollingMode.RollManyDice);
 
+    //references for input fields:
+    const numberOfDiceInputField01Ref = useRef<HTMLInputElement | null>(null); 
+    const numberOfSidesInputField01Ref = useRef<HTMLInputElement | null>(null); 
+    const modifierInputField01Ref = useRef<HTMLInputElement | null>(null); 
+
+
+
+
+
     /**
      * Helper functions that depend on state that exists inside the componenet
      */
@@ -65,22 +74,24 @@ const DiceRoller: React.FC<PageProps> = () => {
      * Should be called by the handler after we generate the dice roll. 
      * @param result the dice roll result
      */
-        const updateRollResultAndHistory = (result:number) => 
-        {
-            // Update the last result
-            setRollResult(result);
-            // Update the rolling history
-            setRollHistory((prevHistory) => {
-                const newHistory = [...prevHistory, result];
-                if (newHistory.length > historySize) 
-                {
-                    newHistory.shift() ; // removes the oldest value in the array
-                }
-                return newHistory;
-            });
-        }
+    const updateRollResultAndHistory = (result:number) => 
+    {
+        // Update the last result
+        setRollResult(result);
+        // Update the rolling history
+        setRollHistory((prevHistory) => {
+            const newHistory = [...prevHistory, result];
+            if (newHistory.length > historySize) 
+            {
+                newHistory.shift() ; // removes the oldest value in the array
+            }
+            return newHistory;
+        });
+    }
 
-
+    /**
+     * Clears the roll history
+     */
     const handleClearHistory = () => {
         setRollHistory([]);
       };
@@ -106,6 +117,8 @@ const DiceRoller: React.FC<PageProps> = () => {
             } 
         })
     }
+
+
 
     // Dependent values: Should be recalculateed every time the component is re-rendered
     const runningTotal = rollHistory.reduce((runningTotal, value) => runningTotal + value, 0);
@@ -156,12 +169,15 @@ const DiceRoller: React.FC<PageProps> = () => {
                     <div className="diceRollerInputLabelDiv"><label htmlFor="NumberOfDiceInputField1">Number of dice:</label></div>
                     <input
                         id = "NumberOfDiceInputField1"
+                        ref = {numberOfDiceInputField01Ref}
                         className="diceRollerInputField"
                         type="number"
                         min="1"
                         step="1"
                         value={numberOfDice}
                         onChange={(e) => setNumberOfDice(Number(e.target.value))}
+                        onFocus= { (e) => e.target.select()}
+
                     />
                 </div>
 
@@ -170,11 +186,13 @@ const DiceRoller: React.FC<PageProps> = () => {
                     <input
                         id = "NumberOfSidesInputField01"
                         className="diceRollerInputField"
+                        ref = {numberOfSidesInputField01Ref}
                         type="number"
                         min="1"
                         step="1"
                         value={sides}
                         onChange={(e) => setSides(Number(e.target.value))}
+                        onFocus= { (e) => e.target.select()}
                     />
                 </div>
 
@@ -183,11 +201,13 @@ const DiceRoller: React.FC<PageProps> = () => {
                     <input
                         id = "ModifierInputField01"
                         className="diceRollerInputField"
+                        ref = {modifierInputField01Ref}
                         type="number"
                         min="0"
                         step="1"
                         value={modifier}
                         onChange={(e) => setModifier(Number(e.target.value))}
+                        onFocus= { (e) => e.target.select()}
                     />
                 </div>
 
@@ -201,6 +221,7 @@ const DiceRoller: React.FC<PageProps> = () => {
                         step="1"
                         value={historySize}
                         onChange={(e) => setHistorySize(Number(e.target.value))}
+                        onFocus= { (e) => e.target.select()}
                     />
                 </div>   
             </div>
