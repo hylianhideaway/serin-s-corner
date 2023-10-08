@@ -193,8 +193,23 @@ const DiceRoller: React.FC<PageProps> = () => {
                         type="number"
                         min="1"
                         step="1"
+                        max = "100000"
                         value={numberOfDice}
                         onChange={(e) => setNumberOfDice(Number(e.target.value))}
+                        /*onBlur={(e) => 
+                                {
+                                    let input = e.target.value;
+                                    if (Number(input) > Number(numberOfDiceInputField01Ref.current?.max as string)) // I know this is stupid syntax. but I know the string is populated definitely
+                                    {
+                                        alert("Enter a valid value");
+                                        setNumberOfDice(1);
+
+                                    } 
+                                    else 
+                                    {
+                                        setNumberOfDice(Math.floor(Number(input)));
+                                    }  
+                                }}*/
                         onFocus= { (e) => e.target.select()}
 
                     />
@@ -211,6 +226,7 @@ const DiceRoller: React.FC<PageProps> = () => {
                         step="1"
                         value={sides}
                         onChange={(e) => setSides(Number(e.target.value))}
+                       /* onBlur={(e) => setSides(Math.floor(Number(e.target.value)))}*/
                         onFocus= { (e) => e.target.select()}
                     />
                 </div>
@@ -226,6 +242,7 @@ const DiceRoller: React.FC<PageProps> = () => {
                         step="1"
                         value={modifier}
                         onChange={(e) => setModifier(Number(e.target.value))}
+                        /*onBlur={(e) => setModifier(Math.floor(Number(e.target.value)))}*/
                         onFocus= { (e) => e.target.select()}
                     />
                 </div>
@@ -240,6 +257,7 @@ const DiceRoller: React.FC<PageProps> = () => {
                         step="1"
                         value={historySize}
                         onChange={(e) => setHistorySize(Number(e.target.value))}
+                        /*onBlur={(e) => setHistorySize(Math.floor(Number(e.target.value)))}*/
                         onFocus= { (e) => e.target.select()}
                     />
                 </div>
