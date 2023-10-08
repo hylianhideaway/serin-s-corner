@@ -33,7 +33,7 @@ const DiceRoller: React.FC<PageProps> = () => {
     const [sides, setSides] = useState(6);
     const [modifier, setModifier] = useState(0);
     const [rollResult, setRollResult] = useState(0);
-    const [diceArray,setDiceArray] = useState<number[]>([]);
+    const [diceRollBreakdown,setDiceRollBreakdown] = useState<string>("");
     const [historySize, setHistorySize] = useState(10);
     const [rollHistory, setRollHistory] = useState<number[]>([]);
     const[advantageOrDisadvantege,setAdvantageOrDisadvantege] = useState(true);
@@ -52,21 +52,22 @@ const DiceRoller: React.FC<PageProps> = () => {
      * Helper functions that depend on state that exists inside the componenet
      */
     const handleRoll = () => {
-        let diceArray: number[] = [] 
+        let diceArray = new Array<number>(numberOfDice);
         let total=0
         
         switch (rollingMode)
         {
             case RollingMode.RollManyDice:
-                total=rollXDiceOfSameSize(sides,numberOfDice);
+                total=rollXDiceOfSameSize(sides,numberOfDice,diceArray);
                 break;
             case RollingMode.AdvantageOrDisadvantage:
-                total=rollXDiceWithAdvantageOrDisadvantage(sides,numberOfDice,advantageOrDisadvantege)
+                total=rollXDiceWithAdvantageOrDisadvantage(sides,numberOfDice,advantageOrDisadvantege,diceArray)
                 break;
         } 
 
         total+=modifier;
         updateRollResultAndHistory(total);
+        generateAndSetRollBreakdown(diceArray);
     }
 
     /**
@@ -89,6 +90,23 @@ const DiceRoller: React.FC<PageProps> = () => {
             return newHistory;
         });
     }
+
+    const generateAndSetRollBreakdown = (diceArray: number[])  =>
+    {
+        let rollBreakdown = "";
+        switch (rollingMode)
+        {
+            case RollingMode.RollManyDice:
+                rollBreakdown = diceArrayToString(diceArray,modifier," + ");
+                break;
+            case RollingMode.AdvantageOrDisadvantage:
+                rollBreakdown = diceArrayToString(diceArray,modifier," | ");
+                break;
+        } 
+
+        setDiceRollBreakdown(rollBreakdown);
+    }
+
 
     /**
      * Clears the roll history
@@ -243,7 +261,7 @@ const DiceRoller: React.FC<PageProps> = () => {
                 </div>
                 <div className="diceRollerResultWrapperDiv">
                     <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Breakdown:</label></div>
-                    <div id = "RollResult01" className="diceRollerResultDiv">TODO{diceArray.toString()}</div>
+                    <div id = "RollResult01" className="diceRollerResultDiv">{diceRollBreakdown}</div>
                 </div>  
                 <div className="diceRollerResultWrapperDiv">
                     <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Running Total:</label></div>
@@ -288,15 +306,17 @@ export default DiceRoller
  * @param numberOfDice number of dice rolled
  * @returns the total for the dice roll
  */
-function rollXDiceOfSameSize(diceSides:number , numberOfDice:number): number 
+function rollXDiceOfSameSize(diceSides:number , numberOfDice:number, diceArray:number[]): number
 {
-    let total = 0;
-    let roll;    
+    let result = 0;
+    let roll;  
+
     for (let i = 0; i < numberOfDice; i++) {
-    roll = Math.floor(Math.random() * diceSides) + 1;
-    total += roll;
+        roll = Math.floor(Math.random() * diceSides) + 1;
+        diceArray[i] = roll;
+        result+=roll;
     }
-    return total;
+    return result;
 }
 
 
@@ -307,16 +327,25 @@ function rollXDiceOfSameSize(diceSides:number , numberOfDice:number): number
  * @param advantageOrDisadvantege true for rolling with advantage. false for rolling with disadvantage
  * @returns  the resulting roll
  */
-function rollXDiceWithAdvantageOrDisadvantage(diceSides: number,numberOfRolls: number,  advantageOrDisadvantege: boolean)
+function rollXDiceWithAdvantageOrDisadvantage(diceSides: number,numberOfRolls: number,  advantageOrDisadvantege: boolean, diceArray:number[]) : number
 {
     let result = advantageOrDisadvantege ? 1 : diceSides; // primer for the first roll. 
 
     // Roll the dice and update the result
     for (let i = 0; i < numberOfRolls; i++) {
-        console.log("Oh hai");
       const roll = Math.floor(Math.random() * diceSides) + 1;
+      diceArray[i] = roll;
       result = advantageOrDisadvantege ? Math.max(result, roll) : Math.min(result, roll);
     }
 
     return result;
+}
+
+
+function diceArrayToString(diceArray: number[] , modifier: number, delimiter:string = ",") : string
+{
+    let arrayString = "";
+    if (diceArray.length === 0 ) {return arrayString;}
+    arrayString = "(" + diceArray.join(delimiter) + ") + " + modifier;
+    return arrayString;
 }
