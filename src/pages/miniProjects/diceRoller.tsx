@@ -196,20 +196,7 @@ const DiceRoller: React.FC<PageProps> = () => {
                         max = "100000"
                         value={numberOfDice}
                         onChange={(e) => setNumberOfDice(Number(e.target.value))}
-                        /*onBlur={(e) => 
-                                {
-                                    let input = e.target.value;
-                                    if (Number(input) > Number(numberOfDiceInputField01Ref.current?.max as string)) // I know this is stupid syntax. but I know the string is populated definitely
-                                    {
-                                        alert("Enter a valid value");
-                                        setNumberOfDice(1);
-
-                                    } 
-                                    else 
-                                    {
-                                        setNumberOfDice(Math.floor(Number(input)));
-                                    }  
-                                }}*/
+                        onBlur={(e) => handlediceRollerNumericInputValidation(e, setNumberOfDice)}
                         onFocus= { (e) => e.target.select()}
 
                     />
@@ -224,9 +211,10 @@ const DiceRoller: React.FC<PageProps> = () => {
                         type="number"
                         min="1"
                         step="1"
+                        max="100000"
                         value={sides}
                         onChange={(e) => setSides(Number(e.target.value))}
-                       /* onBlur={(e) => setSides(Math.floor(Number(e.target.value)))}*/
+                        onBlur={(e) => handlediceRollerNumericInputValidation(e, setSides)}
                         onFocus= { (e) => e.target.select()}
                     />
                 </div>
@@ -240,9 +228,10 @@ const DiceRoller: React.FC<PageProps> = () => {
                         type="number"
                         min="0"
                         step="1"
+                        max="1000000"
                         value={modifier}
                         onChange={(e) => setModifier(Number(e.target.value))}
-                        /*onBlur={(e) => setModifier(Math.floor(Number(e.target.value)))}*/
+                        onBlur={(e) => handlediceRollerNumericInputValidation(e, setModifier)}
                         onFocus= { (e) => e.target.select()}
                     />
                 </div>
@@ -255,9 +244,10 @@ const DiceRoller: React.FC<PageProps> = () => {
                         type="number"
                         min="1"
                         step="1"
+                        max = "1000"
                         value={historySize}
                         onChange={(e) => setHistorySize(Number(e.target.value))}
-                        /*onBlur={(e) => setHistorySize(Math.floor(Number(e.target.value)))}*/
+                        onBlur={(e) => handlediceRollerNumericInputValidation(e, setHistorySize,undefined,10)}
                         onFocus= { (e) => e.target.select()}
                     />
                 </div>
@@ -315,7 +305,45 @@ export const Head: HeadFC = () => {
 // Step 3: Export your component
 export default DiceRoller
 
-// Helper functions - should be completely functional (not dependent on any state)
+// ***Callback functions***
+
+/**
+ * This function handles validation of a numeric <input> field when a user leaves focus. If the value exceed the max value set in 
+ * the <input> component, it will throw a user alert and reset the value. 
+ * @param e 
+ * @param setStateFunc 
+ * @param errorMessage 
+ * @param stateResetValue  
+ */
+function handlediceRollerNumericInputValidation(e: React.FocusEvent<HTMLInputElement>, setStateFunc: (value: number) => void,  errorMessage?: string , stateResetValue : number = 1 ) {
+    
+    if (e.target.max === "") {return ;} // if we didn't provide a "max" value, this validation isn't needed. 
+
+    
+    let input = Number(e.target.value);
+    let max = Number(e.target.max);
+
+    errorMessage = errorMessage ? errorMessage : `Please enter a value less than ${max}.`; // default error message. Should be good in most cases. 
+
+    if (input > max) {
+        alert(errorMessage);
+        setStateFunc(stateResetValue);
+    } else {
+        setStateFunc(Math.floor(input));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+// ***Helper functions*** - should be completely functional (not dependent on any state)
 
 /**
  *  Returns the total for rolling a variable of number of dice, all with
