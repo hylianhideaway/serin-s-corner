@@ -19,16 +19,28 @@
     flex-direction: row;
     flex-wrap: wrap ;
     align-items: center;
+    margin: 2px;
 }
 
 .diceRollerInputLabelDiv
 {
     width: 140px;
     text-align: right;
+    margin-right: 5px;
 }
 
 .diceRollerInputField
 {
     min-width: 40px;
     width : 60px;
+}
+
+.diceRollerActionButtonContainer
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap ;
+    justify-content:flex-start;
+    align-items: center;
+    margin: 2px;
 }

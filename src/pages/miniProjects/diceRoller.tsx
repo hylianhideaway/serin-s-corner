@@ -166,28 +166,16 @@ const DiceRoller: React.FC<PageProps> = () => {
                 </div>
 
                 <div className="diceRollerInputDivContainer">
-                    <div className="diceRollerInputLabelDiv"><label htmlFor="NumberOfSidesInputField1">Number of sides:</label></div>
-                    {/*}
+                    <div className="diceRollerInputLabelDiv"><label htmlFor="NumberOfSidesInputField01">Number of sides:</label></div>
                     <input
+                        id = "NumberOfSidesInputField01"
+                        className="diceRollerInputField"
                         type="number"
+                        min="1"
+                        step="1"
                         value={sides}
                         onChange={(e) => setSides(Number(e.target.value))}
                     />
-                    */}
-                    {/* This can absolutely be simplified with an allowed array of numbers and an iterator */}
-                    <RadioGroup
-                        id = "NumberOfSidesInputField1"
-                        row
-                        defaultValue={20}
-                        onChange={(e) => setSides(Number(e.target.value))}
-                    >
-                        <FormControlLabel value={4} label={4} checked={sides===4} control={<Radio />} />
-                        <FormControlLabel value={6} label={6} checked={sides===6} control={<Radio />} />
-                        <FormControlLabel value={8} label={8} checked={sides===8} control={<Radio />} />
-                        <FormControlLabel value={10} label={10} checked={sides===10} control={<Radio />} />
-                        <FormControlLabel value={12} label={12} checked={sides===12 }control={<Radio />} />
-                        <FormControlLabel value={20} label={20} checked={sides===20} control={<Radio />} />
-                    </RadioGroup>
                 </div>
 
                 <div className="diceRollerInputDivContainer">
@@ -214,22 +202,21 @@ const DiceRoller: React.FC<PageProps> = () => {
                         value={historySize}
                         onChange={(e) => setHistorySize(Number(e.target.value))}
                     />
-                </div>
-
-                <div>
-                    <button onClick={handleRoll}>Roll Dice</button>
-                    <button onClick={handleClearHistory}>Clear History</button>
-                    <button onClick={handleApplyNewHistorySize}>Update History Size</button>
-                </div>
-            
+                </div>   
             </div>
 
+            {/*This component should allow you to trigger actions */}
+            <div id="DiceRollerButtonContainer01" className="diceRollerActionButtonContainer">
+                <button onClick={handleRoll}>Roll Dice</button>
+                <button onClick={handleClearHistory}>Clear History</button>
+                <button onClick={handleApplyNewHistorySize}>Update History Size</button>
+            </div>
 
             <div>
                 <strong>Roll Result:</strong> {rollResult}
             </div>
             <div>
-                <strong>Roll Breakdown:</strong> {diceArray.toString()}
+                <strong>Roll Breakdown:</strong> TODO{diceArray.toString()}
             </div>
             <div>
                 <strong>Running Total:</strong> {runningTotal}
