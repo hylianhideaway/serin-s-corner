@@ -39,7 +39,7 @@ const DiceRoller: React.FC<PageProps> = () => {
     const[advantageOrDisadvantege,setAdvantageOrDisadvantege] = useState(true);
     const[rollingMode,setRollingMode] = useState<RollingMode>(RollingMode.RollManyDice);
 
-    //references for input fields:
+    //references for input fields - not really use this yet, but could be useful I guess...
     const numberOfDiceInputField01Ref = useRef<HTMLInputElement | null>(null); 
     const numberOfSidesInputField01Ref = useRef<HTMLInputElement | null>(null); 
     const modifierInputField01Ref = useRef<HTMLInputElement | null>(null); 
@@ -52,6 +52,7 @@ const DiceRoller: React.FC<PageProps> = () => {
      * Helper functions that depend on state that exists inside the componenet
      */
     const handleRoll = () => {
+        let diceArray: number[] = [] 
         let total=0
         
         switch (rollingMode)
@@ -130,7 +131,7 @@ const DiceRoller: React.FC<PageProps> = () => {
         <div className="diceRollerTopDivContainer">
             
             {/*This component should allow you to select the mode, as well as all the settings for the mode */}
-            <div id="DiceRollerSettingsContainer1">
+            <div id="DiceRollerSettingsContainer1" className="componentContainer">
                 
                 {/* Rolling Mode  */}
                 {/*TODO - swap this out for something better */}
@@ -223,29 +224,40 @@ const DiceRoller: React.FC<PageProps> = () => {
                         onChange={(e) => setHistorySize(Number(e.target.value))}
                         onFocus= { (e) => e.target.select()}
                     />
+                </div>
+                {/*This component should allow you to trigger actions */}
+                <div id="DiceRollerButtonContainer01" className="diceRollerActionButtonContainer">
+                    <button onClick={handleRoll}>Roll Dice</button>
+                    <button onClick={handleClearHistory}>Clear History</button>
+                    <button onClick={handleApplyNewHistorySize}>Update History Size</button>
+                </div>  
+            </div>
+
+
+
+            <div id="DiceRollerResultsContainer1" className="componentContainer">
+
+                <div className="diceRollerResultWrapperDiv">
+                    <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Result:</label></div>
+                    <div id = "RollResult01" className="diceRollerResultDiv">{rollResult}</div>
+                </div>
+                <div className="diceRollerResultWrapperDiv">
+                    <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Breakdown:</label></div>
+                    <div id = "RollResult01" className="diceRollerResultDiv">TODO{diceArray.toString()}</div>
+                </div>  
+                <div className="diceRollerResultWrapperDiv">
+                    <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Running Total:</label></div>
+                    <div id = "RollResult01" className="diceRollerResultDiv">{runningTotal}</div>
+                </div>  
+                <div className="diceRollerResultWrapperDiv">
+                    <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Running Average:</label></div>
+                    <div id = "RollResult01" className="diceRollerResultDiv">{Math.round(runningAverage*10)/10}</div> {/* Round to 1 decimal place */}
                 </div>   
+
             </div>
 
-            {/*This component should allow you to trigger actions */}
-            <div id="DiceRollerButtonContainer01" className="diceRollerActionButtonContainer">
-                <button onClick={handleRoll}>Roll Dice</button>
-                <button onClick={handleClearHistory}>Clear History</button>
-                <button onClick={handleApplyNewHistorySize}>Update History Size</button>
-            </div>
 
-            <div>
-                <strong>Roll Result:</strong> {rollResult}
-            </div>
-            <div>
-                <strong>Roll Breakdown:</strong> TODO{diceArray.toString()}
-            </div>
-            <div>
-                <strong>Running Total:</strong> {runningTotal}
-            </div>
-            <div>
-                <strong>Running Average:</strong> {runningAverage}
-            </div>
-            <div>
+            <div className="componentContainer">
                 <strong>Roll History:</strong>
                 <ul>
                     {rollHistory.map((roll, index) => (
