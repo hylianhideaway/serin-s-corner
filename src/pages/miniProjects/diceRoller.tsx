@@ -1,7 +1,7 @@
 import * as React from 'react'
 import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../../components/layout'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Switch from '@mui/material/Switch';
 import { FormControlLabel, MenuItem, Radio, RadioGroup, Select, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import  '../../assets/style/diceRoller.css'
@@ -307,65 +307,75 @@ const DiceRoller: React.FC<PageProps> = () => {
 
   /**
    * A react component used to format an unspecified number of rolls into a table.
-   * The table will have check marks next to them that are associated with them. 
+   * The table will have check marks next to them that are associated with them.
+   * When the checkmark next to the roll is selected, a displayed running total will
+   * be updated with the total of the number's associated with the selected checkmarks 
    * @param props see TraitsTableProps
    * @returns a table with the specified character trait keys and values
    */
   const RollHistoryComponent: React.FC<RollHistoryComponentProps> = (props) => {
-    let selectedRollSum = 0;
-    const [selectedRollTotal, setselectedRollTotal] = useState(0);
 
-    //idea - keep a set of indexes that are selected in the array. when a 
-    // checkmark is updates, add or remove that value from the set. 
-    // checkmarks should move with the selected/unselected element.
+    //this is an array of indexes corresponding to the rolls that were selected
+    // the indexes can be used to find the value of the roll in the original array
+    const [selectedRolls, setSelectedRolls] = useState<number[]>([]);
+
+    useEffect(() => {
+        // Filter out any selected indexes that are out of bounds
+        setSelectedRolls(prevSelected => prevSelected.filter(index => index < props.rollHistory.length));
+      }, [props.rollHistory]);
 
 
+    const toggleRollSelection = (index: number) => {
+      // If the roll is already selected, we remove it from the selection
+      if (selectedRolls.includes(index)) {
+        setSelectedRolls((prevSelected) => prevSelected.filter((i) => i !== index));
+      } else {
+        // Otherwise, we add it to the selection
+        setSelectedRolls((prevSelected) => [...prevSelected, index]);
+      }
+    };
+  
+    // Calculate the total of the selected rolls
+    const selectedRollTotal = selectedRolls.reduce(
+      (sum, index) => sum + props.rollHistory[index],
+      0
+    );
 
-    // checkmarks do not currently work right. Look into this. 
-    
-    
-    let rollHistoryReversed = props.rollHistory.reverse()
-    const rollHistoryTable=  new Array<React.ReactElement>(rollHistoryReversed.length);
-
-    let roll:number;
-    for (let i=0 ; i<rollHistoryReversed.length ; i++) 
-    {
-        rollHistoryTable[i]=
-            (
-                <tr>
-                    <td>{rollHistoryReversed[i]}</td>
-                    <td>
-                        <input 
-                            type="checkbox"  
-                            value={rollHistoryReversed[i]}
-                            onChange={(e) => {
-                                setselectedRollTotal(selectedRollTotal+Number(e.target.value))
-                            }}
-                        />
-                    </td>
-                </tr>)
-
-        
-
-    }
 
     return (
         <div>
-            sum: {selectedRollTotal}
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Roll</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rollHistoryTable}
-                </tbody>
-            </table>
-      </div>
-    )
-  }
+          sum: {selectedRollTotal}
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Roll</th>
+              </tr>
+            </thead>
+            <tbody>
+          {/* Iterate over the rollHistory in reverse without mutating the original array */}
+          {props.rollHistory.map((__roll, idx) => {
+            // Calculate the reverse index
+            const reverseIndex = props.rollHistory.length - 1 - idx;
+            return (
+              <tr key={reverseIndex}> {/*What purpose does this serve? */}
+                <td>{props.rollHistory[reverseIndex]}</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedRolls.includes(reverseIndex) /* Pass back the original index, as that is where the value is stored in the unreversed version */}
+                    onChange={() => toggleRollSelection(reverseIndex)}
+                  />
+                </td>
+              </tr>
+            );
+          })}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
 
 
 export const Head: HeadFC = () => {
