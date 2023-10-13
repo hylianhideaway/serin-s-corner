@@ -285,18 +285,88 @@ const DiceRoller: React.FC<PageProps> = () => {
 
             <div className="componentContainer">
                 <strong>Roll History:</strong>
-                <ul>
-                    {rollHistory.map((roll, index) => (
-                    <li key={index}>{roll}</li>
-                    ))}
-                </ul>
+                <RollHistoryComponent rollHistory={rollHistory}/>
+
             </div>
         </div>
     </Layout> 
-
-
   )
 }
+
+
+
+  /**
+   * Props for HistoryTable. 
+   * contains one property, containing an array of rolls 
+   */
+  interface RollHistoryComponentProps
+  {
+    rollHistory: number[]
+  }
+
+
+  /**
+   * A react component used to format an unspecified number of rolls into a table.
+   * The table will have check marks next to them that are associated with them. 
+   * @param props see TraitsTableProps
+   * @returns a table with the specified character trait keys and values
+   */
+  const RollHistoryComponent: React.FC<RollHistoryComponentProps> = (props) => {
+    let selectedRollSum = 0;
+    const [selectedRollTotal, setselectedRollTotal] = useState(0);
+
+    //idea - keep a set of indexes that are selected in the array. when a 
+    // checkmark is updates, add or remove that value from the set. 
+    // checkmarks should move with the selected/unselected element.
+
+
+
+    // checkmarks do not currently work right. Look into this. 
+    
+    
+    let rollHistoryReversed = props.rollHistory.reverse()
+    const rollHistoryTable=  new Array<React.ReactElement>(rollHistoryReversed.length);
+
+    let roll:number;
+    for (let i=0 ; i<rollHistoryReversed.length ; i++) 
+    {
+        rollHistoryTable[i]=
+            (
+                <tr>
+                    <td>{rollHistoryReversed[i]}</td>
+                    <td>
+                        <input 
+                            type="checkbox"  
+                            value={rollHistoryReversed[i]}
+                            onChange={(e) => {
+                                setselectedRollTotal(selectedRollTotal+Number(e.target.value))
+                            }}
+                        />
+                    </td>
+                </tr>)
+
+        
+
+    }
+
+    return (
+        <div>
+            sum: {selectedRollTotal}
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Roll</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rollHistoryTable}
+                </tbody>
+            </table>
+      </div>
+    )
+  }
+
 
 export const Head: HeadFC = () => {
     return <title>{pageTitle}</title>
@@ -332,14 +402,6 @@ function handlediceRollerNumericInputValidation(e: React.FocusEvent<HTMLInputEle
         setStateFunc(Math.floor(input));
     }
 }
-
-
-
-
-
-
-
-
 
 
 
