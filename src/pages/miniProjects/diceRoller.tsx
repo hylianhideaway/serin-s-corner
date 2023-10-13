@@ -35,7 +35,7 @@ const DiceRoller: React.FC<PageProps> = () => {
     const [rollResult, setRollResult] = useState(0);
     const [diceRollBreakdown,setDiceRollBreakdown] = useState<string>("");
     const [historySize, setHistorySize] = useState(10);
-    const [rollHistory, setRollHistory] = useState<number[]>([]);
+    const [rollHistory, setRollHistory] = useState<number[]>([]); // roll hisotry always has teh most recent rolls first
     const[advantageOrDisadvantege,setAdvantageOrDisadvantege] = useState(true);
     const[rollingMode,setRollingMode] = useState<RollingMode>(RollingMode.RollManyDice);
 
@@ -82,10 +82,10 @@ const DiceRoller: React.FC<PageProps> = () => {
         setRollResult(result);
         // Update the rolling history
         setRollHistory((prevHistory) => {
-            const newHistory = [...prevHistory, result];
+            const newHistory = [result ,  ...prevHistory, ];
             if (newHistory.length > historySize) 
             {
-                newHistory.shift() ; // removes the oldest value in the array
+                newHistory.length = historySize ; // removes the oldest value in the array
             }
             return newHistory;
         });
@@ -127,11 +127,7 @@ const DiceRoller: React.FC<PageProps> = () => {
             }
             else
             {
-                let sizeDiscrepancy= prevHistory.length - historySize ;
-                for(let i = 0 ; i < sizeDiscrepancy ; i++)
-                {
-                    newHistory.shift();
-                }
+                newHistory.length = historySize
                 return newHistory;
             } 
         })
@@ -141,7 +137,7 @@ const DiceRoller: React.FC<PageProps> = () => {
 
     // Dependent values: Should be recalculateed every time the component is re-rendered
     const runningTotal = rollHistory.reduce((runningTotal, value) => runningTotal + value, 0);
-    const runningAverage = rollHistory.length==0 ? 0 : runningTotal/rollHistory.length;
+    const runningAverage = rollHistory.length===0 ? 0 : runningTotal/rollHistory.length;
 
     // The actual component
     return (
@@ -301,7 +297,7 @@ const DiceRoller: React.FC<PageProps> = () => {
    */
   interface RollHistoryComponentProps
   {
-    rollHistory: number[]
+    rollHistory: number[]   // roll history array. Follow FIFO approach
   }
 
 
@@ -353,18 +349,17 @@ const DiceRoller: React.FC<PageProps> = () => {
               </tr>
             </thead>
             <tbody>
-          {/* Iterate over the rollHistory in reverse without mutating the original array */}
+          {/* Iterate over the rollHistory in reverse */}
           {props.rollHistory.map((__roll, idx) => {
             // Calculate the reverse index
-            const reverseIndex = props.rollHistory.length - 1 - idx;
             return (
-              <tr key={reverseIndex}> {/*What purpose does this serve? */}
-                <td>{props.rollHistory[reverseIndex]}</td>
+              <tr key={idx}> 
+                <td>{__roll}</td>
                 <td>
                   <input
                     type="checkbox"
-                    checked={selectedRolls.includes(reverseIndex) /* Pass back the original index, as that is where the value is stored in the unreversed version */}
-                    onChange={() => toggleRollSelection(reverseIndex)}
+                    checked={selectedRolls.includes(idx)}
+                    onChange={() => toggleRollSelection(idx)}
                   />
                 </td>
               </tr>
