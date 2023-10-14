@@ -2,7 +2,13 @@ import React, { ReactNode, CSSProperties } from 'react';
 
 // Define the prop types with comments
 type CardProps = {
-  /**
+  
+    /**
+     * The ID for the card
+     */
+  id? :string
+  
+    /**
    * Padding around the card content. Default is '10px'.
    */
   padding?: string;
@@ -17,10 +23,39 @@ type CardProps = {
    */
   border?: string;
 
+
+  width?: string ; 
+
   /**
    * Child elements passed to 
    */
   children : ReactNode
+};
+
+
+type CardTitleProps = {
+    /**
+     * Background color for the title section. Default is 'transparent'.
+     */
+    backgroundColor?: string;
+
+    textColor?: string;
+
+    /**
+     * Child elements passed to the Title.
+     */
+    children: ReactNode;
+}
+
+export const CardTitle: React.FC<CardTitleProps> = ({ backgroundColor = 'green', textColor = 'white' ,children }) => {
+    const titleDivStyle: CSSProperties = {
+        backgroundColor: backgroundColor,
+        padding: '5px',
+        textAlign: 'center',  // Center the title text
+        fontWeight: 'bold',    // Make the title bold
+        color: textColor // the title color
+    };
+    return <div style={titleDivStyle}>{children}</div>;
 };
 
 /**
@@ -49,6 +84,7 @@ const Card: React.FC<CardProps> = (props) => {
     const padding = props.padding|| "10px"
     const margin = props.margin || "10px";
     const border = props.border || "1px solid black"
+    const width = props.width || '375px'
 
 
     const cardStyle: CSSProperties  = {
@@ -57,6 +93,7 @@ const Card: React.FC<CardProps> = (props) => {
         padding: padding,
         margin: margin,
         border: border,
+        width: width,
         boxSizing: 'border-box',
     };
 
@@ -70,11 +107,14 @@ const Card: React.FC<CardProps> = (props) => {
         borderTop: '1px solid #e0e0e0',
     };
 
-    let top, middle, bottom;
+    let title, top, middle, bottom;
 
     React.Children.forEach(props.children, (child) => {
         if (React.isValidElement(child)) {
             switch (child.type) {
+                case CardTitle:
+                    title = child; 
+                    break; 
                 case TopContent:
                     top = child;
                     break;
@@ -92,6 +132,7 @@ const Card: React.FC<CardProps> = (props) => {
 
     return (
         <div style={cardStyle}>
+            {title && title}
             {top && <div style={topStyle}>{top}</div>}
             {middle && <div>{middle}</div>}
             {bottom && <div style={bottomStyle}>{bottom}</div>}

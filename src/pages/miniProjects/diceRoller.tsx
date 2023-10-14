@@ -1,6 +1,7 @@
 import * as React from 'react'
 import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../../components/layout'
+import Card, { BottomContent, MiddleContent, CardTitle, TopContent } from '../../components/card'
 import { useEffect, useRef, useState } from 'react'
 import Switch from '@mui/material/Switch';
 import { FormControlLabel, MenuItem, Radio, RadioGroup, Select, ToggleButton, ToggleButtonGroup } from '@mui/material';
@@ -145,145 +146,149 @@ const DiceRoller: React.FC<PageProps> = () => {
         <div className="diceRollerTopDivContainer">
             
             {/*This component should allow you to select the mode, as well as all the settings for the mode */}
-            <div id="DiceRollerSettingsContainer1" className="componentContainer">
-                
-                {/* Rolling Mode  */}
-                {/*TODO - swap this out for something better */}
-                <ToggleButtonGroup
-                    color="primary"
-                    aria-label="Rolling Mode"
-                    value = {rollingMode}
-                    exclusive
-                    onChange = { (event: React.MouseEvent<HTMLElement>,__rollingMode: RollingMode) => {
-                        setRollingMode(__rollingMode);
-                        if (__rollingMode===RollingMode.AdvantageOrDisadvantage) {
-                            setNumberOfDice(2);
-                            setSides(20);
-                        }
-                    }}
-                    >
-                        <ToggleButton value={RollingMode.RollManyDice}>{RollingMode.RollManyDice}</ToggleButton>
-                        <ToggleButton value={RollingMode.AdvantageOrDisadvantage}>{RollingMode.AdvantageOrDisadvantage}</ToggleButton>
-                </ToggleButtonGroup>
+            <Card id="DiceRollerSettingsContainer1">
+                <CardTitle>Setup</CardTitle>
+                <TopContent>
+                    {/* Rolling Mode  */}
+                    {/*TODO - swap this out for something better */}
+                    <ToggleButtonGroup
+                        color="primary"
+                        aria-label="Rolling Mode"
+                        value = {rollingMode}
+                        exclusive
+                        onChange = { (event: React.MouseEvent<HTMLElement>,__rollingMode: RollingMode) => {
+                            setRollingMode(__rollingMode);
+                            if (__rollingMode===RollingMode.AdvantageOrDisadvantage) {
+                                setNumberOfDice(2);
+                                setSides(20);
+                            }
+                        }}
+                        >
+                            <ToggleButton value={RollingMode.RollManyDice}>{RollingMode.RollManyDice}</ToggleButton>
+                            <ToggleButton value={RollingMode.AdvantageOrDisadvantage}>{RollingMode.AdvantageOrDisadvantage}</ToggleButton>
+                    </ToggleButtonGroup>   
+                </TopContent>
+                <MiddleContent>
+                    {/*WHen Rolling with Advantage vs Disadvantage, this component controls which mode is selected  */}
+                    {rollingMode === RollingMode.AdvantageOrDisadvantage ? 
+                    <div>
+                        Disadvantage
+                        <Switch
+                            onChange={(e) => setAdvantageOrDisadvantege(e.target.checked)}
+                            checked={advantageOrDisadvantege}
+                        />
+                        Advantage                  
+                    </div>
+                    : null
+                    }
+
+                    <div className="diceRollerInputDivContainer">
+                        <div className="diceRollerInputLabelDiv"><label htmlFor="NumberOfDiceInputField1">Number of dice:</label></div>
+                        <input
+                            id = "NumberOfDiceInputField1"
+                            ref = {numberOfDiceInputField01Ref}
+                            className="diceRollerInputField"
+                            type="number"
+                            min="1"
+                            step="1"
+                            max = "100000"
+                            value={numberOfDice}
+                            onChange={(e) => setNumberOfDice(Number(e.target.value))}
+                            onBlur={(e) => handlediceRollerNumericInputValidation(e, setNumberOfDice)}
+                            onFocus= { (e) => e.target.select()}
+
+                        />
+                    </div>
+
+                    <div className="diceRollerInputDivContainer">
+                        <div className="diceRollerInputLabelDiv"><label htmlFor="NumberOfSidesInputField01">Number of sides:</label></div>
+                        <input
+                            id = "NumberOfSidesInputField01"
+                            className="diceRollerInputField"
+                            ref = {numberOfSidesInputField01Ref}
+                            type="number"
+                            min="1"
+                            step="1"
+                            max="100000"
+                            value={sides}
+                            onChange={(e) => setSides(Number(e.target.value))}
+                            onBlur={(e) => handlediceRollerNumericInputValidation(e, setSides)}
+                            onFocus= { (e) => e.target.select()}
+                        />
+                    </div>
+
+                    <div className="diceRollerInputDivContainer">
+                        <div className="diceRollerInputLabelDiv"><label htmlFor="ModifierInputField01">Modifier:</label></div>
+                        <input
+                            id = "ModifierInputField01"
+                            className="diceRollerInputField"
+                            ref = {modifierInputField01Ref}
+                            type="number"
+                            min="0"
+                            step="1"
+                            max="1000000"
+                            value={modifier}
+                            onChange={(e) => setModifier(Number(e.target.value))}
+                            onBlur={(e) => handlediceRollerNumericInputValidation(e, setModifier)}
+                            onFocus= { (e) => e.target.select()}
+                        />
+                    </div>
+
+                    <div className="diceRollerInputDivContainer">
+                        <div className="diceRollerInputLabelDiv"><label htmlFor="HistorySizeInputField01">History size:</label></div>
+                        <input
+                            id = "HistorySizeInputField01"
+                            className="diceRollerInputField"
+                            type="number"
+                            min="1"
+                            step="1"
+                            max = "1000"
+                            value={historySize}
+                            onChange={(e) => setHistorySize(Number(e.target.value))}
+                            onBlur={(e) => handlediceRollerNumericInputValidation(e, setHistorySize,undefined,10)}
+                            onFocus= { (e) => e.target.select()}
+                        />
+                    </div>
+                </MiddleContent>
+                <BottomContent>
+                    {/*This component should allow you to trigger actions */}
+                    <div id="DiceRollerButtonContainer01" className="diceRollerActionButtonContainer">
+                        <button onClick={handleRoll}>Roll Dice</button>
+                        <button onClick={handleClearHistory}>Clear History</button>
+                        <button onClick={handleApplyNewHistorySize}>Update History Size</button>
+                    </div>       
+                </BottomContent>
+            </Card>
+            <Card id="DiceRollerResultsContainer1">
+                <CardTitle>Roll Results</CardTitle>
+                <MiddleContent>
+                    <div className="diceRollerResultWrapperDiv">
+                        <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Result:</label></div>
+                        <div id = "RollResult01" className="diceRollerResultDiv">{rollResult}</div>
+                    </div>
+                    <div className="diceRollerResultWrapperDiv">
+                        <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Breakdown:</label></div>
+                        <div id = "RollResult01" className="diceRollerResultDiv">{diceRollBreakdown}</div>
+                    </div>  
+                    <div className="diceRollerResultWrapperDiv">
+                        <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Running Total:</label></div>
+                        <div id = "RollResult01" className="diceRollerResultDiv">{runningTotal}</div>
+                    </div>  
+                    <div className="diceRollerResultWrapperDiv">
+                        <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Running Average:</label></div>
+                        <div id = "RollResult01" className="diceRollerResultDiv">{Math.round(runningAverage*10)/10}</div> {/* Round to 1 decimal place */}
+                    </div>   
+                </MiddleContent>
+            </Card>
+            <Card id="RollHistoryContainer1">
+                <CardTitle>Roll History</CardTitle>
+                <MiddleContent>
+                    <RollHistoryComponent rollHistory={rollHistory}/>
+                </MiddleContent>
 
 
-                {/*WHen Rolling with Advantage vs Disadvantage, this component controls which mode is selected  */}
-                {rollingMode === RollingMode.AdvantageOrDisadvantage ? 
-                <div>
-                    Disadvantage
-                    <Switch
-                        onChange={(e) => setAdvantageOrDisadvantege(e.target.checked)}
-                        checked={advantageOrDisadvantege}
-                    />
-                    Advantage                  
-                </div>
-                : null
-                }
+            </Card>
 
-                <div className="diceRollerInputDivContainer">
-                    <div className="diceRollerInputLabelDiv"><label htmlFor="NumberOfDiceInputField1">Number of dice:</label></div>
-                    <input
-                        id = "NumberOfDiceInputField1"
-                        ref = {numberOfDiceInputField01Ref}
-                        className="diceRollerInputField"
-                        type="number"
-                        min="1"
-                        step="1"
-                        max = "100000"
-                        value={numberOfDice}
-                        onChange={(e) => setNumberOfDice(Number(e.target.value))}
-                        onBlur={(e) => handlediceRollerNumericInputValidation(e, setNumberOfDice)}
-                        onFocus= { (e) => e.target.select()}
-
-                    />
-                </div>
-
-                <div className="diceRollerInputDivContainer">
-                    <div className="diceRollerInputLabelDiv"><label htmlFor="NumberOfSidesInputField01">Number of sides:</label></div>
-                    <input
-                        id = "NumberOfSidesInputField01"
-                        className="diceRollerInputField"
-                        ref = {numberOfSidesInputField01Ref}
-                        type="number"
-                        min="1"
-                        step="1"
-                        max="100000"
-                        value={sides}
-                        onChange={(e) => setSides(Number(e.target.value))}
-                        onBlur={(e) => handlediceRollerNumericInputValidation(e, setSides)}
-                        onFocus= { (e) => e.target.select()}
-                    />
-                </div>
-
-                <div className="diceRollerInputDivContainer">
-                    <div className="diceRollerInputLabelDiv"><label htmlFor="ModifierInputField01">Modifier:</label></div>
-                    <input
-                        id = "ModifierInputField01"
-                        className="diceRollerInputField"
-                        ref = {modifierInputField01Ref}
-                        type="number"
-                        min="0"
-                        step="1"
-                        max="1000000"
-                        value={modifier}
-                        onChange={(e) => setModifier(Number(e.target.value))}
-                        onBlur={(e) => handlediceRollerNumericInputValidation(e, setModifier)}
-                        onFocus= { (e) => e.target.select()}
-                    />
-                </div>
-
-                <div className="diceRollerInputDivContainer">
-                    <div className="diceRollerInputLabelDiv"><label htmlFor="HistorySizeInputField01">History size:</label></div>
-                    <input
-                        id = "HistorySizeInputField01"
-                        className="diceRollerInputField"
-                        type="number"
-                        min="1"
-                        step="1"
-                        max = "1000"
-                        value={historySize}
-                        onChange={(e) => setHistorySize(Number(e.target.value))}
-                        onBlur={(e) => handlediceRollerNumericInputValidation(e, setHistorySize,undefined,10)}
-                        onFocus= { (e) => e.target.select()}
-                    />
-                </div>
-                {/*This component should allow you to trigger actions */}
-                <div id="DiceRollerButtonContainer01" className="diceRollerActionButtonContainer">
-                    <button onClick={handleRoll}>Roll Dice</button>
-                    <button onClick={handleClearHistory}>Clear History</button>
-                    <button onClick={handleApplyNewHistorySize}>Update History Size</button>
-                </div>  
-            </div>
-
-
-
-            <div id="DiceRollerResultsContainer1" className="componentContainer">
-
-                <div className="diceRollerResultWrapperDiv">
-                    <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Result:</label></div>
-                    <div id = "RollResult01" className="diceRollerResultDiv">{rollResult}</div>
-                </div>
-                <div className="diceRollerResultWrapperDiv">
-                    <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Breakdown:</label></div>
-                    <div id = "RollResult01" className="diceRollerResultDiv">{diceRollBreakdown}</div>
-                </div>  
-                <div className="diceRollerResultWrapperDiv">
-                    <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Running Total:</label></div>
-                    <div id = "RollResult01" className="diceRollerResultDiv">{runningTotal}</div>
-                </div>  
-                <div className="diceRollerResultWrapperDiv">
-                    <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Running Average:</label></div>
-                    <div id = "RollResult01" className="diceRollerResultDiv">{Math.round(runningAverage*10)/10}</div> {/* Round to 1 decimal place */}
-                </div>   
-
-            </div>
-
-
-            <div className="componentContainer">
-                <strong>Roll History:</strong>
-                <RollHistoryComponent rollHistory={rollHistory}/>
-
-            </div>
         </div>
     </Layout> 
   )
