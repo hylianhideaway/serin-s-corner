@@ -47,13 +47,17 @@ type CardTitleProps = {
     children: ReactNode;
 }
 
-export const CardTitle: React.FC<CardTitleProps> = ({ backgroundColor = 'green', textColor = 'white' ,children }) => {
+export const CardTitle: React.FC<CardTitleProps> = ({ backgroundColor = '#606C38', textColor = 'white' ,children }) => {
     const titleDivStyle: CSSProperties = {
+        
         backgroundColor: backgroundColor,
-        padding: '5px',
+        color: textColor, // the title color
+
         textAlign: 'center',  // Center the title text
         fontWeight: 'bold',    // Make the title bold
-        color: textColor // the title color
+        paddingTop: '5px',
+        paddingBottom: '5px',
+
     };
     return <div style={titleDivStyle}>{children}</div>;
 };
