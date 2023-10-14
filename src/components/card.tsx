@@ -3,24 +3,6 @@ import React, { ReactNode, CSSProperties } from 'react';
 // Define the prop types with comments
 type CardProps = {
   /**
-   * Content or child component(s) for the top narrow section.
-   * This is optional and can be used for elements like buttons.
-   */
-  topContent?: ReactNode;
-
-  /**
-   * Content or child component(s) for the main content section.
-   * This is the primary content of the card and is required.
-   */
-  middleContent: ReactNode;
-
-  /**
-   * Content or child component(s) for the bottom section.
-   * This is optional and can be used for elements like buttons or selectable fields.
-   */
-  bottomContent?: ReactNode;
-
-  /**
    * Padding around the card content. Default is '10px'.
    */
   padding?: string;
@@ -34,19 +16,34 @@ type CardProps = {
    * Border styling for the card. Default is '1px solid black'.
    */
   border?: string;
+
+  /**
+   * Child elements passed to 
+   */
+  children : ReactNode
 };
+
+/**
+ * Just the type for the TopContent, MiddleContent, and BottomContent components. 
+ * It is really just their child components. 
+ */
+type CardContentProps = 
+{
+    children : ReactNode
+}
+
+export const TopContent: React.FC<CardContentProps> = (props) => <>{props.children}</>;
+export const MiddleContent: React.FC<CardContentProps> = (props) => <>{props.children}</>;
+export const BottomContent: React.FC<CardContentProps> = (props) => <>{props.children}</>;
 
 
 /**
- * 
+ *  This components has a top, middle, and bottom, and is structured in a way that 
+ *  allows you to keep formatting consistent on the website. 
  * @param props The props the card takes. Please see CardProps
  * @returns 
  */
 const Card: React.FC<CardProps> = (props) => {
-
-    const topContent = props.topContent;
-    const middleContent = props.middleContent;
-    const bottomContent = props.bottomContent;
 
     // Apply defaults for styling props
     const padding = props.padding|| "10px"
@@ -73,17 +70,35 @@ const Card: React.FC<CardProps> = (props) => {
         borderTop: '1px solid #e0e0e0',
     };
 
-  return (
-    <div style={cardStyle}>
+    let top, middle, bottom;
 
-      {topContent && <div style={topStyle}>{topContent}</div>}
-      
-      <div>{middleContent}</div>
+    React.Children.forEach(props.children, (child) => {
+        if (React.isValidElement(child)) {
+            switch (child.type) {
+                case TopContent:
+                    top = child;
+                    break;
+                case MiddleContent:
+                    middle = child;
+                    break;
+                case BottomContent:
+                    bottom = child;
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
 
-      {bottomContent && <div style={bottomStyle}>{bottomContent}</div>}
-    
-    </div>
-  );
+    return (
+        <div style={cardStyle}>
+            {top && <div style={topStyle}>{top}</div>}
+            {middle && <div>{middle}</div>}
+            {bottom && <div style={bottomStyle}>{bottom}</div>}
+        </div>
+    );
+
+
 };
 
 export default Card;
