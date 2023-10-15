@@ -81,3 +81,46 @@
     align-items: center;
     margin: 2px;
 }
+
+
+
+.diceRollerRollHistoryWrapperDiv
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+
+    margin: auto;
+}
+
+.diceRollerRollHistoryLabelDiv
+{
+    text-align: center;
+    font-weight: bold;
+    padding-right: 2px;
+
+}
+
+.diceRollerRollHistoryDiv
+{
+    padding-left: 2px;
+
+}
+
+
+.diceRollerResultTableContainer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    width: 200px;
+    margin:auto;
+}
+
+.diceRollerResultTableContainer th,
+.diceRollerResultTableContainer td {
+    text-align: center; /* Centers the content horizontally. */
+    vertical-align: middle; /* Centers the content vertically. */
+}

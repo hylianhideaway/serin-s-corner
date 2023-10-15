@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import Switch from '@mui/material/Switch';
 import { FormControlLabel, MenuItem, Radio, RadioGroup, Select, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import  '../../assets/style/diceRoller.css'
+import  { StandardButton, OptionButton } from '../../components/Buttons'
 
 
 /**
@@ -150,35 +151,41 @@ const DiceRoller: React.FC<PageProps> = () => {
                 <CardTitle>Setup</CardTitle>
                 <TopContent>
                     {/* Rolling Mode  */}
-                    {/*TODO - swap this out for something better */}
-                    <ToggleButtonGroup
-                        color="primary"
-                        aria-label="Rolling Mode"
-                        value = {rollingMode}
-                        exclusive
-                        onChange = { (event: React.MouseEvent<HTMLElement>,__rollingMode: RollingMode) => {
-                            setRollingMode(__rollingMode);
-                            if (__rollingMode===RollingMode.AdvantageOrDisadvantage) {
+                    <div className="diceRollerActionButtonContainer">
+                        <OptionButton 
+                            label={RollingMode.RollManyDice}
+                            isActive = {rollingMode === RollingMode.RollManyDice}
+                            onClick = { () => setRollingMode(RollingMode.RollManyDice) }
+                        />
+                        <OptionButton 
+                            label={RollingMode.AdvantageOrDisadvantage}
+                            isActive = {rollingMode === RollingMode.AdvantageOrDisadvantage}
+                            onClick = { () => {
+                                setRollingMode(RollingMode.AdvantageOrDisadvantage)
                                 setNumberOfDice(2);
-                                setSides(20);
-                            }
-                        }}
-                        >
-                            <ToggleButton value={RollingMode.RollManyDice}>{RollingMode.RollManyDice}</ToggleButton>
-                            <ToggleButton value={RollingMode.AdvantageOrDisadvantage}>{RollingMode.AdvantageOrDisadvantage}</ToggleButton>
-                    </ToggleButtonGroup>   
+                                setSides(20); 
+                            }}
+                        />
+                    </div>
                 </TopContent>
                 <MiddleContent>
                     {/*WHen Rolling with Advantage vs Disadvantage, this component controls which mode is selected  */}
-                    {rollingMode === RollingMode.AdvantageOrDisadvantage ? 
-                    <div>
-                        Disadvantage
-                        <Switch
-                            onChange={(e) => setAdvantageOrDisadvantege(e.target.checked)}
-                            checked={advantageOrDisadvantege}
-                        />
-                        Advantage                  
-                    </div>
+                    {rollingMode === RollingMode.AdvantageOrDisadvantage ?
+                    <div className="diceRollerInputDivContainer">
+                        <div className="diceRollerInputLabelDiv"><label>Mode:</label></div>
+                        <div className="diceRollerActionButtonContainer" >
+                            <OptionButton 
+                                label={"Advantage"}
+                                isActive = {advantageOrDisadvantege === true}
+                                onClick = { () => setAdvantageOrDisadvantege(true) }
+                            />
+                            <OptionButton 
+                                label={"Disadvantage"}
+                                isActive = {advantageOrDisadvantege === false}
+                                onClick = { () => setAdvantageOrDisadvantege(false) }
+                            /> 
+                        </div>
+                    </div> 
                     : null
                     }
 
@@ -253,9 +260,9 @@ const DiceRoller: React.FC<PageProps> = () => {
                 <BottomContent>
                     {/*This component should allow you to trigger actions */}
                     <div id="DiceRollerButtonContainer01" className="diceRollerActionButtonContainer">
-                        <button onClick={handleRoll}>Roll Dice</button>
-                        <button onClick={handleClearHistory}>Clear History</button>
-                        <button onClick={handleApplyNewHistorySize}>Update History Size</button>
+                        <StandardButton label ={"Roll Dice"} onClick={handleRoll}/>
+                        <StandardButton label ={"Clear History"} onClick={handleClearHistory} />
+                        <StandardButton label ={"Update History Size"} onClick={handleApplyNewHistorySize} />
                     </div>       
                 </BottomContent>
             </Card>
@@ -345,33 +352,38 @@ const DiceRoller: React.FC<PageProps> = () => {
 
     return (
         <div>
-          sum: {selectedRollTotal}
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Roll</th>
-              </tr>
-            </thead>
-            <tbody>
-          {/* Iterate over the rollHistory in reverse */}
-          {props.rollHistory.map((__roll, idx) => {
-            // Calculate the reverse index
-            return (
-              <tr key={idx}> 
-                <td>{__roll}</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedRolls.includes(idx)}
-                    onChange={() => toggleRollSelection(idx)}
-                  />
-                </td>
-              </tr>
-            );
-          })}
-            </tbody>
-          </table>
+            <div className="diceRollerRollHistoryWrapperDiv">
+                <div className="diceRollerRollHistoryLabelDiv"><label htmlFor="SelectedRollSum01">Sum:</label></div>
+                <div id = "SelectedRollSum01" className="diceRollerRollHistoryDiv">{selectedRollTotal}</div>
+            </div>
+            <div className="diceRollerResultTableContainer">
+                <table>
+                    <thead>
+                        <tr>
+                        <th>Result</th>
+                        <th>Include?</th>
+                        </tr>
+                    </thead>
+                <tbody>
+            {/* Iterate over the rollHistory in reverse */}
+            {props.rollHistory.map((__roll, idx) => {
+                // Calculate the reverse index
+                return (
+                <tr key={idx}> 
+                    <td>{__roll}</td>
+                    <td>
+                    <input
+                        type="checkbox"
+                        checked={selectedRolls.includes(idx)}
+                        onChange={() => toggleRollSelection(idx)}
+                    />
+                    </td>
+                </tr>
+                );
+            })}
+                </tbody>
+            </table>
+          </div>
         </div>
       );
     }

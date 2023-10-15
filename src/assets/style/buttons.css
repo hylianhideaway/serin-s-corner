@@ -1,0 +1,18 @@
+.baseButton {
+    padding: 8px 5px;
+    border: 1px solid #aaa;
+    margin: 5px;
+    cursor: pointer;
+    font-size: smaller;
+    user-select: none; /*Prevent text from being highlightable */
+}
+
+.standardButton {
+    background-color: #606C38;
+    color: #fefae0;
+}
+
+.optionButton.active {
+    background-color: #606C38;
+    color: #fefae0;
+}
