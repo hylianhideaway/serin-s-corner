@@ -1,6 +1,11 @@
 import React, { ReactNode, CSSProperties } from 'react';
 
-// Define the prop types with comments
+
+
+
+/**
+ * CardProps. For "Card" Functional component. 
+ */
 type CardProps = {
   
     /**
@@ -85,21 +90,35 @@ export const BottomContent: React.FC<CardContentProps> = (props) => <>{props.chi
 const Card: React.FC<CardProps> = (props) => {
 
     // Apply defaults for styling props
-    const padding = props.padding|| "10px"
-    const margin = props.margin || "10px";
-    const border = props.border || "1px solid black"
-    const width = props.width || '375px'
+    const padding = props.padding|| '10px';
+    const margin = props.margin || '10px';
+    const border = props.border || '2px solid #606C38';
+    const width = props.width || '375px';
 
 
-    const cardStyle: CSSProperties  = {
-        display: 'flex',
-        flexDirection: 'column',
-        padding: padding,
+    /**
+     * Style for the outermost div of the Card.
+     * Includes width control, outer margin, and border.
+     */
+    const cardOuterStyle : CSSProperties = {
         margin: margin,
         border: border,
         width: width,
+        boxSizing: 'border-box',   
+    }
+
+    /**
+     * Style for the main content div of the box.
+     * Contains everything except for what goes into the
+     * title box. 
+     */
+    const cardInnerStyle : CSSProperties = {
+        display: 'flex',
+        flexDirection: 'column',
+
+        padding: padding,
         boxSizing: 'border-box',
-    };
+    }
 
     const topStyle : CSSProperties = {
         padding: '5px',
@@ -135,12 +154,15 @@ const Card: React.FC<CardProps> = (props) => {
     });
 
     return (
-        <div style={cardStyle}>
+        <div style = {cardOuterStyle}>
             {title && title}
-            {top && <div style={topStyle}>{top}</div>}
-            {middle && <div>{middle}</div>}
-            {bottom && <div style={bottomStyle}>{bottom}</div>}
+            <div style={cardInnerStyle}>
+                {top && <div style={topStyle}>{top}</div>}
+                {middle && <div>{middle}</div>}
+                {bottom && <div style={bottomStyle}>{bottom}</div>}
+            </div>
         </div>
+
     );
 
 
