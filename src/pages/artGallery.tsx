@@ -51,7 +51,8 @@ enum Character {
   Vera = "Vera",
   Luric = "Luric",
   Percy = "Percy",
-  Tiberius = "Tiberius"
+  Tiberius = "Tiberius",
+  Lucian = "Lucian"
 }
 
 /**
@@ -68,7 +69,8 @@ enum Artist {
   Daxl = "Daxl",
   Enfys = "Enfys",
   KayztorDevil = "KayztorDevil",
-  Vexwyn = "Vexwyn"
+  Vexwyn = "Vexwyn",
+  HolloWallo = "WalloWallo"
 }
 
 /**
@@ -255,7 +257,27 @@ const GalleryPage: React.FC<PageProps> = () => {
       staticImage: <StaticImage alt="..." src="../assets/images/art/2023_06_27_Daxl_Serin_PrideFlagChibi.png" layout="constrained"  />,
       dateRecieved : new Date(2023,5,27) ,// 06/27/2023
       description: "A chibi Serin waving the pride flag."
-    }    
+    }
+    ,
+    {
+      title: "Smoke",
+      artist: Artist.HolloWallo,
+      address: "../assets/images/art/2023_08_08_HolloWallo_Serin_PrideIconSmoke.png",
+      characters: [Character.Serin],
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2023_08_08_HolloWallo_Serin_PrideIconSmoke.png" layout="constrained"  />,
+      dateRecieved : new Date(2023,7,8) ,// 08/08/2023
+      description: "A rather ferocious Serin. He is showing his teeth and smoke is coming from his mouth."
+    }  
+    ,
+    {
+      title: "Lucian",
+      artist: Artist.Daxl,
+      address: "../assets/images/art/2023_08_31_Daxl_Lucian_Original.png",
+      characters: [Character.Lucian],
+      staticImage: <StaticImage alt="..." src="../assets/images/art/2023_08_31_Daxl_Lucian_Original.png" layout="constrained"  />,
+      dateRecieved : new Date(2023,7,31) ,// 08/31/2023
+      description: "A handsome dragon adopt from Daxl."
+    }      
   ];
 
   // Develop State for filters. 
