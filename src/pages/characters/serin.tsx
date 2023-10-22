@@ -171,6 +171,44 @@ const SerinInternal: React.FC = () => {
         quirkiness, their time spent travelling and defending each other has forged them into fast friends. 
         </p>
 
+        <h3>Early Campaign</h3>
+        <p>
+        Like many adventures, Serin's began in a tavern. Specifically, in a small tavern in the city of Angmar, the capital of the country of Volestra. 
+        Volestra was a relatively peaceful nation, comprised of seven smaller regions. Angmar, the capital region, shared the name of the capital city within. 
+        Angmar was bordered by Erebus and Sylvas to the north, Caiusyss to the south, Mobius and Raiza to the west, and Kuraz to the east. 
+        Though the country was vast, Serin's adventure began on a more modest note, with the matter of a bag. 
+        Hamish, a well-off gnome sitting at the bar, enlisted the aid of a group of seemingly unassociated adventurers to retrieve a bag stolen from him days prior. 
+        It was during this minor fetch quest that Serin became acquainted with the party he'd bond with for many years.
+        </p>
+
+        <p>
+        There was Lightsong, a Cleric of Dol Arrah, always preaching about honor but often too polite or conflict-averse to challenge questionable acts. 
+        Ghodukk, the hulking human barbarian, was a man of few words. At first, Serin mistook him for being soft-spoken, only to realize Ghodukk was, in fact, just simple-minded. 
+        Convincing him of anything was like reasoning with a door, but there was no one else Serin would trust more in a brawl. 
+        Eryn, the wood elf ranger, was both impulsive and mischievous. Serin was often amused with his antics, unless they were at Serin's expense, which happened frequently.
+        </p>
+
+        <p>
+        Returning to the bag, the party tracked it to a cave in the nearby wilds of Volestra. 
+        There, in addition to finding the bag, they encountered a Spectator and an odd shimmer seemingly suspended in the center of the cavern. 
+        After defeating the Spectator, they approached the shimmer and were drawn into another realm. 
+        Unbeknownst to them, they had landed in the Shadowfell, just outside Necrovall, the domain of the Raven Queen. 
+        However, it was not the Raven Queen who welcomed them but Velkus, an Arch-devil, and his legion of demons, cultists, and Shadowfell warriors. 
+        Paralyzed with fear, Serin listened as Velkus boasted about his plans to use the souls from Volestra to fuel his quest to conquer the multiverse. 
+        The party hastily retreated through the rift and, with the bag in hand, made their way back to Angmar.
+        </p>
+
+        <p>
+        Upon delivering the bag to Hamish (sans a map of Angmar's underworld), they sought the wisdom of M, the archmage of Angmar and de facto head archmage of Volestra. 
+        After some effort, they secured a meeting to recount their ordeal. 
+        M enlightened them about the convergence, a 10 millennia-old event that drew the planes of the multiverse closer, enabling easier planar movement and creating rifts like the one they had seen. 
+        These rifts, unpredictable in their longevity, would only grow in number, size, and duration with the imminent convergence. 
+        More worryingly, it would grant Velkus and his Archons another shot at invading their realm. 
+        They had previously tried during the last convergence but were thwarted by seven heroes armed with the artifacts of the Sundering. 
+        Led by Venca, the then-king of Volestra and keeper of the keystone, the heroes had saved their realm.  
+        M entrusted Serin and his comrades with locating these artifacts before Velkus's agents did. 
+        Armed with these relics, their world might stand a chance against the looming threat.
+        </p>
       </div> 
     )
   
