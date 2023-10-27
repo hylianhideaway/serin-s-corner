@@ -1,6 +1,20 @@
-import React, { ReactNode, CSSProperties } from 'react';
+import React, { ReactNode, CSSProperties, useState } from 'react';
 
 
+
+
+/**
+ * Just the type for the TopContent, MiddleContent, and BottomContent components. 
+ * It is really just their child components. 
+ */
+type CardContentProps = 
+{
+    children : ReactNode
+}
+
+export const TopContent: React.FC<CardContentProps> = (props) => <>{props.children}</>;
+export const MiddleContent: React.FC<CardContentProps> = (props) => <>{props.children}</>;
+export const BottomContent: React.FC<CardContentProps> = (props) => <>{props.children}</>;
 
 
 /**
@@ -12,7 +26,21 @@ type CardProps = {
      * The ID for the card
      */
   id? :string
+
+    
+    /**
+    * The title for the card element. 
+    */
+    titleText? : string
   
+    /**
+     * Background color for the title section. Default is 'transparent'.
+     */
+      titleSectionBackgroundColor?: string;
+
+      titleTextColor?: string;
+
+
     /**
    * Padding around the card content. Default is '10px'.
    */
@@ -35,50 +63,14 @@ type CardProps = {
    * Child elements passed to 
    */
   children : ReactNode
-};
-
-
-type CardTitleProps = {
-    /**
-     * Background color for the title section. Default is 'transparent'.
-     */
-    backgroundColor?: string;
-
-    textColor?: string;
 
     /**
-     * Child elements passed to the Title.
+     * Whether or not the card component will be collapsible only to its title element.   
      */
-    children: ReactNode;
-}
+  collapsible? : boolean
 
-export const CardTitle: React.FC<CardTitleProps> = ({ backgroundColor = '#606C38', textColor = 'white' ,children }) => {
-    const titleDivStyle: CSSProperties = {
-        
-        backgroundColor: backgroundColor,
-        color: textColor, // the title color
 
-        textAlign: 'center',  // Center the title text
-        fontWeight: 'bold',    // Make the title bold
-        paddingTop: '5px',
-        paddingBottom: '5px',
-
-    };
-    return <div style={titleDivStyle}>{children}</div>;
 };
-
-/**
- * Just the type for the TopContent, MiddleContent, and BottomContent components. 
- * It is really just their child components. 
- */
-type CardContentProps = 
-{
-    children : ReactNode
-}
-
-export const TopContent: React.FC<CardContentProps> = (props) => <>{props.children}</>;
-export const MiddleContent: React.FC<CardContentProps> = (props) => <>{props.children}</>;
-export const BottomContent: React.FC<CardContentProps> = (props) => <>{props.children}</>;
 
 
 /**
@@ -89,11 +81,25 @@ export const BottomContent: React.FC<CardContentProps> = (props) => <>{props.chi
  */
 const Card: React.FC<CardProps> = (props) => {
 
+    //pull default for title if they exist.
+    const titleText = props.titleText || "";
+    const titleTextColor = props.titleTextColor || 'white';
+    const titleSectionBackgroundColor = props.titleSectionBackgroundColor || '#606C38';
+
     // Apply defaults for styling props
     const padding = props.padding|| '10px';
     const margin = props.margin || '10px';
     const border = props.border || '2px solid #606C38';
     const width = props.width || '375px';
+
+
+    // State elements
+    const [isCollapsed,setIsCollapsed] = useState(false);
+
+    // Callback functions
+    const toggleCollapse = () => {
+        setIsCollapsed(!isCollapsed)
+    }
 
 
     /**
@@ -106,6 +112,29 @@ const Card: React.FC<CardProps> = (props) => {
         width: width,
         boxSizing: 'border-box',   
     }
+
+
+    const titleDivStyle: CSSProperties = {
+        
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        position: 'relative',
+        
+        
+        backgroundColor: titleSectionBackgroundColor,
+        color: titleTextColor, // the title color
+
+
+
+
+        fontWeight: 'bold',    // Make the title bold
+        paddingTop: '5px',
+        paddingBottom: '5px',
+
+    };
+
 
     /**
      * Style for the main content div of the box.
@@ -130,14 +159,42 @@ const Card: React.FC<CardProps> = (props) => {
         borderTop: '1px solid #e0e0e0',
     };
 
+
     let title, top, middle, bottom;
+
+
+    title  = 
+        <div style={titleDivStyle}>
+            {titleText}
+            {props.collapsible ? 
+                        <button 
+                            onClick={toggleCollapse} 
+                            style={{ 
+                                background: 'none', 
+                                border: 'none', 
+                                cursor: 'pointer',
+
+                                position: 'absolute',
+                                right: '10px'
+
+                            }}
+                        >
+                            {isCollapsed ? 'Expand' : 'Collapse'}
+                        </button>
+                        
+                        : null
+            }
+        </div>
+    
+
+
+
+
+
 
     React.Children.forEach(props.children, (child) => {
         if (React.isValidElement(child)) {
             switch (child.type) {
-                case CardTitle:
-                    title = child; 
-                    break; 
                 case TopContent:
                     top = child;
                     break;
@@ -155,12 +212,16 @@ const Card: React.FC<CardProps> = (props) => {
 
     return (
         <div style = {cardOuterStyle}>
-            {title && title}
-            <div style={cardInnerStyle}>
-                {top && <div style={topStyle}>{top}</div>}
-                {middle && <div>{middle}</div>}
-                {bottom && <div style={bottomStyle}>{bottom}</div>}
-            </div>
+            {title}
+            { !isCollapsed ? 
+                <div style={cardInnerStyle}>
+                    {top && <div style={topStyle}>{top}</div>}
+                    {middle && <div>{middle}</div>}
+                    {bottom && <div style={bottomStyle}>{bottom}</div>}
+                </div>
+                : null
+            }
+
         </div>
 
     );

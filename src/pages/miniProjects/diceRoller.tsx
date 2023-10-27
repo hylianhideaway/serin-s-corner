@@ -1,7 +1,7 @@
 import * as React from 'react'
 import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../../components/layout'
-import Card, { BottomContent, MiddleContent, CardTitle, TopContent } from '../../components/card'
+import Card, { BottomContent, MiddleContent, TopContent } from '../../components/card'
 import { useEffect, useRef, useState } from 'react'
 import Switch from '@mui/material/Switch';
 import { FormControlLabel, MenuItem, Radio, RadioGroup, Select, ToggleButton, ToggleButtonGroup } from '@mui/material';
@@ -147,8 +147,10 @@ const DiceRoller: React.FC<PageProps> = () => {
         <div className="diceRollerTopDivContainer">
             
             {/*This component should allow you to select the mode, as well as all the settings for the mode */}
-            <Card id="DiceRollerSettingsContainer1">
-                <CardTitle>Setup</CardTitle>
+            <Card 
+                id="DiceRollerSettingsContainer1"
+                titleText="Setup"
+            >
                 <TopContent>
                     {/* Rolling Mode  */}
                     <div className="diceRollerActionButtonContainer">
@@ -266,8 +268,11 @@ const DiceRoller: React.FC<PageProps> = () => {
                     </div>       
                 </BottomContent>
             </Card>
-            <Card id="DiceRollerResultsContainer1">
-                <CardTitle>Roll Results</CardTitle>
+            <Card 
+                id="DiceRollerResultsContainer1"
+                titleText="Roll Results"
+                collapsible
+                >
                 <MiddleContent>
                     <div className="diceRollerResultWrapperDiv">
                         <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Result:</label></div>
@@ -287,8 +292,12 @@ const DiceRoller: React.FC<PageProps> = () => {
                     </div>   
                 </MiddleContent>
             </Card>
-            <Card id="RollHistoryContainer1">
-                <CardTitle>Roll History</CardTitle>
+            <Card 
+                id="RollHistoryContainer1"
+                titleText="Roll History"
+                collapsible
+                >
+
                 <MiddleContent>
                     <RollHistoryComponent rollHistory={rollHistory}/>
                 </MiddleContent>
