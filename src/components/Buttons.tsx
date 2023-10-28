@@ -4,11 +4,26 @@ import  '../assets/style/buttons.css'
 
 
 interface StandardButtonProps {
+    /**
+     * the button label.
+     */
     label: string;
-    onClick: () => void;
+    /**
+     * A function controlling what will happen when the button is clicked
+     */
+    onClick: () => void; 
 }
 
-export const StandardButton: React.FC<StandardButtonProps> = ({ label, onClick }) => {
+
+/**
+ * A button that does a thing when clicked. 
+ * @param props 
+ * @returns A button that does a thing when clicked. 
+ */
+export const StandardButton: React.FC<StandardButtonProps> = (props) => {
+    
+    const { label, onClick } = props;
+
     return (
         <div 
             className='baseButton standardButton'
@@ -20,15 +35,33 @@ export const StandardButton: React.FC<StandardButtonProps> = ({ label, onClick }
 };
 
 
-
-
 interface OptionButtonProps {
+    /**
+     * the button label.
+     */
     label: string;
-    isActive: boolean;
-    onClick: () => void;
+    /**
+     * an indicator as to wheterh or not the button is active or not.
+     */
+    isActive: boolean; 
+    /**
+     * A function controlling what will happen when the button is clicked
+     */
+    onClick: () => void; 
 }
 
-export const OptionButton: React.FC<OptionButtonProps> = ({ label, isActive, onClick }) => {
+
+/**
+ * An option button. Can be used in a group of itself to create an 
+ * optionlist. The currently selected button will be activated,
+ * while the others will be in a de-activated state
+ * @param props 
+ * @returns 
+ */
+export const OptionButton: React.FC<OptionButtonProps> = (props) => {
+    
+    const { label, isActive, onClick } = props;
+    
     return (
         <div 
             className={`baseButton optionButton ${isActive ? 'active' : ''}`}
