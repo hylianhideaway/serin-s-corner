@@ -1,4 +1,5 @@
 import React, { ReactNode, CSSProperties, useState } from 'react';
+import { ChevronDown, ChevronUp } from '../assets/icons/svg/chevrons';
 
 
 
@@ -179,7 +180,7 @@ const Card: React.FC<CardProps> = (props) => {
 
                             }}
                         >
-                            {isCollapsed ? 'Expand' : 'Collapse'}
+                            {isCollapsed ? <ChevronDown color='white'/> : <ChevronUp color='white'/>}
                         </button>
                         
                         : null
