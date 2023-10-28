@@ -26,50 +26,64 @@ type CardProps = {
     /**
      * The ID for the card
      */
-  id? :string
+    id? :string
 
-    
+
     /**
     * The title for the card element. 
     */
     titleText? : string
-  
+
     /**
      * Background color for the title section. Default is 'transparent'.
      */
-      titleSectionBackgroundColor?: string;
+    titleSectionBackgroundColor?: string;
 
-      titleTextColor?: string;
+    titleTextColor?: string;
 
 
     /**
-   * Padding around the card content. Default is '10px'.
-   */
-  padding?: string;
+     * Padding around the card content. Default is '10px'.
+     */
+    padding?: string;
 
-  /**
-   * Margin outside the card. Default is '10px'.
-   */
-  margin?: string;
+    /**
+     * Margin outside the card. Default is '10px'.
+     */
+    margin?: string;
 
-  /**
-   * Border styling for the card. Default is '1px solid black'.
-   */
-  border?: string;
+    /**
+     * Border styling for the card. Default is '2px solid #606C38'.
+     */
+    border?: string;
 
 
-  width?: string ; 
-
-  /**
-   * Child elements passed to 
-   */
-  children : ReactNode
+    width?: string ;
 
     /**
      * Whether or not the card component will be collapsible only to its title element.   
      */
-  collapsible? : boolean
+    collapsible? : boolean
+    
+    /**
+     * The vertical padding between inner components. Default is 5px)
+     */
+    innerComponentVerticalPadding?: string 
 
+    /**
+     * The vertical padding between inner components. Default is 5px)
+     */
+    innerComponentHorizontalPadding?: string 
+
+    /**
+     * Whether to suppress the lines between the inner components
+     */
+    suppressBorderBetweenInnerComponents?: boolean
+
+    /**
+     * Child elements passed to the Card component. 
+     */
+    children : ReactNode
 
 };
 
@@ -93,6 +107,10 @@ const Card: React.FC<CardProps> = (props) => {
     const border = props.border || '2px solid #606C38';
     const width = props.width || '375px';
 
+    const innerComponentVerticalPadding = props.innerComponentVerticalPadding || '5px';
+    const innerComponentHorizontalPadding = props.innerComponentHorizontalPadding || '5px'
+
+    const suppressBorderBetweenInnerComponents = props.suppressBorderBetweenInnerComponents || false;
 
     // State elements
     const [isCollapsed,setIsCollapsed] = useState(false);
@@ -122,18 +140,13 @@ const Card: React.FC<CardProps> = (props) => {
         alignItems: 'center',
 
         position: 'relative',
-        
-        
+
         backgroundColor: titleSectionBackgroundColor,
         color: titleTextColor, // the title color
-
-
-
 
         fontWeight: 'bold',    // Make the title bold
         paddingTop: '5px',
         paddingBottom: '5px',
-
     };
 
 
@@ -150,14 +163,30 @@ const Card: React.FC<CardProps> = (props) => {
         boxSizing: 'border-box',
     }
 
+    /* Style for the top most inner element */
     const topStyle : CSSProperties = {
-        padding: '5px',
-        borderBottom: '1px solid #e0e0e0',
+        paddingLeft:innerComponentHorizontalPadding,
+        paddingRight:innerComponentHorizontalPadding,
+        paddingBottom: innerComponentHorizontalPadding,
+
+        borderBottom: (suppressBorderBetweenInnerComponents||isCollapsed) ? '' : '1px solid #e0e0e0', // no border needed if it is the only element showing.
     };
 
+    /* Style for the middle most inner elmeent */
+    const middleStyle : CSSProperties = {
+        paddingLeft:innerComponentHorizontalPadding,
+        paddingRight:innerComponentHorizontalPadding,
+        paddingTop: innerComponentVerticalPadding,
+        paddingBottom: innerComponentHorizontalPadding,
+    };
+
+    /* Style for the bottom most inner elmeent */
     const bottomStyle : CSSProperties = {
-        padding: '5px',
-        borderTop: '1px solid #e0e0e0',
+        paddingLeft:innerComponentHorizontalPadding,
+        paddingRight:innerComponentHorizontalPadding,
+        paddingTop: innerComponentVerticalPadding,
+
+        borderTop: suppressBorderBetweenInnerComponents ? '' : '1px solid #e0e0e0'
     };
 
 
@@ -177,21 +206,14 @@ const Card: React.FC<CardProps> = (props) => {
 
                                 position: 'absolute',
                                 right: '10px'
-
                             }}
                         >
                             {isCollapsed ? <ChevronDown color='white'/> : <ChevronUp color='white'/>}
-                        </button>
-                        
+                        </button>          
                         : null
             }
         </div>
     
-
-
-
-
-
 
     React.Children.forEach(props.children, (child) => {
         if (React.isValidElement(child)) {
@@ -214,20 +236,16 @@ const Card: React.FC<CardProps> = (props) => {
     return (
         <div style = {cardOuterStyle}>
             {title}
-            { !isCollapsed ? 
                 <div style={cardInnerStyle}>
+                    {/* Top component should always show */}
                     {top && <div style={topStyle}>{top}</div>}
-                    {middle && <div>{middle}</div>}
-                    {bottom && <div style={bottomStyle}>{bottom}</div>}
+                    {/*Middle and bottom component should only show if not collapsed*/}
+                    {!isCollapsed && middle && <div style={middleStyle}>{middle}</div>}
+                    {!isCollapsed && bottom && <div style={bottomStyle}>{bottom}</div>}        
                 </div>
-                : null
-            }
-
         </div>
 
     );
-
-
 };
 
 export default Card;

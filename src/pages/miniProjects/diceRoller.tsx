@@ -3,8 +3,6 @@ import type { HeadFC, PageProps } from "gatsby"
 import Layout from '../../components/layout'
 import Card, { BottomContent, MiddleContent, TopContent } from '../../components/card'
 import { useEffect, useRef, useState } from 'react'
-import Switch from '@mui/material/Switch';
-import { FormControlLabel, MenuItem, Radio, RadioGroup, Select, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import  '../../assets/style/diceRoller.css'
 import  { StandardButton, OptionButton } from '../../components/Buttons'
 
@@ -114,7 +112,9 @@ const DiceRoller: React.FC<PageProps> = () => {
      * Clears the roll history
      */
     const handleClearHistory = () => {
+        setRollResult(0);
         setRollHistory([]);
+        setDiceRollBreakdown("");
       };
 
 
@@ -272,16 +272,23 @@ const DiceRoller: React.FC<PageProps> = () => {
                 id="DiceRollerResultsContainer1"
                 titleText="Roll Results"
                 collapsible
+                suppressBorderBetweenInnerComponents
                 >
-                <MiddleContent>
+                <TopContent>
                     <div className="diceRollerResultWrapperDiv">
                         <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Result:</label></div>
                         <div id = "RollResult01" className="diceRollerResultDiv">{rollResult}</div>
-                    </div>
+                    </div> 
+                </TopContent>
+                <MiddleContent>
+
                     <div className="diceRollerResultWrapperDiv">
                         <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Roll Breakdown:</label></div>
                         <div id = "RollResult01" className="diceRollerResultDiv">{diceRollBreakdown}</div>
                     </div>  
+
+                </MiddleContent>
+                <BottomContent>
                     <div className="diceRollerResultWrapperDiv">
                         <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Running Total:</label></div>
                         <div id = "RollResult01" className="diceRollerResultDiv">{runningTotal}</div>
@@ -290,7 +297,8 @@ const DiceRoller: React.FC<PageProps> = () => {
                         <div className="diceRollerResultLabelDiv"><label htmlFor="RollResult01">Running Average:</label></div>
                         <div id = "RollResult01" className="diceRollerResultDiv">{Math.round(runningAverage*10)/10}</div> {/* Round to 1 decimal place */}
                     </div>   
-                </MiddleContent>
+
+                </BottomContent>
             </Card>
             <Card 
                 id="RollHistoryContainer1"
@@ -301,8 +309,6 @@ const DiceRoller: React.FC<PageProps> = () => {
                 <MiddleContent>
                     <RollHistoryComponent rollHistory={rollHistory}/>
                 </MiddleContent>
-
-
             </Card>
 
         </div>
